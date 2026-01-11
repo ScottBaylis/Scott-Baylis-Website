@@ -1,38 +1,224 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Scott Baylis</title>
-  <link href="css/style.css" rel="stylesheet" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Scott Baylis — Futuristic Afro Electronic Funk</title>
+  <meta name="description" content="Scott Baylis — Futuristic Afro Electronic Funk. Video, live updates, and links." />
+  <style>
+    :root{
+      --bg:#fbf6ef;           /* warm off-white */
+      --text:#141414;
+      --muted:#4a4a4a;
+      --card:#ffffff;
+      --border:rgba(0,0,0,.08);
+      --shadow:0 10px 30px rgba(0,0,0,.08);
+
+      /* African-inspired accents (modern) */
+      --rust:#c65a2b;
+      --indigo:#1f2a7a;
+      --green:#0f6b4f;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background:
+        radial-gradient(1200px 600px at 20% 0%, rgba(198,90,43,.10), transparent 60%),
+        radial-gradient(900px 500px at 85% 10%, rgba(31,42,122,.10), transparent 55%),
+        radial-gradient(1000px 700px at 40% 95%, rgba(15,107,79,.10), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+    .wrap{max-width:980px;margin:0 auto;padding:28px 18px 60px}
+    header{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      position:sticky;top:0;z-index:10;
+      background:linear-gradient(to bottom, rgba(251,246,239,.92), rgba(251,246,239,.65));
+      backdrop-filter: blur(10px);
+      padding:14px 0;
+    }
+    @media (max-width: 880px){
+      header{position:static; backdrop-filter:none; background:transparent}
+    }
+    .brand{font-weight:800;letter-spacing:.2px}
+    nav{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+    nav a{
+      text-decoration:none;
+      font-size:14px;
+      padding:8px 10px;
+      border-radius:10px;
+      border:1px solid transparent;
+      color:var(--muted);
+    }
+    nav a:hover{border-color:var(--border); background:rgba(255,255,255,.55); color:var(--text)}
+    .hero{
+      padding:44px 0 26px;
+      display:grid; grid-template-columns: 1.15fr .85fr; gap:22px;
+      align-items:start;
+    }
+    @media (max-width: 880px){ .hero{grid-template-columns:1fr; padding-top:26px} }
+    h1{
+      margin:0 0 10px;
+      font-size:56px;
+      line-height:1.02;
+      letter-spacing:-.8px;
+    }
+    @media (max-width:520px){h1{font-size:42px}}
+    .tag{font-size:16px;color:var(--muted);margin:0 0 18px}
+    .chips{display:flex; gap:10px; flex-wrap:wrap; margin:0 0 22px; padding:0; list-style:none}
+    .chip{
+      font-size:13px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.6);
+    }
+    .cta{display:flex; gap:10px; flex-wrap:wrap}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:11px 14px;
+      border-radius:12px;
+      text-decoration:none;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.75);
+      box-shadow: 0 6px 20px rgba(0,0,0,.06);
+      font-weight:650;
+      font-size:14px;
+    }
+    .btn.primary{
+      border-color:transparent;
+      background:linear-gradient(90deg, var(--rust), var(--indigo));
+      color:white;
+    }
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .pad{padding:14px 14px 10px}
+    .section{margin-top:28px}
+    .section h2{margin:0 0 10px;font-size:20px;letter-spacing:-.2px}
+    .section p{margin:0;color:var(--muted)}
+    .grid{display:grid;grid-template-columns: 1fr 1fr;gap:14px;margin-top:12px}
+    @media (max-width:880px){.grid{grid-template-columns:1fr}}
+    .video{aspect-ratio:16/9;width:100%;border:0;display:block;background:#000}
+    .labelRow{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .label{font-size:12px;color:var(--muted)}
+    .accentLine{
+      height:3px; width:100%;
+      background:linear-gradient(90deg, var(--rust), var(--green), var(--indigo));
+      border-radius:999px;
+      margin-top:14px;
+      opacity:.9;
+    }
+    footer{margin-top:40px;color:var(--muted);font-size:13px}
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Scott Baylis</h1>
-    <p>Futuristic Afro Electronic Funk</p>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="live.html">Live</a>
-      <a href="music.html">Music</a>
-      <a href="video.html">Video</a>
-      <a href="contact.html">Contact</a>
-      <a href="shop.html">Shop</a>
-    </nav>
-  </header>
-  <main>
-    <section>
-      <h2>Welcome</h2>
-      <p>Explore my world of futuristic Afro electronic funk.</p>
-    </section>
-  </main>
-  <footer>
-    <p>Connect: 
-      <a href="https://instagram.com/ScottyBeasy">Instagram</a> | 
-      <a href="https://facebook.com/ScottBaylis">Facebook</a> | 
-      <a href="https://twitter.com/ScottBaylis">X</a>
-    </p>
-  </footer>
-</body>
-</html>
+  <div class="wrap">
+    <header>
+      <div class="brand">Scott Baylis</div>
+      <nav>
+        <a href="#video">Video</a>
+        <a href="#live">Live</a>
+        <a href="#connect">Connect</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <h1>Scott Baylis</h1>
+          <p class="tag">Futuristic Afro Electronic Funk</p>
+
+          <ul class="chips">
+            <li class="chip">Trumpet / Brass</li>
+            <li class="chip">Afro-electronic</li>
+            <li class="chip">Funk / Groove</li>
+            <li class="chip">Collaborations</li>
+          </ul>
+
+          <div class="cta">
+            <a class="btn primary" href="#video">Watch</a>
+            <a class="btn" href="#connect">Follow</a>
+          </div>
+
+          <div class="accentLine" aria-hidden="true"></div>
+        </div>
+
+        <div class="card">
+          <iframe class="video"
+            src="https://www.youtube.com/embed/https://youtu.be/lfMh0zfIO3A
+            title="Featured video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+          <div class="pad">
+            <div class="labelRow">
+              <div style="font-weight:700">Featured</div>
+              <div class="label">YouTube</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="video" class="section">
+        <h2>Video</h2>
+        <p>Selected performances and collaborations (Ibibio Sound Machine + The Baker Brothers).</p>
+
+        <div class="grid">
+          <div class="card">
+            <iframe class="video"
+              src="https://www.youtube.com/embed/https://youtu.be/XF-CrcPJT3c?si=f-8o86VIk3E3ZPEN
+              title="Ibibio Sound Machine"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+            <div class="pad">
+              <div class="labelRow">
+                <div style="font-weight:700">Ibibio Sound Machine</div>
+                <div class="label">YouTube</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <iframe class="video"
+              src="https://www.youtube.com/embed/https://youtu.be/XF-CrcPJT3c?si=f-8o86VIk3E3ZPEN
+              title="The Baker Brothers"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+            <div class="pad">
+              <div class="labelRow">
+                <div style="font-weight:700">The Baker Brothers</div>
+                <div class="label">YouTube</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="live" class="section">
+        <h2>Live</h2>
+        <p>Dates announced via socials. Festivals, club shows and collaborations.</p>
+      </section>
+
+      <section id="connect" class="section">
+        <h2>Connect</h2>
+        <p style="margin-bottom:12px">Follow and get updates first.</p>
+        <div class="cta">
+          <a class="btn" href="https://instagram.com/ScottyBeasy" target="_blank" rel="noopener">Instagram</a>
+          <a class="btn" href="https://facebook.com/" target="_blank" rel="noopener">Facebook</a>
+          <a class="btn" href="https://x.com/" target="_blank" rel="noopener">X</a>
+        </div>
+      </section>
+
+      <footer>© <span id="y"></span> Scott Baylis</footer>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
