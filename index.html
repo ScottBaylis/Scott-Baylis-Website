@@ -1,236 +1,244 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Scott Baylis — Futuristic Afro Electronic Funk</title>
-  <meta name="description" content="Scott Baylis — Futuristic Afro Electronic Funk & Spiritual Jazz & Soul." />
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Scott Baylis</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;500;650;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --bg:#fbf6ef;
-      --text:#141414;
-      --muted:#4a4a4a;
-      --card:#ffffff;
-      --border:rgba(0,0,0,.08);
-      --shadow:0 10px 30px rgba(0,0,0,.08);
+<style>
+:root{
+  --bg:#fbf6ef;
+  --rust:#ff7a18;
+  --gold:#ffd166;
+  --green:#06d6a0;
+  --cyan:#4cc9f0;
+  --violet:#b5179e;
+}
 
-      --rust:#c65a2b;
-      --indigo:#1f2a7a;
-      --green:#0f6b4f;
-      --gold:#c9a227;
-    }
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:"Plus Jakarta Sans",system-ui;
+  background:var(--bg);
+  color:#111;
+}
 
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:"Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      background:
-        radial-gradient(1200px 600px at 18% 0%, rgba(198,90,43,.10), transparent 60%),
-        radial-gradient(900px 500px at 85% 10%, rgba(31,42,122,.10), transparent 55%),
-        radial-gradient(1000px 700px at 40% 95%, rgba(15,107,79,.10), transparent 55%),
-        var(--bg);
-      color:var(--text);
-    }
+.wrap{max-width:1100px;margin:0 auto;padding:0 18px 70px}
+a{text-decoration:none;color:inherit}
 
-    a{text-decoration:none;color:inherit}
-    .wrap{max-width:1100px;margin:0 auto;padding:0 18px 70px}
+/* ================= HEADER ================= */
 
-    /* =======================
-       HEADER (CHROME LOGO)
-       ======================= */
-    header{
-      background:
-        radial-gradient(800px 200px at 20% 0%, rgba(255,255,255,.05), transparent 55%),
-        radial-gradient(700px 240px at 90% 30%, rgba(120,150,255,.18), transparent 55%),
-        #07070a;
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
+header{
+  background:
+    radial-gradient(1200px 300px at 50% 0%, rgba(255,255,255,.08), transparent 60%),
+    radial-gradient(900px 300px at 70% 40%, rgba(76,201,240,.18), transparent 60%),
+    #050509;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
 
-    .headerInner{
-      max-width:1100px;
-      margin:0 auto;
-      padding:22px 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:18px;
-    }
+.headerInner{
+  max-width:1100px;
+  margin:0 auto;
+  padding:34px 18px 28px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:14px;
+}
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:14px;
-    }
+/* ===== NEON CHROME LOGO ===== */
 
-    .brandDot{
-      width:12px;
-      height:12px;
-      border-radius:999px;
-      background:conic-gradient(from 180deg, var(--rust), var(--gold), var(--green), var(--indigo), var(--rust));
-      box-shadow:0 0 18px rgba(255,255,255,.25);
-    }
+.logo{
+  position:relative;
+  font-family:"Unbounded",system-ui;
+  font-weight:800;
+  font-size:72px;
+  letter-spacing:3px;
+  color:#0b0b0b;
+  line-height:1.05;
+  text-shadow:
+    0 0 22px rgba(255,255,255,.10),
+    0 24px 60px rgba(0,0,0,.95);
+}
 
-    /* === CHROME LOGO WITH SHIMMER === */
-    .bigLogo{
-      position:relative;
-      font-family:"Unbounded", system-ui, sans-serif;
-      font-weight:800;
-      font-size:46px;
-      letter-spacing:2px;
-      background:
-        linear-gradient(
-          120deg,
-          #ffffff 0%,
-          #dfe4ee 18%,
-          #ffffff 32%,
-          #a2acc0 52%,
-          #ffffff 68%,
-          #c0c8d8 100%
-        );
-      background-size:200% 100%;
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-      animation: chromeSweep 8s linear infinite;
+/* spectral glow */
+.logo::before{
+  content:attr(data-text);
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,
+      var(--rust),
+      var(--gold),
+      var(--green),
+      var(--cyan),
+      var(--violet),
+      var(--rust)
+    );
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  filter:blur(1.6px);
+  opacity:.9;
+  z-index:-1;
+}
 
-      text-shadow:
-        0 1px 0 rgba(255,255,255,.8),
-        0 0 14px rgba(255,255,255,.3),
-        0 12px 32px rgba(0,0,0,.85);
-    }
+/* neon rim highlight */
+.logo::after{
+  content:attr(data-text);
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,
+      #ffffff,
+      var(--cyan),
+      var(--violet),
+      #ffffff
+    );
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  filter:blur(.8px);
+  opacity:.7;
+  z-index:-2;
+}
 
-    @keyframes chromeSweep{
-      0%{background-position:0% 50%}
-      100%{background-position:200% 50%}
-    }
+/* slow colour drift */
+@keyframes pulse {
+  0%{filter:hue-rotate(0deg)}
+  100%{filter:hue-rotate(360deg)}
+}
 
-    nav{
-      display:flex;
-      gap:16px;
-    }
+.logo::before{
+  animation:pulse 22s linear infinite;
+}
 
-    nav a{
-      font-size:14px;
-      color:#d6d6d6;
-      padding:6px 8px;
-    }
+/* NAV UNDER LOGO */
+nav{
+  display:flex;
+  gap:22px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
 
-    nav a:hover{color:#fff}
+nav a{
+  color:#ddd;
+  font-size:14px;
+  letter-spacing:.4px;
+}
 
-    @media (max-width:520px){
-      .bigLogo{font-size:30px;letter-spacing:1.4px}
-    }
+nav a:hover{color:#fff}
 
-    /* =======================
-       HERO
-       ======================= */
-    .heroPhoto{
-      margin:22px auto 30px;
-      position:relative;
-      border-radius:22px;
-      overflow:hidden;
-      box-shadow:var(--shadow);
-      background:#000;
-    }
+/* Responsive */
+@media(max-width:900px){
+  .logo{font-size:52px;letter-spacing:2.4px}
+}
+@media(max-width:520px){
+  .logo{font-size:38px;letter-spacing:1.8px}
+}
 
-    .heroPhoto img{
-      width:100%;
-      height:min(520px,60vh);
-      object-fit:cover;
-      opacity:.92;
-    }
+/* ================= HERO ================= */
 
-    .heroOverlay{
-      position:absolute;
-      inset:0;
-      background:
-        linear-gradient(90deg, rgba(0,0,0,.7), rgba(0,0,0,.2) 55%, transparent),
-        linear-gradient(180deg, transparent, rgba(0,0,0,.75));
-      display:flex;
-      align-items:flex-end;
-      padding:18px;
-    }
+.hero{
+  margin:26px auto 30px;
+  position:relative;
+  border-radius:22px;
+  overflow:hidden;
+  background:#000;
+}
 
-    .heroText h1{
-      font-family:"Unbounded", system-ui, sans-serif;
-      font-size:26px;
-      margin:0 0 6px;
-      color:#fff;
-      text-shadow:0 10px 25px rgba(0,0,0,.6);
-    }
+.hero img{
+  width:100%;
+  height:min(520px,60vh);
+  object-fit:cover;
+  opacity:.92;
+}
 
-    .heroText p{
-      margin:0;
-      color:rgba(255,255,255,.9);
-      font-size:15px;
-    }
+.heroOverlay{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.75), rgba(0,0,0,.25) 60%, transparent),
+    linear-gradient(180deg, transparent, rgba(0,0,0,.75));
+  display:flex;
+  align-items:flex-end;
+  padding:18px;
+}
 
-    .heroLine{
-      height:3px;
-      width:240px;
-      background:linear-gradient(90deg,var(--rust),var(--gold),var(--green),var(--indigo));
-      margin:10px 0 14px;
-      border-radius:999px;
-    }
+.heroText h1{
+  font-family:"Unbounded";
+  font-size:24px;
+  margin:0 0 6px;
+  color:#fff;
+}
 
-    .btn{
-      padding:10px 14px;
-      border-radius:14px;
-      font-weight:700;
-      background:#fff;
-      margin-right:10px;
-    }
+.heroText p{
+  color:rgba(255,255,255,.9);
+  margin:0;
+  font-size:15px;
+}
 
-    .btn.primary{
-      background:linear-gradient(90deg,var(--rust),var(--gold),var(--green),var(--indigo));
-      color:#fff;
-    }
+.heroLine{
+  height:3px;
+  width:220px;
+  background:linear-gradient(90deg,var(--rust),var(--gold),var(--green),var(--cyan),var(--violet));
+  border-radius:999px;
+  margin:10px 0 14px;
+}
 
-    /* =======================
-       CONTENT
-       ======================= */
-    .section{margin-top:34px}
-    .section h2{
-      font-family:"Unbounded",system-ui;
-      font-size:20px;
-      margin-bottom:6px;
-    }
+.btn{
+  display:inline-block;
+  padding:10px 14px;
+  border-radius:14px;
+  font-weight:700;
+  background:#fff;
+  margin-right:10px;
+}
 
-    .grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
-      margin-top:12px;
-    }
+.btn.primary{
+  background:linear-gradient(90deg,var(--rust),var(--gold),var(--green),var(--cyan),var(--violet));
+  color:#111;
+}
 
-    @media(max-width:900px){.grid{grid-template-columns:1fr}}
+/* ================= CONTENT ================= */
 
-    .card{
-      background:#fff;
-      border-radius:18px;
-      overflow:hidden;
-      box-shadow:var(--shadow);
-    }
+.section{margin-top:34px}
+.section h2{
+  font-family:"Unbounded";
+  font-size:20px;
+}
 
-    iframe{width:100%;aspect-ratio:16/9;border:0;background:#000}
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-top:12px;
+}
 
-    footer{margin-top:48px;font-size:13px;color:var(--muted)}
-  </style>
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+
+.card{
+  background:#fff;
+  border-radius:18px;
+  overflow:hidden;
+}
+
+iframe{width:100%;aspect-ratio:16/9;border:0;background:#000}
+
+footer{margin-top:48px;font-size:13px;color:#555}
+</style>
 </head>
 
 <body>
 
 <header>
   <div class="headerInner">
-    <div class="brand">
-      <span class="brandDot"></span>
-      <span class="bigLogo">Scott Baylis</span>
-    </div>
+    <div class="logo" data-text="Scott Baylis">Scott Baylis</div>
     <nav>
       <a href="#video">Video</a>
       <a href="#photo">Photo</a>
@@ -242,8 +250,8 @@
 
 <div class="wrap">
 
-<section class="heroPhoto">
-  <img src="assets/ISM_RTF_FINAL1.jpeg" alt="Ibibio Sound Machine">
+<section class="hero">
+  <img src="assets/ISM_RTF_FINAL1.jpeg">
   <div class="heroOverlay">
     <div class="heroText">
       <h1>Scott Baylis</h1>
@@ -267,12 +275,9 @@
 
 <section id="photo" class="section">
   <h2>Photo</h2>
-  <div class="card"><img src="assets/IMG_0080.jpeg" style="width:100%"></div>
-</section>
-
-<section id="connect" class="section">
-  <h2>Connect</h2>
-  <a class="btn primary" href="https://instagram.com/ScottyBeasy" target="_blank">Instagram</a>
+  <div class="card">
+    <img src="assets/IMG_0080.jpeg" style="width:100%">
+  </div>
 </section>
 
 <footer>© 2026 Scott Baylis</footer>
