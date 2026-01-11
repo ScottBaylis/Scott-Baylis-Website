@@ -1,244 +1,214 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Scott Baylis</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Scott Baylis</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="description" content="Scott Baylis — Futuristic Afro Electronic Funk & Spiritual Jazz & Soul." />
 
-<style>
-:root{
-  --bg:#fbf6ef;
-  --rust:#ff7a18;
-  --gold:#ffd166;
-  --green:#06d6a0;
-  --cyan:#4cc9f0;
-  --violet:#b5179e;
-}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
 
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:"Plus Jakarta Sans",system-ui;
-  background:var(--bg);
-  color:#111;
-}
+  <style>
+    :root{
+      --bg:#fbf6ef;
+      --text:#111;
+      --muted:#555;
+      --shadow:0 14px 40px rgba(0,0,0,.18);
+      --header:#050509;
+    }
 
-.wrap{max-width:1100px;margin:0 auto;padding:0 18px 70px}
-a{text-decoration:none;color:inherit}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Plus Jakarta Sans",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      background:var(--bg);
+      color:var(--text);
+    }
 
-/* ================= HEADER ================= */
+    a{color:inherit;text-decoration:none}
 
-header{
-  background:
-    radial-gradient(1200px 300px at 50% 0%, rgba(255,255,255,.08), transparent 60%),
-    radial-gradient(900px 300px at 70% 40%, rgba(76,201,240,.18), transparent 60%),
-    #050509;
-  border-bottom:1px solid rgba(255,255,255,.12);
-}
+    /* ===== HEADER / LOGO ===== */
+    header{
+      background:
+        radial-gradient(1200px 300px at 50% 0%, rgba(255,255,255,.08), transparent 60%),
+        var(--header);
+      border-bottom:1px solid rgba(255,255,255,.12);
+    }
 
-.headerInner{
-  max-width:1100px;
-  margin:0 auto;
-  padding:34px 18px 28px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  text-align:center;
-  gap:14px;
-}
+    .headerInner{
+      max-width:1200px;
+      margin:0 auto;
+      padding:34px 18px 28px;
+      text-align:center;
+    }
 
-/* ===== NEON CHROME LOGO ===== */
+    .logoImage{
+      width:min(900px, 94vw);
+      height:auto;
+      display:block;
+      margin:0 auto 18px;
+      filter: drop-shadow(0 18px 50px rgba(0,0,0,.85));
+    }
 
-.logo{
-  position:relative;
-  font-family:"Unbounded",system-ui;
-  font-weight:800;
-  font-size:72px;
-  letter-spacing:3px;
-  color:#0b0b0b;
-  line-height:1.05;
-  text-shadow:
-    0 0 22px rgba(255,255,255,.10),
-    0 24px 60px rgba(0,0,0,.95);
-}
+    nav{
+      display:flex;
+      justify-content:center;
+      gap:26px;
+      flex-wrap:wrap;
+    }
 
-/* spectral glow */
-.logo::before{
-  content:attr(data-text);
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(90deg,
-      var(--rust),
-      var(--gold),
-      var(--green),
-      var(--cyan),
-      var(--violet),
-      var(--rust)
-    );
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-  filter:blur(1.6px);
-  opacity:.9;
-  z-index:-1;
-}
+    nav a{
+      color:#e6e6e6;
+      font-size:14px;
+      letter-spacing:.4px;
+      padding:6px 10px;
+      border-radius:12px;
+    }
 
-/* neon rim highlight */
-.logo::after{
-  content:attr(data-text);
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(90deg,
-      #ffffff,
-      var(--cyan),
-      var(--violet),
-      #ffffff
-    );
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-  filter:blur(.8px);
-  opacity:.7;
-  z-index:-2;
-}
+    nav a:hover{
+      color:#fff;
+      background:rgba(255,255,255,.06);
+    }
 
-/* slow colour drift */
-@keyframes pulse {
-  0%{filter:hue-rotate(0deg)}
-  100%{filter:hue-rotate(360deg)}
-}
+    /* ===== WRAP ===== */
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:28px 18px 70px;
+    }
 
-.logo::before{
-  animation:pulse 22s linear infinite;
-}
+    /* ===== HERO ===== */
+    .hero{
+      position:relative;
+      border-radius:22px;
+      overflow:hidden;
+      background:#000;
+      box-shadow:var(--shadow);
+      margin-bottom:44px;
+    }
 
-/* NAV UNDER LOGO */
-nav{
-  display:flex;
-  gap:22px;
-  justify-content:center;
-  flex-wrap:wrap;
-}
+    .hero img{
+      width:100%;
+      height:min(560px, 65vh);
+      object-fit:cover;
+      display:block;
+      opacity:.92;
+    }
 
-nav a{
-  color:#ddd;
-  font-size:14px;
-  letter-spacing:.4px;
-}
+    .heroOverlay{
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.75), rgba(0,0,0,.25) 65%, transparent),
+        linear-gradient(180deg, transparent 50%, rgba(0,0,0,.85));
+      display:flex;
+      align-items:flex-end;
+      padding:20px;
+    }
 
-nav a:hover{color:#fff}
+    .heroText{
+      max-width:720px;
+      color:#fff;
+    }
 
-/* Responsive */
-@media(max-width:900px){
-  .logo{font-size:52px;letter-spacing:2.4px}
-}
-@media(max-width:520px){
-  .logo{font-size:38px;letter-spacing:1.8px}
-}
+    .heroText h1{
+      font-family:"Unbounded",system-ui;
+      font-size:22px; /* intentionally smaller */
+      margin:0 0 6px;
+    }
 
-/* ================= HERO ================= */
+    .heroText p{
+      margin:0;
+      font-size:14px;
+      color:#e6e6e6;
+    }
 
-.hero{
-  margin:26px auto 30px;
-  position:relative;
-  border-radius:22px;
-  overflow:hidden;
-  background:#000;
-}
+    .cta{
+      display:flex;
+      gap:12px;
+      margin-top:14px;
+    }
 
-.hero img{
-  width:100%;
-  height:min(520px,60vh);
-  object-fit:cover;
-  opacity:.92;
-}
+    .btn{
+      padding:10px 16px;
+      border-radius:14px;
+      font-weight:600;
+      font-size:14px;
+      background:#fff;
+      color:#111;
+    }
 
-.heroOverlay{
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(90deg, rgba(0,0,0,.75), rgba(0,0,0,.25) 60%, transparent),
-    linear-gradient(180deg, transparent, rgba(0,0,0,.75));
-  display:flex;
-  align-items:flex-end;
-  padding:18px;
-}
+    .btn.primary{
+      background:linear-gradient(90deg,#ff7a18,#ffd166,#06d6a0,#4cc9f0);
+      color:#111;
+    }
 
-.heroText h1{
-  font-family:"Unbounded";
-  font-size:24px;
-  margin:0 0 6px;
-  color:#fff;
-}
+    /* ===== SECTIONS ===== */
+    section{
+      margin-bottom:60px;
+    }
 
-.heroText p{
-  color:rgba(255,255,255,.9);
-  margin:0;
-  font-size:15px;
-}
+    section h2{
+      font-family:"Unbounded",system-ui;
+      font-size:22px;
+      margin-bottom:6px;
+    }
 
-.heroLine{
-  height:3px;
-  width:220px;
-  background:linear-gradient(90deg,var(--rust),var(--gold),var(--green),var(--cyan),var(--violet));
-  border-radius:999px;
-  margin:10px 0 14px;
-}
+    section p{
+      color:var(--muted);
+      margin-top:0;
+      margin-bottom:18px;
+    }
 
-.btn{
-  display:inline-block;
-  padding:10px 14px;
-  border-radius:14px;
-  font-weight:700;
-  background:#fff;
-  margin-right:10px;
-}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:18px;
+    }
 
-.btn.primary{
-  background:linear-gradient(90deg,var(--rust),var(--gold),var(--green),var(--cyan),var(--violet));
-  color:#111;
-}
+    .card{
+      background:#000;
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
 
-/* ================= CONTENT ================= */
+    .card iframe{
+      width:100%;
+      height:220px;
+      border:0;
+    }
 
-.section{margin-top:34px}
-.section h2{
-  font-family:"Unbounded";
-  font-size:20px;
-}
+    .photoBlock img{
+      width:100%;
+      display:block;
+      border-radius:18px;
+      box-shadow:var(--shadow);
+    }
 
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-  margin-top:12px;
-}
-
-@media(max-width:900px){.grid{grid-template-columns:1fr}}
-
-.card{
-  background:#fff;
-  border-radius:18px;
-  overflow:hidden;
-}
-
-iframe{width:100%;aspect-ratio:16/9;border:0;background:#000}
-
-footer{margin-top:48px;font-size:13px;color:#555}
-</style>
+    footer{
+      text-align:center;
+      color:#666;
+      font-size:13px;
+      margin-top:80px;
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
   <div class="headerInner">
-    <div class="logo" data-text="Scott Baylis">Scott Baylis</div>
+    <img
+      class="logoImage"
+      src="assets/B03BF3AC-BCAB-4C8F-821E-AE57D438DC68.png"
+      alt="Scott Baylis logo"
+    />
+
     <nav>
       <a href="#video">Video</a>
       <a href="#photo">Photo</a>
@@ -248,40 +218,75 @@ footer{margin-top:48px;font-size:13px;color:#555}
   </div>
 </header>
 
-<div class="wrap">
+<main class="wrap">
 
-<section class="hero">
-  <img src="assets/ISM_RTF_FINAL1.jpeg">
-  <div class="heroOverlay">
-    <div class="heroText">
-      <h1>Scott Baylis</h1>
-      <p>Futuristic Afro Electronic Funk &amp; Spiritual Jazz &amp; Soul</p>
-      <div class="heroLine"></div>
-      <a class="btn primary" href="#video">Watch</a>
-      <a class="btn" href="#connect">Follow</a>
+  <!-- HERO -->
+  <div class="hero">
+    <img src="assets/ISM_RTF_FINAL1.jpeg" alt="Ibibio Sound Machine" />
+    <div class="heroOverlay">
+      <div class="heroText">
+        <h1>Scott Baylis</h1>
+        <p>Futuristic Afro Electronic Funk & Spiritual Jazz & Soul</p>
+        <div class="cta">
+          <a class="btn primary" href="#video">Watch</a>
+          <a class="btn" href="#connect">Follow</a>
+        </div>
+      </div>
     </div>
   </div>
-</section>
 
-<section id="video" class="section">
-  <h2>Video</h2>
-  <div class="grid">
-    <div class="card"><iframe src="https://www.youtube.com/embed/lfMh0zfIO3A" allowfullscreen></iframe></div>
-    <div class="card"><iframe src="https://www.youtube.com/embed/ZO769KQ_skE" allowfullscreen></iframe></div>
-    <div class="card"><iframe src="https://www.youtube.com/embed/ORa4QjAffls" allowfullscreen></iframe></div>
-    <div class="card"><iframe src="https://www.youtube.com/embed/XF-CrcPJT3c" allowfullscreen></iframe></div>
-  </div>
-</section>
+  <!-- VIDEO -->
+  <section id="video">
+    <h2>Video</h2>
+    <p>Performances and collaborations.</p>
 
-<section id="photo" class="section">
-  <h2>Photo</h2>
-  <div class="card">
-    <img src="assets/IMG_0080.jpeg" style="width:100%">
-  </div>
-</section>
+    <div class="grid">
+      <div class="card">
+        <iframe src="https://www.youtube.com/embed/lfMh0zfIO3A" allowfullscreen></iframe>
+      </div>
+      <div class="card">
+        <iframe src="https://www.youtube.com/embed/ZO769KQ_skE" allowfullscreen></iframe>
+      </div>
+      <div class="card">
+        <iframe src="https://www.youtube.com/embed/ORa4QjAffls" allowfullscreen></iframe>
+      </div>
+      <div class="card">
+        <iframe src="https://www.youtube.com/embed/XF-CrcPJT3c" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
 
-<footer>© 2026 Scott Baylis</footer>
+  <!-- PHOTO -->
+  <section id="photo">
+    <h2>Photo</h2>
+    <p>Live moments and behind the scenes.</p>
 
-</div>
+    <div class="photoBlock">
+      <img src="assets/IMG_0080.jpeg" alt="Live performance photo" />
+    </div>
+  </section>
+
+  <!-- LIVE -->
+  <section id="live">
+    <h2>Live</h2>
+    <p>Dates announced via socials and mailing list.</p>
+  </section>
+
+  <!-- CONNECT -->
+  <section id="connect">
+    <h2>Connect</h2>
+    <p>Follow and get updates first.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://www.instagram.com/scottybeasy" target="_blank">Instagram</a>
+      <a class="btn" href="https://www.facebook.com/scottbaylis" target="_blank">Facebook</a>
+      <a class="btn" href="https://x.com/scottbaylis" target="_blank">X</a>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Scott Baylis
+  </footer>
+
+</main>
 </body>
 </html>
