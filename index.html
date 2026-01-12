@@ -20,7 +20,7 @@
       --header:#050509;
 
       --space:#000;
-      --crawlYellow:#FFE81F; /* TRUE STAR WARS YELLOW */
+      --crawlYellow:#FFE81F; /* Star Wars yellow */
     }
 
     *{box-sizing:border-box}
@@ -46,6 +46,7 @@
     }
     .logoImage{
       width:min(900px,94vw);
+      height:auto;
       display:block;
       margin:0 auto 12px;
       filter:drop-shadow(0 18px 50px rgba(0,0,0,.85));
@@ -89,6 +90,7 @@
       height:min(300px,38vh);
       object-fit:cover;
       opacity:.92;
+      display:block;
     }
     .heroOverlay{
       position:absolute;
@@ -115,7 +117,7 @@
       color:#e6e6e6;
     }
 
-    /* ===== STATEMENT ===== */
+    /* ===== STATEMENT (CRAWL) ===== */
     .statement{
       position:relative;
       height:340px;
@@ -126,28 +128,38 @@
       margin:18px 0 50px;
     }
 
+    /* Canvas is behind */
     #stars{
       position:absolute;
       inset:0;
+      width:100%;
+      height:100%;
+      display:block;
       z-index:1;
     }
 
+    /* Top bar */
     .statementTop{
       position:absolute;
       top:0; left:0; right:0;
       padding:10px 12px;
-      z-index:3;
+      z-index:4;
       display:flex;
       justify-content:space-between;
       align-items:center;
-      background:linear-gradient(to bottom, rgba(0,0,0,.8), rgba(0,0,0,0));
+      gap:10px;
+      background:linear-gradient(to bottom, rgba(0,0,0,.82), rgba(0,0,0,0));
     }
+
     .statementTitle{
       font-family:"Unbounded";
       font-weight:800;
       font-size:13px;
+      letter-spacing:1.0px;
       color:#fff;
-      opacity:.9;
+      opacity:.92;
+      white-space:nowrap;
+      user-select:none;
     }
 
     .btnSmall{
@@ -156,15 +168,17 @@
       font-size:12px;
       font-weight:700;
       color:#fff;
-      background:rgba(255,255,255,.1);
+      background:rgba(255,255,255,.10);
       border:1px solid rgba(255,255,255,.18);
       cursor:pointer;
     }
+    .btnSmall:hover{ background:rgba(255,255,255,.16); }
 
+    /* Crawl is above canvas */
     .crawlStage{
       position:absolute;
       inset:0;
-      z-index:2;
+      z-index:3;
       display:flex;
       justify-content:center;
       align-items:flex-end;
@@ -185,7 +199,7 @@
       color:var(--crawlYellow);
 
       transform-origin:50% 100%;
-      transform:rotateX(40deg) scale(1.25);
+      transform: rotateX(40deg) scale(1.25);
 
       position:absolute;
       bottom:-20%;
@@ -205,13 +219,13 @@
     @keyframes crawlUp{
       0%{
         bottom:-20%;
-        transform:rotateX(40deg) scale(1.25);
+        transform: rotateX(40deg) scale(1.25);
         opacity:1;
       }
       85%{ opacity:1; }
       100%{
         bottom:200%;
-        transform:rotateX(40deg) scale(.30);
+        transform: rotateX(40deg) scale(.30);
         opacity:0;
       }
     }
@@ -249,8 +263,29 @@
 
     .photoBlock img{
       width:100%;
+      display:block;
       border-radius:18px;
       box-shadow:var(--shadow);
+    }
+
+    .cta{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .btn{
+      padding:10px 16px;
+      border-radius:14px;
+      font-weight:600;
+      font-size:14px;
+      background:#fff;
+      color:#111;
+      display:inline-block;
+    }
+    .btn.primary{
+      background:linear-gradient(90deg,#ff7a18,#ffd166,#06d6a0,#4cc9f0);
+      color:#111;
     }
 
     footer{
@@ -258,6 +293,7 @@
       color:#666;
       font-size:13px;
       margin-top:80px;
+      padding-bottom:30px;
     }
   </style>
 </head>
@@ -271,6 +307,7 @@
       <a href="#statement">Statement</a>
       <a href="#video">Video</a>
       <a href="#photo">Photo</a>
+      <a href="#live">Live</a>
       <a href="#connect">Connect</a>
     </nav>
   </div>
@@ -278,6 +315,7 @@
 
 <main class="wrap">
 
+  <!-- HERO -->
   <div class="hero">
     <img src="assets/ISM_RTF_FINAL1.jpeg" alt="Hero image" />
     <div class="heroOverlay">
@@ -288,12 +326,13 @@
     </div>
   </div>
 
-  <section id="statement" class="statement">
+  <!-- STATEMENT / CRAWL -->
+  <section id="statement" class="statement" aria-label="Cinematic crawl">
     <canvas id="stars"></canvas>
 
     <div class="statementTop">
-      <div class="statementTitle">SCOTTYB — STATEMENT OF INTENT</div>
-      <button class="btnSmall" id="replayBtn">Replay</button>
+      <div class="statementTitle">Scott Baylis</div>
+      <button class="btnSmall" id="replayBtn" type="button">Replay</button>
     </div>
 
     <div class="crawlStage">
@@ -302,16 +341,18 @@
         <p>These are the musical voyages of <strong>SCOTTYB</strong>.</p>
         <p>His continuing mission:</p>
         <p>
-          to explore strange new genres,<br>
-          to seek out new sounds and new rhythms,<br>
+          to explore strange new genres,<br/>
+          to seek out new sounds and new rhythms,<br/>
           and to boldly go where trumpet, synth, and groove have never gone before.
         </p>
       </div>
     </div>
   </section>
 
+  <!-- VIDEO -->
   <section id="video">
     <h2>Video</h2>
+    <p>Performances and collaborations.</p>
     <div class="grid">
       <div class="card"><iframe src="https://www.youtube.com/embed/lfMh0zfIO3A" allowfullscreen></iframe></div>
       <div class="card"><iframe src="https://www.youtube.com/embed/ZO769KQ_skE" allowfullscreen></iframe></div>
@@ -320,10 +361,29 @@
     </div>
   </section>
 
+  <!-- PHOTO -->
   <section id="photo">
     <h2>Photo</h2>
+    <p>Live moments and behind the scenes.</p>
     <div class="photoBlock">
-      <img src="assets/IMG_0080.jpeg" alt="Live photo" />
+      <img src="assets/IMG_0080.jpeg" alt="Live performance photo" />
+    </div>
+  </section>
+
+  <!-- LIVE -->
+  <section id="live">
+    <h2>Live</h2>
+    <p>Dates announced via socials and mailing list.</p>
+  </section>
+
+  <!-- CONNECT -->
+  <section id="connect">
+    <h2>Connect</h2>
+    <p>Follow and get updates first.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://www.instagram.com/scottybeasy" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn" href="https://www.facebook.com/scottbaylis" target="_blank" rel="noopener">Facebook</a>
+      <a class="btn" href="https://x.com/scottbaylis" target="_blank" rel="noopener">X</a>
     </div>
   </section>
 
@@ -331,37 +391,77 @@
 </main>
 
 <script>
-  const canvas=document.getElementById('stars');
-  const ctx=canvas.getContext('2d');
-  let w,h,stars=[];
-  function resize(){
-    w=canvas.width=canvas.offsetWidth;
-    h=canvas.height=canvas.offsetHeight;
-    stars=[...Array((w*h)/11000)].map(()=>({x:Math.random()*w,y:Math.random()*h,z:Math.random()}));
-  }
-  function draw(){
-    ctx.clearRect(0,0,w,h);
-    stars.forEach(s=>{
-      ctx.fillStyle=`rgba(255,255,255,${.3+Math.random()*.7})`;
-      ctx.beginPath();
-      ctx.arc(s.x,s.y,1+s.z*2,0,Math.PI*2);
-      ctx.fill();
-      s.y+=.2+s.z*.4;
-      if(s.y>h){s.y=0;s.x=Math.random()*w;}
-    });
-    requestAnimationFrame(draw);
-  }
-  resize();draw();
-  window.onresize=resize;
+  /* ===== STARFIELD (reliable sizing) ===== */
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+  let w = 0, h = 0;
+  let dpr = Math.min(2, window.devicePixelRatio || 1);
 
-  const crawl=document.getElementById('crawl');
-  function start(){
+  function resizeCanvas(){
+    const rect = canvas.getBoundingClientRect();
+    w = Math.max(1, Math.floor(rect.width));
+    h = Math.max(1, Math.floor(rect.height));
+    canvas.width = Math.floor(w * dpr);
+    canvas.height = Math.floor(h * dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+
+    const count = Math.floor((w*h) / 11000);
+    stars = Array.from({length: count}, () => ({
+      x: Math.random()*w,
+      y: Math.random()*h,
+      z: 0.2 + Math.random()*0.8,
+      t: Math.random()*Math.PI*2,
+      sp: 0.008 + Math.random()*0.018
+    }));
+  }
+
+  function drawStars(){
+    ctx.clearRect(0,0,w,h);
+    for(const s of stars){
+      s.t += s.sp;
+      const tw = (Math.sin(s.t) + 1) / 2;
+      const a = 0.18 + tw * 0.82;
+      const r = 0.7 + s.z * 2.0;
+
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(255,255,255,${a})`;
+      ctx.arc(s.x, s.y, r, 0, Math.PI*2);
+      ctx.fill();
+
+      s.y += 0.14 + s.z * 0.32;
+      if(s.y > h + 5){ s.y = -5; s.x = Math.random()*w; }
+    }
+    requestAnimationFrame(drawStars);
+  }
+
+  window.addEventListener('resize', () => {
+    dpr = Math.min(2, window.devicePixelRatio || 1);
+    resizeCanvas();
+  }, {passive:true});
+
+  // Ensure layout has happened before sizing (fixes “sometimes disappears”)
+  window.addEventListener('load', () => {
+    resizeCanvas();
+    requestAnimationFrame(drawStars);
+  });
+
+  /* ===== CRAWL ===== */
+  const crawl = document.getElementById('crawl');
+  function startCrawl(){
     crawl.classList.remove('is-running');
     void crawl.offsetHeight;
     crawl.classList.add('is-running');
   }
-  document.addEventListener('DOMContentLoaded',start);
-  document.getElementById('replayBtn').onclick=start;
+  window.addEventListener('load', startCrawl);
+  document.getElementById('replayBtn').addEventListener('click', startCrawl);
+
+  // Start again when scrolled into view
+  const statement = document.getElementById('statement');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e => { if(e.isIntersecting) startCrawl(); });
+  }, { threshold: 0.35 });
+  io.observe(statement);
 </script>
 
 </body>
