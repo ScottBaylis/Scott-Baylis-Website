@@ -1,205 +1,294 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>ScottyB</title>
-<meta name="description" content="ScottyB — Futuristic Afro Electronic Funk & Spiritual Jazz & Soul">
+
+<meta name="description" content="ScottyB — Futuristic Afro Electronic Funk & Spiritual Jazz & Soul." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-/* ========== RESET ========== */
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  font-family: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #fbf6ef;
-  color: #111;
-}
-a { color: inherit; text-decoration: none; }
+:root{
+  --bg:#fbf6ef;
+  --text:#111;
+  --muted:#555;
+  --shadow:0 14px 40px rgba(0,0,0,.18);
+  --header:#050509;
+  --space:#000;
 
-/* ========== HEADER ========== */
-header {
-  background: #050509;
-  border-bottom: 1px solid rgba(255,255,255,0.15);
-}
-.headerInner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 26px 18px 18px;
-  text-align: center;
-}
-.logoImage {
-  width: min(900px, 94vw);
-  display: block;
-  margin: 0 auto 14px;
-}
-nav {
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-nav a {
-  color: #e6e6e6;
-  font-size: 13px;
-  padding: 6px 10px;
-  border-radius: 12px;
-}
-nav a:hover {
-  background: rgba(255,255,255,0.08);
+  /* canonical crawl yellow */
+  --crawlYellow:#FFE81F;
 }
 
-/* ========== WRAP ========== */
-.wrap {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 18px 18px 80px;
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:"Plus Jakarta Sans",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+  background:var(--bg);
+  color:var(--text);
 }
+a{color:inherit;text-decoration:none}
 
-/* ========== HERO IMAGE ========== */
-.hero {
-  position: relative;
-  border-radius: 22px;
-  overflow: hidden;
-  background: #000;
-  margin-bottom: 28px;
-}
-.hero img {
-  width: 100%;
-  height: min(340px, 42vh);
-  object-fit: cover;
-  display: block;
-}
-
-/* brighten safely */
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,0.55),
-    rgba(0,0,0,0.15)
-  );
-}
-
-.heroOverlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: flex-end;
-  padding: 18px;
-}
-
-.heroText {
-  color: #fff;
-}
-.heroText h1 {
-  font-family: "Unbounded";
-  font-size: 18px;
-  margin: 0 0 6px;
-}
-.heroText p {
-  margin: 0;
-  font-size: 13px;
-  color: #f0f0f0;
-}
-
-/* ========== SILVER STATEMENT ========== */
-.statement {
-  background: #000;
-  border-radius: 22px;
-  padding: 40px 20px;
-  margin: 30px 0 60px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-/* subtle stars */
-.statement::before {
-  content: "";
-  position: absolute;
-  inset: 0;
+/* ===== HEADER ===== */
+header{
   background:
-    radial-gradient(1px 1px at 20% 30%, #fff, transparent),
-    radial-gradient(1px 1px at 80% 20%, #fff, transparent),
-    radial-gradient(1px 1px at 50% 70%, #fff, transparent),
-    radial-gradient(1px 1px at 10% 80%, #fff, transparent);
-  opacity: 0.6;
+    radial-gradient(1200px 240px at 50% 0%, rgba(255,255,255,.08), transparent 60%),
+    var(--header);
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+.headerInner{
+  max-width:1200px;
+  margin:0 auto;
+  padding:26px 18px 18px;
+  text-align:center;
+}
+.logoImage{
+  width:min(900px,94vw);
+  height:auto;
+  display:block;
+  margin:0 auto 12px;
+  filter:drop-shadow(0 18px 50px rgba(0,0,0,.85));
+}
+nav{
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  flex-wrap:wrap;
+}
+nav a{
+  color:#e6e6e6;
+  font-size:13px;
+  letter-spacing:.35px;
+  padding:5px 9px;
+  border-radius:12px;
+}
+nav a:hover{
+  color:#fff;
+  background:rgba(255,255,255,.06);
 }
 
-/* silver text */
-.statementText {
-  position: relative;
-  max-width: 900px;
-  margin: 0 auto;
-  font-family: "Unbounded";
-  font-weight: 800;
-  font-size: 18px;
-  line-height: 1.6;
-  color: #e6e6e6;
-
-  /* chrome-style clarity */
-  text-shadow:
-    0 1px 0 #fff,
-    0 -1px 0 rgba(0,0,0,0.4),
-    0 6px 18px rgba(0,0,0,0.7);
+/* ===== WRAP ===== */
+.wrap{
+  max-width:1100px;
+  margin:0 auto;
+  padding:16px 18px 70px;
 }
 
-.statementText strong {
-  color: #ffffff;
+/* ===== HERO ===== */
+.hero{
+  position:relative;
+  border-radius:22px;
+  overflow:hidden;
+  background:#000;
+  box-shadow:var(--shadow);
+  margin-bottom:18px;
+}
+.hero img{
+  width:100%;
+  height:min(300px,38vh);
+  object-fit:cover;
+  opacity:.92;
+  display:block;
+}
+.heroOverlay{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.75), rgba(0,0,0,.25) 65%, transparent),
+    linear-gradient(180deg, transparent 45%, rgba(0,0,0,.90));
+  display:flex;
+  align-items:flex-end;
+  padding:16px;
+}
+.heroText{color:#fff; max-width:760px;}
+.heroText h1{
+  font-family:"Unbounded";
+  font-size:18px;
+  margin:0 0 6px;
+}
+.heroText p{
+  margin:0;
+  font-size:13px;
+  color:#e6e6e6;
 }
 
-/* ========== SECTIONS ========== */
-section {
-  margin-bottom: 60px;
-}
-section h2 {
-  font-family: "Unbounded";
-  font-size: 22px;
-  margin-bottom: 6px;
-}
-section p {
-  color: #555;
-  margin-bottom: 18px;
+/* ===== CRAWL BOX ===== */
+.statement{
+  position:relative;
+  height:340px;
+  background:var(--space);
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  margin:18px 0 50px;
 }
 
-/* ========== VIDEO GRID ========== */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 18px;
-}
-.card {
-  background: #000;
-  border-radius: 18px;
-  overflow: hidden;
-}
-.card iframe {
-  width: 100%;
-  height: 220px;
-  border: 0;
+/* starfield canvas behind */
+#stars{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:block;
+  z-index:1;
 }
 
-/* ========== PHOTO ========== */
-.photoBlock img {
-  width: 100%;
-  border-radius: 18px;
+/* top bar */
+.statementTop{
+  position:absolute;
+  top:0; left:0; right:0;
+  padding:10px 12px;
+  z-index:4;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  background:linear-gradient(to bottom, rgba(0,0,0,.85), rgba(0,0,0,0));
+}
+.statementTitle{
+  font-family:"Unbounded";
+  font-weight:800;
+  font-size:13px;
+  color:#fff;
+  opacity:.95;
+  white-space:nowrap;
+  user-select:none;
+}
+.btnSmall{
+  padding:7px 10px;
+  border-radius:12px;
+  font-size:12px;
+  font-weight:700;
+  color:#fff;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.18);
+  cursor:pointer;
 }
 
-/* ========== FOOTER ========== */
-footer {
-  text-align: center;
-  font-size: 13px;
-  color: #666;
-  margin-top: 80px;
+/* crawl layer ABOVE stars */
+.crawlStage{
+  position:absolute;
+  inset:0;
+  z-index:3;
+  display:flex;
+  justify-content:center;
+  align-items:flex-end;
+  perspective:800px;
+  pointer-events:none;
+}
+
+/* IMPORTANT RELIABILITY CHANGE:
+   - visible by default (opacity:1)
+   - animation only when class is applied */
+.crawl{
+  width:min(900px,92vw);
+  text-align:center;
+
+  font-family:"Unbounded";
+  font-weight:900;
+  font-size:18px;
+  line-height:1.6;
+  letter-spacing:.6px;
+
+  color:var(--crawlYellow);
+
+  /* keep it cinematic but readable */
+  transform-origin:50% 100%;
+  transform: rotateX(34deg);
+
+  position:absolute;
+  bottom:-10%;
+
+  /* VISIBLE BY DEFAULT */
+  opacity:1;
+
+  /* make it read as yellow on iOS (but not grey) */
+  filter: saturate(1.35) brightness(1.08);
+  -webkit-text-stroke:0.35px rgba(0,0,0,.35);
+  text-shadow:0 1px 0 rgba(0,0,0,.35);
+
+  backface-visibility:hidden;
+  will-change: bottom, opacity, transform;
+}
+
+/* when animation runs, it will move upward */
+.crawl.is-running{
+  animation:crawlUp 36s linear forwards;
+}
+
+/* keep bright until near the end */
+@keyframes crawlUp{
+  0%   { bottom:-10%; opacity:1; }
+  88%  { opacity:1; }
+  100% { bottom:190%; opacity:0; }
+}
+
+.crawl p{ margin:0 0 16px; }
+
+/* ===== SECTIONS ===== */
+section{ margin-bottom:60px; }
+section h2{
+  font-family:"Unbounded";
+  font-size:22px;
+  margin:0 0 6px;
+}
+section p{
+  color:var(--muted);
+  margin:0 0 18px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:18px;
+}
+.card{
+  background:#000;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.card iframe{
+  width:100%;
+  height:220px;
+  border:0;
+}
+.photoBlock img{
+  width:100%;
+  display:block;
+  border-radius:18px;
+  box-shadow:var(--shadow);
+}
+
+.cta{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.btn{
+  padding:10px 16px;
+  border-radius:14px;
+  font-weight:600;
+  font-size:14px;
+  background:#fff;
+  color:#111;
+}
+.btn.primary{
+  background:linear-gradient(90deg,#ff7a18,#ffd166,#06d6a0,#4cc9f0);
+  color:#111;
+}
+
+footer{
+  text-align:center;
+  color:#666;
+  font-size:13px;
+  margin-top:80px;
+  padding-bottom:30px;
 }
 </style>
 </head>
@@ -213,6 +302,7 @@ footer {
       <a href="#statement">Statement</a>
       <a href="#video">Video</a>
       <a href="#photo">Photo</a>
+      <a href="#live">Live</a>
       <a href="#connect">Connect</a>
     </nav>
   </div>
@@ -220,59 +310,157 @@ footer {
 
 <main class="wrap">
 
-<div class="hero">
-  <img src="assets/ISM_RTF_FINAL1.jpeg" alt="">
-  <div class="heroOverlay">
-    <div class="heroText">
-      <h1>Scott Baylis</h1>
-      <p>Futuristic Afro Electronic Funk & Spiritual Jazz & Soul</p>
+  <!-- HERO -->
+  <div class="hero">
+    <img src="assets/ISM_RTF_FINAL1.jpeg" alt="Hero image">
+    <div class="heroOverlay">
+      <div class="heroText">
+        <h1>Scott Baylis</h1>
+        <p>Futuristic Afro Electronic Funk & Spiritual Jazz & Soul</p>
+      </div>
     </div>
   </div>
-</div>
 
-<section id="statement" class="statement">
-  <div class="statementText">
-    <p><strong>SPACE FUNK — THE FINAL FRONTIER.</strong></p>
-    <p>
-      These are the musical voyages of <strong>SCOTTYB</strong>.<br>
-      His continuing mission: to explore new genres,
-      fuse trumpet and synth,
-      and boldly go where groove has never gone before.
-    </p>
-  </div>
-</section>
+  <!-- CRAWL -->
+  <section id="statement" class="statement" aria-label="Cinematic crawl">
+    <canvas id="stars"></canvas>
 
-<section id="video">
-  <h2>Video</h2>
-  <p>Performances and collaborations.</p>
-  <div class="grid">
-    <div class="card"><iframe src="https://www.youtube.com/embed/lfMh0zfIO3A" allowfullscreen></iframe></div>
-    <div class="card"><iframe src="https://www.youtube.com/embed/ZO769KQ_skE" allowfullscreen></iframe></div>
-    <div class="card"><iframe src="https://www.youtube.com/embed/ORa4QjAffls" allowfullscreen></iframe></div>
-    <div class="card"><iframe src="https://www.youtube.com/embed/XF-CrcPJT3c" allowfullscreen></iframe></div>
-  </div>
-</section>
+    <div class="statementTop">
+      <div class="statementTitle">Scott Baylis</div>
+      <button class="btnSmall" id="replayBtn" type="button">Replay</button>
+    </div>
 
-<section id="photo">
-  <h2>Photo</h2>
-  <p>Live moments and behind the scenes.</p>
-  <div class="photoBlock">
-    <img src="assets/IMG_0080.jpeg" alt="">
-  </div>
-</section>
+    <div class="crawlStage">
+      <div class="crawl" id="crawl">
+        <p>SPACE FUNK: THE FINAL FRONTIER.</p>
+        <p>These are the musical voyages of <strong>SCOTTYB</strong>.</p>
+        <p>His continuing mission:</p>
+        <p>
+          to explore strange new genres,<br/>
+          to seek out new sounds and new rhythms,<br/>
+          and to boldly go where trumpet, synth, and groove have never gone before.
+        </p>
+      </div>
+    </div>
+  </section>
 
-<section id="connect">
-  <h2>Connect</h2>
-  <p>Follow and get updates first.</p>
-  <div class="cta">
-    <a class="btn" href="https://www.instagram.com/scottybeasy" target="_blank">Instagram</a>
-    <a class="btn" href="https://www.facebook.com/scottbaylis" target="_blank">Facebook</a>
-    <a class="btn" href="https://x.com/scottbaylis" target="_blank">X</a>
-  </div>
-</section>
+  <!-- VIDEO -->
+  <section id="video">
+    <h2>Video</h2>
+    <p>Performances and collaborations.</p>
+    <div class="grid">
+      <div class="card"><iframe src="https://www.youtube.com/embed/lfMh0zfIO3A" allowfullscreen></iframe></div>
+      <div class="card"><iframe src="https://www.youtube.com/embed/ZO769KQ_skE" allowfullscreen></iframe></div>
+      <div class="card"><iframe src="https://www.youtube.com/embed/ORa4QjAffls" allowfullscreen></iframe></div>
+      <div class="card"><iframe src="https://www.youtube.com/embed/XF-CrcPJT3c" allowfullscreen></iframe></div>
+    </div>
+  </section>
 
-<footer>© 2026 Scott Baylis</footer>
+  <!-- PHOTO -->
+  <section id="photo">
+    <h2>Photo</h2>
+    <p>Live moments and behind the scenes.</p>
+    <div class="photoBlock">
+      <img src="assets/IMG_0080.jpeg" alt="Live performance photo">
+    </div>
+  </section>
+
+  <!-- LIVE -->
+  <section id="live">
+    <h2>Live</h2>
+    <p>Dates announced via socials and mailing list.</p>
+  </section>
+
+  <!-- CONNECT -->
+  <section id="connect">
+    <h2>Connect</h2>
+    <p>Follow and get updates first.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://www.instagram.com/scottybeasy" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn" href="https://www.facebook.com/scottbaylis" target="_blank" rel="noopener">Facebook</a>
+      <a class="btn" href="https://x.com/scottbaylis" target="_blank" rel="noopener">X</a>
+    </div>
+  </section>
+
+  <footer>© 2026 Scott Baylis</footer>
 
 </main>
+
+<script>
+/* ===== STARFIELD (reliable, iPhone-safe sizing) ===== */
+const canvas = document.getElementById('stars');
+const ctx = canvas.getContext('2d');
+let stars = [];
+let w = 0, h = 0;
+let dpr = Math.min(2, window.devicePixelRatio || 1);
+
+function resizeCanvas(){
+  const rect = canvas.getBoundingClientRect();
+  w = Math.max(1, Math.floor(rect.width));
+  h = Math.max(1, Math.floor(rect.height));
+  canvas.width  = Math.floor(w * dpr);
+  canvas.height = Math.floor(h * dpr);
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+
+  const count = Math.floor((w*h) / 11000);
+  stars = Array.from({length: count}, () => ({
+    x: Math.random()*w,
+    y: Math.random()*h,
+    z: 0.2 + Math.random()*0.8,
+    t: Math.random()*Math.PI*2,
+    sp: 0.008 + Math.random()*0.018
+  }));
+}
+
+function drawStars(){
+  ctx.clearRect(0,0,w,h);
+  for(const s of stars){
+    s.t += s.sp;
+    const tw = (Math.sin(s.t) + 1) / 2;
+    const a = 0.18 + tw * 0.82;
+    const r = 0.7 + s.z * 2.0;
+
+    ctx.beginPath();
+    ctx.fillStyle = `rgba(255,255,255,${a})`;
+    ctx.arc(s.x, s.y, r, 0, Math.PI*2);
+    ctx.fill();
+
+    s.y += 0.14 + s.z * 0.32;
+    if(s.y > h + 5){ s.y = -5; s.x = Math.random()*w; }
+  }
+  requestAnimationFrame(drawStars);
+}
+
+window.addEventListener('resize', () => {
+  dpr = Math.min(2, window.devicePixelRatio || 1);
+  resizeCanvas();
+}, {passive:true});
+
+window.addEventListener('load', () => {
+  resizeCanvas();
+  requestAnimationFrame(drawStars);
+});
+
+/* ===== CRAWL (robust start) ===== */
+const crawl = document.getElementById('crawl');
+function startCrawl(){
+  crawl.classList.remove('is-running');
+  void crawl.offsetHeight;
+  crawl.classList.add('is-running');
+}
+
+/* Start ASAP, not just on load */
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(startCrawl, 50);
+});
+
+/* Also start on full load as a backstop */
+window.addEventListener('load', () => {
+  setTimeout(startCrawl, 50);
+});
+
+document.getElementById('replayBtn').addEventListener('click', startCrawl);
+</script>
+
 </body>
 </html>
