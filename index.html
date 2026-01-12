@@ -24,75 +24,92 @@
     }
 
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family:"Plus Jakarta Sans",system-ui;
+      font-family:"Plus Jakarta Sans",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
       background:var(--bg);
       color:var(--text);
     }
+    a{color:inherit;text-decoration:none}
 
+    /* ===== HEADER ===== */
     header{
-      background:var(--header);
+      background:
+        radial-gradient(1200px 240px at 50% 0%, rgba(255,255,255,.08), transparent 60%),
+        var(--header);
       border-bottom:1px solid rgba(255,255,255,.12);
-      text-align:center;
-      padding:26px 18px 18px;
     }
-
+    .headerInner{
+      max-width:1200px;
+      margin:0 auto;
+      padding:26px 18px 18px;
+      text-align:center;
+    }
     .logoImage{
       width:min(900px,94vw);
+      height:auto;
       display:block;
       margin:0 auto 12px;
       filter:drop-shadow(0 18px 50px rgba(0,0,0,.85));
     }
-
     nav{
       display:flex;
       justify-content:center;
       gap:14px;
+      flex-wrap:wrap;
     }
     nav a{
       color:#e6e6e6;
       font-size:13px;
+      letter-spacing:.35px;
       padding:5px 9px;
       border-radius:12px;
-      text-decoration:none;
     }
-    nav a:hover{background:rgba(255,255,255,.06)}
+    nav a:hover{
+      color:#fff;
+      background:rgba(255,255,255,.06);
+    }
 
+    /* ===== WRAP ===== */
     .wrap{
       max-width:1100px;
       margin:0 auto;
       padding:16px 18px 70px;
     }
 
-    /* HERO */
+    /* ===== HERO ===== */
     .hero{
       position:relative;
       border-radius:22px;
       overflow:hidden;
+      background:#000;
       box-shadow:var(--shadow);
       margin-bottom:18px;
     }
     .hero img{
       width:100%;
-      height:min(300px,38vh);
+      height:min(300px,38vh); /* cropped shorter as requested */
       object-fit:cover;
+      display:block;
+      opacity:.92;
     }
     .heroOverlay{
       position:absolute;
       inset:0;
       background:
-        linear-gradient(90deg, rgba(0,0,0,.75), transparent 65%),
-        linear-gradient(180deg, transparent 45%, rgba(0,0,0,.9));
+        linear-gradient(90deg, rgba(0,0,0,.75), rgba(0,0,0,.25) 65%, transparent),
+        linear-gradient(180deg, transparent 45%, rgba(0,0,0,.90));
       display:flex;
       align-items:flex-end;
       padding:16px;
     }
     .heroText{
       color:#fff;
+      max-width:760px;
     }
     .heroText h1{
-      font-family:"Unbounded";
+      font-family:"Unbounded",system-ui;
       font-size:18px;
       margin:0 0 6px;
     }
@@ -102,21 +119,59 @@
       color:#e6e6e6;
     }
 
-    /* STATEMENT */
+    /* ===== STATEMENT (STAR WARS STYLE) ===== */
     .statement{
       position:relative;
       height:320px;
-      background:#000;
+      background:var(--space);
       border-radius:22px;
       overflow:hidden;
       box-shadow:var(--shadow);
-      margin-bottom:60px;
+      margin:18px 0 50px;
     }
 
-    canvas{
+    #stars{
       position:absolute;
       inset:0;
+      width:100%;
+      height:100%;
+      display:block;
     }
+
+    .statementTop{
+      position:absolute;
+      top:0; left:0; right:0;
+      padding:10px 12px;
+      z-index:3;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      background:linear-gradient(to bottom, rgba(0,0,0,.75), rgba(0,0,0,0));
+    }
+
+    .statementTitle{
+      font-family:"Unbounded";
+      font-weight:800;
+      font-size:13px;
+      letter-spacing:1.1px;
+      color:#fff;
+      opacity:.85;
+      user-select:none;
+      white-space:nowrap;
+    }
+
+    .btnSmall{
+      padding:7px 10px;
+      border-radius:12px;
+      font-size:12px;
+      font-weight:700;
+      color:#fff;
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.18);
+      cursor:pointer;
+    }
+    .btnSmall:hover{ background:rgba(255,255,255,.16); }
 
     .crawlStage{
       position:absolute;
@@ -126,6 +181,7 @@
       align-items:flex-end;
       perspective:900px;
       pointer-events:none;
+      z-index:2;
     }
 
     .crawl{
@@ -137,11 +193,10 @@
       color:var(--crawlYellow);
       letter-spacing:.6px;
       line-height:1.6;
+      font-size:18px;
 
       transform-origin:50% 100%;
-      transform:
-        rotateX(38deg)
-        scale(1.15);
+      transform:rotateX(38deg) scale(1.15);
 
       position:absolute;
       bottom:-65%;
@@ -160,30 +215,80 @@
     @keyframes crawlUp{
       0%{
         bottom:-65%;
-        transform:
-          rotateX(38deg)
-          scale(1.15);
+        transform:rotateX(38deg) scale(1.15);
         opacity:1;
       }
-      70%{
-        opacity:1;
-      }
+      70%{ opacity:1; }
       100%{
         bottom:190%;
-        transform:
-          rotateX(38deg)
-          scale(.35);
+        transform:rotateX(38deg) scale(.35);
         opacity:0;
       }
     }
 
-    .crawl p{margin:0 0 16px}
+    .crawl p{ margin:0 0 16px; }
+
+    /* ===== SECTIONS (RESTORED) ===== */
+    section{ margin-bottom:60px; }
+    section h2{
+      font-family:"Unbounded";
+      font-size:22px;
+      margin:0 0 6px;
+    }
+    section p{
+      color:var(--muted);
+      margin:0 0 18px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:18px;
+    }
+    .card{
+      background:#000;
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+    .card iframe{
+      width:100%;
+      height:220px;
+      border:0;
+    }
+    .photoBlock img{
+      width:100%;
+      display:block;
+      border-radius:18px;
+      box-shadow:var(--shadow);
+    }
+
+    .cta{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .btn{
+      padding:10px 16px;
+      border-radius:14px;
+      font-weight:600;
+      font-size:14px;
+      background:#fff;
+      color:#111;
+      display:inline-block;
+    }
+    .btn.primary{
+      background:linear-gradient(90deg,#ff7a18,#ffd166,#06d6a0,#4cc9f0);
+      color:#111;
+    }
 
     footer{
       text-align:center;
       color:#666;
       font-size:13px;
       margin-top:80px;
+      padding-bottom:30px;
     }
   </style>
 </head>
@@ -191,18 +296,24 @@
 <body>
 
 <header>
-  <img class="logoImage" src="assets/IMG_3081.gif" alt="ScottyB logo">
-  <nav>
-    <a href="#statement">Statement</a>
-    <a href="#video">Video</a>
-    <a href="#photo">Photo</a>
-  </nav>
+  <div class="headerInner">
+    <img class="logoImage" src="assets/IMG_3081.gif" alt="ScottyB logo" />
+
+    <nav>
+      <a href="#statement">Statement</a>
+      <a href="#video">Video</a>
+      <a href="#photo">Photo</a>
+      <a href="#live">Live</a>
+      <a href="#connect">Connect</a>
+    </nav>
+  </div>
 </header>
 
 <main class="wrap">
 
+  <!-- HERO -->
   <div class="hero">
-    <img src="assets/ISM_RTF_FINAL1.jpeg" alt="">
+    <img src="assets/ISM_RTF_FINAL1.jpeg" alt="Hero image" />
     <div class="heroOverlay">
       <div class="heroText">
         <h1>Scott Baylis</h1>
@@ -211,8 +322,14 @@
     </div>
   </div>
 
-  <section id="statement" class="statement">
+  <!-- STATEMENT -->
+  <section id="statement" class="statement" aria-label="Statement of intent">
     <canvas id="stars"></canvas>
+
+    <div class="statementTop">
+      <div class="statementTitle">SCOTTYB — STATEMENT OF INTENT</div>
+      <button class="btnSmall" id="replayBtn" type="button">Replay</button>
+    </div>
 
     <div class="crawlStage">
       <div class="crawl" id="crawl">
@@ -220,11 +337,49 @@
         <p>These are the musical voyages of <strong>SCOTTYB</strong>.</p>
         <p>His continuing mission:</p>
         <p>
-          to explore strange new genres,<br>
-          to seek out new sounds and new rhythms,<br>
+          to explore strange new genres,<br/>
+          to seek out new sounds and new rhythms,<br/>
           and to boldly go where trumpet, synth, and groove have never gone before.
         </p>
       </div>
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section id="video">
+    <h2>Video</h2>
+    <p>Performances and collaborations.</p>
+    <div class="grid">
+      <div class="card"><iframe src="https://www.youtube.com/embed/lfMh0zfIO3A" allowfullscreen></iframe></div>
+      <div class="card"><iframe src="https://www.youtube.com/embed/ZO769KQ_skE" allowfullscreen></iframe></div>
+      <div class="card"><iframe src="https://www.youtube.com/embed/ORa4QjAffls" allowfullscreen></iframe></div>
+      <div class="card"><iframe src="https://www.youtube.com/embed/XF-CrcPJT3c" allowfullscreen></iframe></div>
+    </div>
+  </section>
+
+  <!-- PHOTO -->
+  <section id="photo">
+    <h2>Photo</h2>
+    <p>Live moments and behind the scenes.</p>
+    <div class="photoBlock">
+      <img src="assets/IMG_0080.jpeg" alt="Live performance photo" />
+    </div>
+  </section>
+
+  <!-- LIVE -->
+  <section id="live">
+    <h2>Live</h2>
+    <p>Dates announced via socials and mailing list.</p>
+  </section>
+
+  <!-- CONNECT -->
+  <section id="connect">
+    <h2>Connect</h2>
+    <p>Follow and get updates first.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://www.instagram.com/scottybeasy" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn" href="https://www.facebook.com/scottbaylis" target="_blank" rel="noopener">Facebook</a>
+      <a class="btn" href="https://x.com/scottbaylis" target="_blank" rel="noopener">X</a>
     </div>
   </section>
 
@@ -233,36 +388,61 @@
 
 <script>
   /* STARFIELD */
-  const c=document.getElementById('stars'),x=c.getContext('2d');
-  let w,h,s=[];
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  let w = 0, h = 0, stars = [];
+  const dpr = Math.min(2, window.devicePixelRatio || 1);
+
   function resize(){
-    w=c.width=c.offsetWidth;
-    h=c.height=c.offsetHeight;
-    s=[...Array((w*h)/11000)].map(()=>({x:Math.random()*w,y:Math.random()*h,z:Math.random()}));
+    const r = canvas.getBoundingClientRect();
+    w = Math.floor(r.width);
+    h = Math.floor(r.height);
+    canvas.width = Math.floor(w * dpr);
+    canvas.height = Math.floor(h * dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+
+    const count = Math.floor((w*h) / 11000);
+    stars = Array.from({length: count}, () => ({
+      x: Math.random()*w,
+      y: Math.random()*h,
+      z: 0.2 + Math.random()*0.8,
+      t: Math.random()*Math.PI*2,
+      sp: 0.006 + Math.random()*0.014
+    }));
   }
+
   function draw(){
-    x.clearRect(0,0,w,h);
-    s.forEach(st=>{
-      x.fillStyle=`rgba(255,255,255,${.3+Math.random()*.7})`;
-      x.beginPath();
-      x.arc(st.x,st.y,1+st.z*2,0,Math.PI*2);
-      x.fill();
-      st.y+=.15+st.z*.5;
-      if(st.y>h){st.y=0;st.x=Math.random()*w;}
-    });
+    ctx.clearRect(0,0,w,h);
+    for(const s of stars){
+      s.t += s.sp;
+      const tw = (Math.sin(s.t) + 1) / 2;
+      const a = 0.25 + tw * 0.75;
+      const r = 0.7 + s.z * 2.0;
+
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(255,255,255,${a})`;
+      ctx.arc(s.x, s.y, r, 0, Math.PI*2);
+      ctx.fill();
+
+      s.y += 0.10 + s.z * 0.28;
+      if(s.y > h + 5){ s.y = -5; s.x = Math.random()*w; }
+    }
     requestAnimationFrame(draw);
   }
-  resize();draw();
-  window.onresize=resize;
 
-  /* START CRAWL */
-  const crawl=document.getElementById('crawl');
-  function start(){
+  window.addEventListener('resize', resize, {passive:true});
+  resize();
+  requestAnimationFrame(draw);
+
+  /* CRAWL */
+  const crawl = document.getElementById('crawl');
+  function startCrawl(){
     crawl.classList.remove('is-running');
     void crawl.offsetHeight;
     crawl.classList.add('is-running');
   }
-  document.addEventListener('DOMContentLoaded',start);
+  document.addEventListener('DOMContentLoaded', startCrawl);
+  document.getElementById('replayBtn').addEventListener('click', startCrawl);
 </script>
 
 </body>
