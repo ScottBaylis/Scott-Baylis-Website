@@ -9,7 +9,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -20,182 +20,102 @@
       --header:#050509;
 
       --space:#000;
-      --crawlText:#f4f6ff;
-      --chrome1:#ffffff;
-      --chrome2:#bfc7d8;
-      --chrome3:#7e89a0;
+      --crawlYellow:#ffd64a;
     }
 
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family:"Plus Jakarta Sans",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      font-family:"Plus Jakarta Sans",system-ui;
       background:var(--bg);
       color:var(--text);
     }
-    a{color:inherit;text-decoration:none}
 
-    /* ===== HEADER ===== */
     header{
-      background:
-        radial-gradient(1200px 240px at 50% 0%, rgba(255,255,255,.08), transparent 60%),
-        var(--header);
+      background:var(--header);
       border-bottom:1px solid rgba(255,255,255,.12);
-    }
-
-    .headerInner{
-      max-width:1200px;
-      margin:0 auto;
-      padding:22px 18px 16px;
       text-align:center;
-    }
-
-    /* Cropped logo */
-    .logoCrop{
-      width:min(900px, 94vw);
-      height:160px;
-      margin:0 auto 10px;
-      overflow:hidden;
-      border-radius:16px;
-      filter: drop-shadow(0 18px 50px rgba(0,0,0,.85));
+      padding:26px 18px 18px;
     }
 
     .logoImage{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      object-position:top;
+      width:min(900px,94vw);
       display:block;
-    }
-
-    @media (max-width:520px){
-      .logoCrop{ height:120px; }
+      margin:0 auto 12px;
+      filter:drop-shadow(0 18px 50px rgba(0,0,0,.85));
     }
 
     nav{
       display:flex;
       justify-content:center;
       gap:14px;
-      flex-wrap:wrap;
     }
-
     nav a{
       color:#e6e6e6;
       font-size:13px;
-      letter-spacing:.35px;
       padding:5px 9px;
       border-radius:12px;
+      text-decoration:none;
     }
+    nav a:hover{background:rgba(255,255,255,.06)}
 
-    nav a:hover{
-      color:#fff;
-      background:rgba(255,255,255,.06);
-    }
-
-    /* ===== WRAP ===== */
     .wrap{
       max-width:1100px;
       margin:0 auto;
-      padding:18px 18px 70px;
+      padding:16px 18px 70px;
     }
 
-    /* ===== HERO ===== */
+    /* HERO */
     .hero{
       position:relative;
       border-radius:22px;
       overflow:hidden;
-      background:#000;
       box-shadow:var(--shadow);
-      margin-bottom:26px;
+      margin-bottom:18px;
     }
-
     .hero img{
       width:100%;
-      height:min(420px, 52vh);
+      height:min(300px,38vh);
       object-fit:cover;
-      opacity:.92;
-      display:block;
     }
-
     .heroOverlay{
       position:absolute;
       inset:0;
       background:
-        linear-gradient(90deg, rgba(0,0,0,.75), rgba(0,0,0,.25) 65%, transparent),
-        linear-gradient(180deg, transparent 50%, rgba(0,0,0,.85));
+        linear-gradient(90deg, rgba(0,0,0,.75), transparent 65%),
+        linear-gradient(180deg, transparent 45%, rgba(0,0,0,.9));
       display:flex;
       align-items:flex-end;
-      padding:18px;
+      padding:16px;
     }
-
     .heroText{
-      max-width:760px;
       color:#fff;
     }
-
     .heroText h1{
-      font-family:"Unbounded",system-ui;
+      font-family:"Unbounded";
       font-size:18px;
       margin:0 0 6px;
     }
-
     .heroText p{
       margin:0;
       font-size:13px;
       color:#e6e6e6;
     }
 
-    /* ===== STATEMENT ===== */
+    /* STATEMENT */
     .statement{
       position:relative;
+      height:320px;
+      background:#000;
       border-radius:22px;
       overflow:hidden;
-      background:var(--space);
       box-shadow:var(--shadow);
-      height:340px;
-      margin:22px 0 60px;
+      margin-bottom:60px;
     }
 
-    #stars{
+    canvas{
       position:absolute;
       inset:0;
-      width:100%;
-      height:100%;
-    }
-
-    .statementTop{
-      position:absolute;
-      top:0; left:0; right:0;
-      padding:10px 12px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      z-index:3;
-      background:linear-gradient(to bottom, rgba(0,0,0,.75), rgba(0,0,0,0));
-    }
-
-    .chromeTitle{
-      font-family:"Unbounded",system-ui;
-      font-weight:800;
-      font-size:13px;
-      letter-spacing:1.1px;
-      background:linear-gradient(180deg,var(--chrome1),var(--chrome2) 35%,var(--chrome1) 55%,var(--chrome3));
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-      text-shadow:0 0 18px rgba(255,255,255,.22);
-    }
-
-    .btnSmall{
-      padding:7px 10px;
-      border-radius:12px;
-      font-size:12px;
-      font-weight:700;
-      color:#fff;
-      background:rgba(255,255,255,.1);
-      border:1px solid rgba(255,255,255,.18);
-      cursor:pointer;
     }
 
     .crawlStage{
@@ -204,27 +124,32 @@
       display:flex;
       justify-content:center;
       align-items:flex-end;
-      perspective:650px;
+      perspective:900px;
       pointer-events:none;
-      z-index:2;
     }
 
     .crawl{
-      width:min(860px,92vw);
+      width:min(900px,92vw);
       text-align:center;
+
+      font-family:"Unbounded";
+      font-weight:800;
+      color:var(--crawlYellow);
+      letter-spacing:.6px;
+      line-height:1.6;
+
       transform-origin:50% 100%;
-      transform:rotateX(26deg);
-      font-family:"Unbounded",system-ui;
-      font-size:18px;
-      line-height:1.55;
-      letter-spacing:.55px;
-      color:var(--crawlText);
+      transform:
+        rotateX(38deg)
+        scale(1.15);
+
       position:absolute;
-      bottom:-60%;
+      bottom:-65%;
       opacity:0;
+
       text-shadow:
-        0 0 12px rgba(255,255,255,.22),
-        0 0 24px rgba(140,170,255,.18);
+        0 0 18px rgba(255,214,74,.25),
+        0 0 36px rgba(255,214,74,.15);
     }
 
     .crawl.is-running{
@@ -233,41 +158,26 @@
     }
 
     @keyframes crawlUp{
-      0%{ bottom:-60%; opacity:1; }
-      85%{ opacity:1; }
-      100%{ bottom:170%; opacity:0; }
+      0%{
+        bottom:-65%;
+        transform:
+          rotateX(38deg)
+          scale(1.15);
+        opacity:1;
+      }
+      70%{
+        opacity:1;
+      }
+      100%{
+        bottom:190%;
+        transform:
+          rotateX(38deg)
+          scale(.35);
+        opacity:0;
+      }
     }
 
-    .crawl p{ margin:0 0 16px; }
-    .crawl strong{ color:#fff; }
-
-    /* ===== SECTIONS ===== */
-    section{ margin-bottom:60px; }
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:18px;
-    }
-
-    .card{
-      background:#000;
-      border-radius:18px;
-      overflow:hidden;
-      box-shadow:var(--shadow);
-    }
-
-    .card iframe{
-      width:100%;
-      height:220px;
-      border:0;
-    }
-
-    .photoBlock img{
-      width:100%;
-      border-radius:18px;
-      box-shadow:var(--shadow);
-    }
+    .crawl p{margin:0 0 16px}
 
     footer{
       text-align:center;
@@ -281,25 +191,18 @@
 <body>
 
 <header>
-  <div class="headerInner">
-    <div class="logoCrop">
-      <img class="logoImage" src="assets/IMG_3081.gif" alt="ScottyB logo">
-    </div>
-
-    <nav>
-      <a href="#statement">Statement</a>
-      <a href="#video">Video</a>
-      <a href="#photo">Photo</a>
-      <a href="#connect">Connect</a>
-    </nav>
-  </div>
+  <img class="logoImage" src="assets/IMG_3081.gif" alt="ScottyB logo">
+  <nav>
+    <a href="#statement">Statement</a>
+    <a href="#video">Video</a>
+    <a href="#photo">Photo</a>
+  </nav>
 </header>
 
 <main class="wrap">
 
-  <!-- HERO -->
   <div class="hero">
-    <img src="assets/ISM_RTF_FINAL1.jpeg" alt="Ibibio Sound Machine">
+    <img src="assets/ISM_RTF_FINAL1.jpeg" alt="">
     <div class="heroOverlay">
       <div class="heroText">
         <h1>Scott Baylis</h1>
@@ -308,14 +211,8 @@
     </div>
   </div>
 
-  <!-- STATEMENT -->
   <section id="statement" class="statement">
     <canvas id="stars"></canvas>
-
-    <div class="statementTop">
-      <div class="chromeTitle">SCOTTYB — STATEMENT OF INTENT</div>
-      <button class="btnSmall" id="replayBtn">Replay</button>
-    </div>
 
     <div class="crawlStage">
       <div class="crawl" id="crawl">
@@ -331,64 +228,34 @@
     </div>
   </section>
 
-  <!-- VIDEO -->
-  <section id="video">
-    <h2>Video</h2>
-    <div class="grid">
-      <div class="card"><iframe src="https://www.youtube.com/embed/lfMh0zfIO3A" allowfullscreen></iframe></div>
-      <div class="card"><iframe src="https://www.youtube.com/embed/ZO769KQ_skE" allowfullscreen></iframe></div>
-      <div class="card"><iframe src="https://www.youtube.com/embed/ORa4QjAffls" allowfullscreen></iframe></div>
-      <div class="card"><iframe src="https://www.youtube.com/embed/XF-CrcPJT3c" allowfullscreen></iframe></div>
-    </div>
-  </section>
-
-  <!-- PHOTO -->
-  <section id="photo">
-    <h2>Photo</h2>
-    <div class="photoBlock">
-      <img src="assets/IMG_0080.jpeg" alt="Live photo">
-    </div>
-  </section>
-
   <footer>© 2026 Scott Baylis</footer>
-
 </main>
 
 <script>
   /* STARFIELD */
-  const canvas=document.getElementById('stars'),ctx=canvas.getContext('2d');
-  let stars=[],w=0,h=0,dpr=Math.min(2,window.devicePixelRatio||1);
-
+  const c=document.getElementById('stars'),x=c.getContext('2d');
+  let w,h,s=[];
   function resize(){
-    const r=canvas.getBoundingClientRect();
-    w=r.width;h=r.height;
-    canvas.width=w*dpr;canvas.height=h*dpr;
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-    stars=Array.from({length:(w*h)/11000},()=>({
-      x:Math.random()*w,y:Math.random()*h,
-      z:Math.random(),t:Math.random()*Math.PI*2
-    }));
+    w=c.width=c.offsetWidth;
+    h=c.height=c.offsetHeight;
+    s=[...Array((w*h)/11000)].map(()=>({x:Math.random()*w,y:Math.random()*h,z:Math.random()}));
   }
-
   function draw(){
-    ctx.clearRect(0,0,w,h);
-    for(const s of stars){
-      s.t+=0.02;
-      const a=.3+Math.sin(s.t)*.5;
-      ctx.fillStyle=`rgba(255,255,255,${a})`;
-      ctx.beginPath();
-      ctx.arc(s.x,s.y,1+s.z*2,0,Math.PI*2);
-      ctx.fill();
-      s.y+=.2+s.z*.5;
-      if(s.y>h){s.y=0;s.x=Math.random()*w;}
-    }
+    x.clearRect(0,0,w,h);
+    s.forEach(st=>{
+      x.fillStyle=`rgba(255,255,255,${.3+Math.random()*.7})`;
+      x.beginPath();
+      x.arc(st.x,st.y,1+st.z*2,0,Math.PI*2);
+      x.fill();
+      st.y+=.15+st.z*.5;
+      if(st.y>h){st.y=0;st.x=Math.random()*w;}
+    });
     requestAnimationFrame(draw);
   }
+  resize();draw();
+  window.onresize=resize;
 
-  resize(); draw();
-  window.addEventListener('resize',resize);
-
-  /* CRAWL CONTROL */
+  /* START CRAWL */
   const crawl=document.getElementById('crawl');
   function start(){
     crawl.classList.remove('is-running');
@@ -396,7 +263,6 @@
     crawl.classList.add('is-running');
   }
   document.addEventListener('DOMContentLoaded',start);
-  document.getElementById('replayBtn').onclick=start;
 </script>
 
 </body>
