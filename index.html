@@ -9,7 +9,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -20,7 +20,7 @@
       --header:#050509;
 
       --space:#000;
-      --crawlYellow:#ffd400; /* stronger */
+      --crawlYellow:#FFE81F; /* TRUE STAR WARS YELLOW */
     }
 
     *{box-sizing:border-box}
@@ -33,7 +33,7 @@
     }
     a{color:inherit;text-decoration:none}
 
-    /* HEADER */
+    /* ===== HEADER ===== */
     header{
       background:var(--header);
       border-bottom:1px solid rgba(255,255,255,.12);
@@ -46,7 +46,6 @@
     }
     .logoImage{
       width:min(900px,94vw);
-      height:auto;
       display:block;
       margin:0 auto 12px;
       filter:drop-shadow(0 18px 50px rgba(0,0,0,.85));
@@ -69,14 +68,14 @@
       background:rgba(255,255,255,.06);
     }
 
-    /* WRAP */
+    /* ===== WRAP ===== */
     .wrap{
       max-width:1100px;
       margin:0 auto;
       padding:16px 18px 70px;
     }
 
-    /* HERO */
+    /* ===== HERO ===== */
     .hero{
       position:relative;
       border-radius:22px;
@@ -89,7 +88,6 @@
       width:100%;
       height:min(300px,38vh);
       object-fit:cover;
-      display:block;
       opacity:.92;
     }
     .heroOverlay{
@@ -117,7 +115,7 @@
       color:#e6e6e6;
     }
 
-    /* STATEMENT */
+    /* ===== STATEMENT ===== */
     .statement{
       position:relative;
       height:340px;
@@ -128,14 +126,10 @@
       margin:18px 0 50px;
     }
 
-    /* canvas is behind everything */
     #stars{
       position:absolute;
       inset:0;
-      width:100%;
-      height:100%;
       z-index:1;
-      display:block;
     }
 
     .statementTop{
@@ -144,37 +138,33 @@
       padding:10px 12px;
       z-index:3;
       display:flex;
-      align-items:center;
       justify-content:space-between;
-      gap:10px;
-      background:linear-gradient(to bottom, rgba(0,0,0,.80), rgba(0,0,0,0));
+      align-items:center;
+      background:linear-gradient(to bottom, rgba(0,0,0,.8), rgba(0,0,0,0));
     }
     .statementTitle{
       font-family:"Unbounded";
       font-weight:800;
       font-size:13px;
-      letter-spacing:1.1px;
       color:#fff;
       opacity:.9;
-      white-space:nowrap;
-      user-select:none;
     }
+
     .btnSmall{
       padding:7px 10px;
       border-radius:12px;
       font-size:12px;
       font-weight:700;
       color:#fff;
-      background:rgba(255,255,255,.10);
+      background:rgba(255,255,255,.1);
       border:1px solid rgba(255,255,255,.18);
       cursor:pointer;
     }
-    .btnSmall:hover{ background:rgba(255,255,255,.16); }
 
     .crawlStage{
       position:absolute;
       inset:0;
-      z-index:2;              /* ABOVE the stars canvas */
+      z-index:2;
       display:flex;
       justify-content:center;
       align-items:flex-end;
@@ -187,7 +177,7 @@
       text-align:center;
 
       font-family:"Unbounded";
-      font-weight:800;
+      font-weight:900;
       font-size:18px;
       line-height:1.65;
       letter-spacing:.6px;
@@ -195,16 +185,16 @@
       color:var(--crawlYellow);
 
       transform-origin:50% 100%;
-      transform: rotateX(40deg) scale(1.25);
+      transform:rotateX(40deg) scale(1.25);
 
       position:absolute;
-      bottom:-20%;           /* STARTS MUCH SOONER */
+      bottom:-20%;
       opacity:0;
 
       text-shadow:
-        0 0 10px rgba(255,212,0,.55),
-        0 0 24px rgba(255,212,0,.28),
-        0 0 44px rgba(255,212,0,.14);
+        0 0 8px rgba(255,232,31,.65),
+        0 0 18px rgba(255,232,31,.45),
+        0 0 36px rgba(255,232,31,.25);
     }
 
     .crawl.is-running{
@@ -212,26 +202,23 @@
       opacity:1;
     }
 
-    /* stays bright until the last moment */
     @keyframes crawlUp{
       0%{
         bottom:-20%;
-        transform: rotateX(40deg) scale(1.25);
+        transform:rotateX(40deg) scale(1.25);
         opacity:1;
       }
-      85%{
-        opacity:1;
-      }
+      85%{ opacity:1; }
       100%{
         bottom:200%;
-        transform: rotateX(40deg) scale(.30);
+        transform:rotateX(40deg) scale(.30);
         opacity:0;
       }
     }
 
     .crawl p{ margin:0 0 16px; }
 
-    /* SECTIONS */
+    /* ===== SECTIONS ===== */
     section{ margin-bottom:60px; }
     section h2{
       font-family:"Unbounded";
@@ -262,29 +249,8 @@
 
     .photoBlock img{
       width:100%;
-      display:block;
       border-radius:18px;
       box-shadow:var(--shadow);
-    }
-
-    .cta{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-top:14px;
-    }
-    .btn{
-      padding:10px 16px;
-      border-radius:14px;
-      font-weight:600;
-      font-size:14px;
-      background:#fff;
-      color:#111;
-      display:inline-block;
-    }
-    .btn.primary{
-      background:linear-gradient(90deg,#ff7a18,#ffd166,#06d6a0,#4cc9f0);
-      color:#111;
     }
 
     footer{
@@ -292,7 +258,6 @@
       color:#666;
       font-size:13px;
       margin-top:80px;
-      padding-bottom:30px;
     }
   </style>
 </head>
@@ -306,7 +271,6 @@
       <a href="#statement">Statement</a>
       <a href="#video">Video</a>
       <a href="#photo">Photo</a>
-      <a href="#live">Live</a>
       <a href="#connect">Connect</a>
     </nav>
   </div>
@@ -314,7 +278,6 @@
 
 <main class="wrap">
 
-  <!-- HERO -->
   <div class="hero">
     <img src="assets/ISM_RTF_FINAL1.jpeg" alt="Hero image" />
     <div class="heroOverlay">
@@ -325,13 +288,12 @@
     </div>
   </div>
 
-  <!-- STATEMENT -->
-  <section id="statement" class="statement" aria-label="Statement of intent">
+  <section id="statement" class="statement">
     <canvas id="stars"></canvas>
 
     <div class="statementTop">
       <div class="statementTitle">SCOTTYB — STATEMENT OF INTENT</div>
-      <button class="btnSmall" id="replayBtn" type="button">Replay</button>
+      <button class="btnSmall" id="replayBtn">Replay</button>
     </div>
 
     <div class="crawlStage">
@@ -340,18 +302,16 @@
         <p>These are the musical voyages of <strong>SCOTTYB</strong>.</p>
         <p>His continuing mission:</p>
         <p>
-          to explore strange new genres,<br/>
-          to seek out new sounds and new rhythms,<br/>
+          to explore strange new genres,<br>
+          to seek out new sounds and new rhythms,<br>
           and to boldly go where trumpet, synth, and groove have never gone before.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- VIDEO -->
   <section id="video">
     <h2>Video</h2>
-    <p>Performances and collaborations.</p>
     <div class="grid">
       <div class="card"><iframe src="https://www.youtube.com/embed/lfMh0zfIO3A" allowfullscreen></iframe></div>
       <div class="card"><iframe src="https://www.youtube.com/embed/ZO769KQ_skE" allowfullscreen></iframe></div>
@@ -360,29 +320,10 @@
     </div>
   </section>
 
-  <!-- PHOTO -->
   <section id="photo">
     <h2>Photo</h2>
-    <p>Live moments and behind the scenes.</p>
     <div class="photoBlock">
-      <img src="assets/IMG_0080.jpeg" alt="Live performance photo" />
-    </div>
-  </section>
-
-  <!-- LIVE -->
-  <section id="live">
-    <h2>Live</h2>
-    <p>Dates announced via socials and mailing list.</p>
-  </section>
-
-  <!-- CONNECT -->
-  <section id="connect">
-    <h2>Connect</h2>
-    <p>Follow and get updates first.</p>
-    <div class="cta">
-      <a class="btn primary" href="https://www.instagram.com/scottybeasy" target="_blank" rel="noopener">Instagram</a>
-      <a class="btn" href="https://www.facebook.com/scottbaylis" target="_blank" rel="noopener">Facebook</a>
-      <a class="btn" href="https://x.com/scottbaylis" target="_blank" rel="noopener">X</a>
+      <img src="assets/IMG_0080.jpeg" alt="Live photo" />
     </div>
   </section>
 
@@ -390,68 +331,37 @@
 </main>
 
 <script>
-  /* STARFIELD */
-  const canvas = document.getElementById('stars');
-  const ctx = canvas.getContext('2d');
-  let w = 0, h = 0, stars = [];
-  const dpr = Math.min(2, window.devicePixelRatio || 1);
-
+  const canvas=document.getElementById('stars');
+  const ctx=canvas.getContext('2d');
+  let w,h,stars=[];
   function resize(){
-    const r = canvas.getBoundingClientRect();
-    w = Math.floor(r.width);
-    h = Math.floor(r.height);
-    canvas.width = Math.floor(w * dpr);
-    canvas.height = Math.floor(h * dpr);
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-
-    const count = Math.floor((w*h) / 11000);
-    stars = Array.from({length: count}, () => ({
-      x: Math.random()*w,
-      y: Math.random()*h,
-      z: 0.2 + Math.random()*0.8,
-      t: Math.random()*Math.PI*2,
-      sp: 0.01 + Math.random()*0.02
-    }));
+    w=canvas.width=canvas.offsetWidth;
+    h=canvas.height=canvas.offsetHeight;
+    stars=[...Array((w*h)/11000)].map(()=>({x:Math.random()*w,y:Math.random()*h,z:Math.random()}));
   }
-
   function draw(){
     ctx.clearRect(0,0,w,h);
-    for(const s of stars){
-      s.t += s.sp;
-      const tw = (Math.sin(s.t) + 1) / 2;
-      const a = 0.20 + tw * 0.80;
-      const rr = 0.7 + s.z * 2.0;
-
+    stars.forEach(s=>{
+      ctx.fillStyle=`rgba(255,255,255,${.3+Math.random()*.7})`;
       ctx.beginPath();
-      ctx.fillStyle = `rgba(255,255,255,${a})`;
-      ctx.arc(s.x, s.y, rr, 0, Math.PI*2);
+      ctx.arc(s.x,s.y,1+s.z*2,0,Math.PI*2);
       ctx.fill();
-
-      s.y += 0.16 + s.z * 0.34;
-      if(s.y > h + 5){ s.y = -5; s.x = Math.random()*w; }
-    }
+      s.y+=.2+s.z*.4;
+      if(s.y>h){s.y=0;s.x=Math.random()*w;}
+    });
     requestAnimationFrame(draw);
   }
+  resize();draw();
+  window.onresize=resize;
 
-  window.addEventListener('resize', resize, {passive:true});
-  resize();
-  requestAnimationFrame(draw);
-
-  /* CRAWL (guaranteed start + replay + start-on-scroll) */
-  const crawl = document.getElementById('crawl');
-  function startCrawl(){
+  const crawl=document.getElementById('crawl');
+  function start(){
     crawl.classList.remove('is-running');
     void crawl.offsetHeight;
     crawl.classList.add('is-running');
   }
-  document.addEventListener('DOMContentLoaded', startCrawl);
-  document.getElementById('replayBtn').addEventListener('click', startCrawl);
-
-  const statement = document.getElementById('statement');
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e => { if(e.isIntersecting) startCrawl(); });
-  }, { threshold: 0.35 });
-  io.observe(statement);
+  document.addEventListener('DOMContentLoaded',start);
+  document.getElementById('replayBtn').onclick=start;
 </script>
 
 </body>
