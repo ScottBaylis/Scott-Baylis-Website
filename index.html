@@ -76,18 +76,29 @@ nav a:hover {
   object-fit: cover;
   display: block;
 }
+
+/* BRIGHTENING OVERLAY (SAFE) */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.55),
+    rgba(0,0,0,0.15)
+  );
+}
+
 .heroOverlay {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(90deg, rgba(0,0,0,0.75), rgba(0,0,0,0.25) 65%, transparent),
-    linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.9));
   display: flex;
   align-items: flex-end;
   padding: 16px;
 }
 .heroText {
   color: #fff;
+  position: relative;
 }
 .heroText h1 {
   font-family: "Unbounded";
@@ -97,20 +108,20 @@ nav a:hover {
 .heroText p {
   margin: 0;
   font-size: 13px;
-  color: #e6e6e6;
+  color: #f1f1f1;
 }
 
 /* ================= STATEMENT / CRAWL ================= */
 .statement {
   position: relative;
-  height: 340px;
+  height: 360px;
   background: #000;
   border-radius: 22px;
   overflow: hidden;
-  margin: 22px 0 50px;
+  margin: 26px 0 50px;
 }
 
-/* STAR BACKGROUND (CSS ONLY — NO CANVAS) */
+/* STARS */
 .statement::before {
   content: "";
   position: absolute;
@@ -121,7 +132,7 @@ nav a:hover {
     radial-gradient(1px 1px at 50% 70%, #fff, transparent),
     radial-gradient(1px 1px at 20% 80%, #fff, transparent),
     radial-gradient(1px 1px at 90% 60%, #fff, transparent);
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 /* TOP BAR */
@@ -130,10 +141,7 @@ nav a:hover {
   top: 0;
   left: 0;
   right: 0;
-  padding: 10px 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 10px 14px;
   background: linear-gradient(to bottom, rgba(0,0,0,0.85), transparent);
   z-index: 2;
 }
@@ -143,58 +151,52 @@ nav a:hover {
   font-weight: 800;
   color: #fff;
 }
-.btnSmall {
-  font-size: 12px;
-  padding: 7px 10px;
-  border-radius: 12px;
-  background: rgba(255,255,255,0.15);
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.2);
-}
 
-/* CRAWL */
+/* CRAWL STAGE */
 .crawlStage {
   position: absolute;
   inset: 0;
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  perspective: 800px;
+  perspective: 900px;
   z-index: 1;
 }
 
+/* CRAWL TEXT */
 .crawl {
-  width: min(900px, 92vw);
+  width: min(880px, 92vw);
   font-family: "Unbounded";
   font-weight: 900;
-  font-size: 18px;
-  line-height: 1.6;
-  letter-spacing: 0.6px;
+  font-size: 19px;
+  line-height: 1.65;
   text-align: center;
+  letter-spacing: 0.7px;
 
-  /* PURE YELLOW — NO TRICKS */
   color: #FFE81F;
+
+  /* GLOW — SAFE */
+  text-shadow:
+    0 0 6px rgba(255,232,31,0.45),
+    0 0 14px rgba(255,232,31,0.25),
+    0 2px 0 rgba(0,0,0,0.8);
 
   transform-origin: 50% 100%;
   transform: rotateX(34deg);
 
   position: absolute;
-  bottom: -10%;
+  bottom: -12%;
 
-  /* ALWAYS VISIBLE */
   opacity: 1;
-
-  /* SIMPLE SHADOW ONLY */
-  text-shadow: 0 2px 0 rgba(0,0,0,0.65);
 }
 
 .crawl.animate {
-  animation: crawlUp 36s linear forwards;
+  animation: crawlUp 38s linear forwards;
 }
 
 @keyframes crawlUp {
-  from { bottom: -10%; }
-  to { bottom: 190%; }
+  from { bottom: -12%; }
+  to { bottom: 210%; }
 }
 
 .crawl p { margin: 0 0 16px; }
@@ -273,18 +275,18 @@ footer {
 <section id="statement" class="statement">
   <div class="statementTop">
     <div class="statementTitle">Scott Baylis</div>
-    <button class="btnSmall" onclick="restartCrawl()">Replay</button>
   </div>
 
   <div class="crawlStage">
-    <div class="crawl animate" id="crawl">
-      <p>SPACE FUNK: THE FINAL FRONTIER.</p>
+    <div class="crawl animate">
+      <p>SPACE FUNK — THE FINAL FRONTIER.</p>
       <p>These are the musical voyages of <strong>SCOTTYB</strong>.</p>
-      <p>His continuing mission:</p>
       <p>
+        His continuing mission:<br>
         to explore strange new genres,<br>
         to seek out new sounds and new rhythms,<br>
-        and to boldly go where trumpet, synth, and groove have never gone before.
+        and to boldly go where trumpet, synth,<br>
+        and groove have never gone before.
       </p>
     </div>
   </div>
@@ -321,15 +323,6 @@ footer {
 <footer>© 2026 Scott Baylis</footer>
 
 </main>
-
-<script>
-function restartCrawl(){
-  const c = document.getElementById('crawl');
-  c.classList.remove('animate');
-  void c.offsetHeight;
-  c.classList.add('animate');
-}
-</script>
 
 </body>
 </html>
