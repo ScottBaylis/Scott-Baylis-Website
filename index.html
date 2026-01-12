@@ -234,6 +234,34 @@ section p{
   box-shadow:var(--shadow);
 }
 
+/* ===== MUSIC ===== */
+.audioCard{
+  background:#fff;
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  padding:16px;
+}
+.audioTitle{
+  display:flex;
+  align-items:baseline;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:10px;
+}
+.audioTitle strong{
+  font-family:"Unbounded";
+  font-weight:800;
+  font-size:14px;
+}
+.audioMeta{
+  color:var(--muted);
+  font-size:13px;
+}
+.audioCard audio{
+  width:100%;
+  height:40px;
+}
+
 /* ===== BUTTONS ===== */
 .cta{
   display:flex;
@@ -247,26 +275,20 @@ section p{
   font-size:14px;
   background:#fff;
   color:#111;
-  transition:
-    transform .18s ease,
-    box-shadow .18s ease,
-    filter .18s ease;
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
 }
 .btn:hover{
   transform:translateY(-2px);
   box-shadow:0 10px 24px rgba(0,0,0,.22);
 }
-
 .btn.primary{
   background:linear-gradient(90deg,#ff7a18,#ffd166,#06d6a0,#4cc9f0);
   color:#111;
 }
-
 .btn.facebook{
   background:#1877F2;
   color:#fff;
 }
-
 .btn.x{
   background:#000;
   color:#fff;
@@ -290,9 +312,9 @@ footer{
     <img class="logoImage" src="assets/IMG_3081.gif" alt="ScottyB logo">
     <nav>
       <a href="#statement">Statement</a>
+      <a href="#music">Music</a>
       <a href="#video">Video</a>
       <a href="#photo">Photo</a>
-      <a href="#live">Live</a>
       <a href="#connect">Connect</a>
     </nav>
   </div>
@@ -327,6 +349,24 @@ footer{
         and to boldly go where trumpet, synth, and groove have never gone before.
       </p>
     </div>
+  </div>
+</section>
+
+<!-- MUSIC -->
+<section id="music">
+  <h2>Music</h2>
+  <p>Latest upload.</p>
+
+  <div class="audioCard">
+    <div class="audioTitle">
+      <strong>VapourWave mix session 060925</strong>
+      <span class="audioMeta">MP3</span>
+    </div>
+
+    <audio controls preload="metadata">
+      <source src="assets/VapourWave%20mix%20session%20060925.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
   </div>
 </section>
 
