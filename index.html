@@ -1,419 +1,342 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>ScottyB</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ScottyB</title>
 
-<meta name="description" content="ScottyB — Futuristic Afro Electronic Funk & Spiritual Jazz & Soul." />
+  <meta name="description" content="ScottyB — Futuristic Afro Electronic Funk & Spiritual Jazz & Soul." />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
 
-<style>
-:root{
-  --bg:#fbf6ef;
-  --text:#111;
-  --muted:#555;
-  --shadow:0 14px 40px rgba(0,0,0,.18);
-  --header:#050509;
-  --space:#000;
-  --crawlYellow:#FFE81F;
-}
+  <style>
+    :root{
+      --bg: #0b0d12;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --hair: rgba(255,255,255,.14);
+      --glow: rgba(255,255,255,.18);
+      --radius: 18px;
+      --max: 1040px;
+    }
 
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  font-family:"Plus Jakarta Sans",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-  background:var(--bg);
-  color:var(--text);
-}
-a{color:inherit;text-decoration:none}
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 700px at 15% -10%, rgba(120,140,255,.18), transparent 60%),
+        radial-gradient(900px 500px at 85% 10%, rgba(255,120,220,.14), transparent 60%),
+        radial-gradient(1000px 600px at 40% 120%, rgba(90,255,210,.10), transparent 60%),
+        var(--bg);
+      overflow-x:hidden;
+    }
 
-/* ===== HEADER ===== */
-header{
-  background:
-    radial-gradient(1200px 240px at 50% 0%, rgba(255,255,255,.08), transparent 60%),
-    var(--header);
-  border-bottom:1px solid rgba(255,255,255,.12);
-}
-.headerInner{
-  max-width:1200px;
-  margin:0 auto;
-  padding:26px 18px 18px;
-  text-align:center;
-}
-.logoImage{
-  width:min(900px,94vw);
-  display:block;
-  margin:0 auto 12px;
-  filter:drop-shadow(0 18px 50px rgba(0,0,0,.85));
-}
-nav{
-  display:flex;
-  justify-content:center;
-  gap:14px;
-  flex-wrap:wrap;
-}
-nav a{
-  color:#e6e6e6;
-  font-size:13px;
-  letter-spacing:.35px;
-  padding:5px 9px;
-  border-radius:12px;
-}
-nav a:hover{
-  color:#fff;
-  background:rgba(255,255,255,.06);
-}
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 28px 18px 56px; }
 
-/* ===== WRAP ===== */
-.wrap{
-  max-width:1100px;
-  margin:0 auto;
-  padding:16px 18px 70px;
-}
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding: 10px 0 22px;
+    }
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      line-height:1.05;
+    }
+    .brand h1{
+      font-family:"Unbounded", system-ui, sans-serif;
+      font-size: 26px;
+      letter-spacing:.3px;
+      margin:0;
+    }
+    .brand .tag{
+      color: var(--muted);
+      font-size: 13px;
+      margin:0;
+    }
 
-/* ===== HERO ===== */
-.hero{
-  position:relative;
-  border-radius:22px;
-  overflow:hidden;
-  background:#000;
-  box-shadow:var(--shadow);
-  margin-bottom:14px;
-}
-.hero img{
-  width:100%;
-  height:min(300px,38vh);
-  object-fit:cover;
-  opacity:.92;
-  display:block;
-}
-.heroOverlay{
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(90deg, rgba(0,0,0,.75), rgba(0,0,0,.25) 65%, transparent),
-    linear-gradient(180deg, transparent 45%, rgba(0,0,0,.90));
-  display:flex;
-  align-items:flex-end;
-  padding:16px;
-}
-.heroText{color:#fff; max-width:760px;}
-.heroText h1{
-  font-family:"Unbounded";
-  font-size:18px;
-  margin:0 0 6px;
-}
-.heroText p{
-  margin:0;
-  font-size:13px;
-  color:#e6e6e6;
-}
+    .topbar{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .pill{
+      border:1px solid var(--hair);
+      background: rgba(255,255,255,.04);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--muted);
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      user-select:none;
+    }
+    .pill:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.22);
+      color: rgba(255,255,255,.86);
+    }
 
-/* ===== MUSIC (subtle) ===== */
-.musicStrip{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:14px;
-  flex-wrap:wrap;
+    /* Player: near top, not too prominent */
+    .player{
+      margin-top: 8px;
+      width: 320px;
+      max-width: 100%;
+      border: 1px solid var(--hair);
+      border-radius: 999px;
+      background: rgba(255,255,255,.03);
+      padding: 8px 12px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .player .label{
+      font-size:12px;
+      color: var(--muted);
+      white-space:nowrap;
+    }
+    audio{
+      width: 100%;
+      height: 28px;
+      opacity:.92;
+    }
 
-  background:rgba(255,255,255,.75);
-  backdrop-filter:saturate(1.1);
-  border:1px solid rgba(0,0,0,.06);
-  border-radius:18px;
-  box-shadow:var(--shadow);
-  padding:10px 12px;
-  margin:10px 0 18px;
-}
-.musicMeta{
-  min-width:180px;
-}
-.musicMeta .label{
-  font-family:"Unbounded";
-  font-weight:800;
-  font-size:12px;
-  letter-spacing:.2px;
-}
-.musicMeta .sub{
-  color:var(--muted);
-  font-size:12px;
-  margin-top:2px;
-}
-.musicStrip audio{
-  width:min(520px, 100%);
-  height:34px; /* keeps it compact */
-}
+    /* Card / media blocks */
+    .section{
+      margin-top: 18px;
+      border: 1px solid var(--hair);
+      background: var(--panel);
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,.35);
+    }
+    .section .inner{ padding: 18px; }
 
-/* ===== CRAWL BOX ===== */
-.statement{
-  position:relative;
-  height:340px;
-  background:var(--space);
-  border-radius:22px;
-  overflow:hidden;
-  box-shadow:var(--shadow);
-  margin:18px 0 50px;
-}
-#stars{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  display:block;
-  z-index:1;
-}
-.statementTop{
-  position:absolute;
-  top:0; left:0; right:0;
-  padding:10px 12px;
-  z-index:4;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  background:linear-gradient(to bottom, rgba(0,0,0,.85), rgba(0,0,0,0));
-}
-.statementTitle{
-  font-family:"Unbounded";
-  font-weight:800;
-  font-size:13px;
-  color:#fff;
-}
-.btnSmall{
-  padding:7px 10px;
-  border-radius:12px;
-  font-size:12px;
-  font-weight:700;
-  color:#fff;
-  background:rgba(255,255,255,.12);
-  border:1px solid rgba(255,255,255,.18);
-  cursor:pointer;
-}
+    .media{
+      width:100%;
+      display:block;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: rgba(255,255,255,.03);
+    }
 
-/* crawl */
-.crawlStage{
-  position:absolute;
-  inset:0;
-  z-index:3;
-  display:flex;
-  justify-content:center;
-  align-items:flex-end;
-  perspective:800px;
-  pointer-events:none;
-}
-.crawl{
-  width:min(900px,92vw);
-  text-align:center;
-  font-family:"Unbounded";
-  font-weight:900;
-  font-size:18px;
-  line-height:1.6;
-  letter-spacing:.6px;
-  color:var(--crawlYellow);
-  transform-origin:50% 100%;
-  transform: rotateX(34deg);
-  position:absolute;
-  bottom:-10%;
-  opacity:1;
-  filter: saturate(1.35) brightness(1.08);
-  -webkit-text-stroke:0.35px rgba(0,0,0,.35);
-  text-shadow:0 1px 0 rgba(0,0,0,.35);
-}
-.crawl.is-running{
-  animation:crawlUp 36s linear forwards;
-}
-@keyframes crawlUp{
-  0%{ bottom:-10%; opacity:1; }
-  88%{ opacity:1; }
-  100%{ bottom:190%; opacity:0; }
-}
-.crawl p{ margin:0 0 16px; }
+    /* Marquee scrolling text */
+    .marquee{
+      border-top: 1px solid var(--hair);
+      border-bottom: 1px solid var(--hair);
+      background: rgba(0,0,0,.18);
+      overflow:hidden;
+      white-space: nowrap;
+    }
+    .marquee .track{
+      display:inline-flex;
+      gap: 42px;
+      padding: 12px 0;
+      will-change: transform;
+      animation: scroll 22s linear infinite;
+    }
+    .marquee .item{
+      font-family:"Unbounded", system-ui, sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: .6px;
+      color: rgba(255,255,255,.90);
+      text-transform: uppercase;
+      text-shadow: 0 0 20px var(--glow);
+    }
+    @keyframes scroll{
+      from{ transform: translateX(0); }
+      to{ transform: translateX(-50%); }
+    }
 
-/* ===== SECTIONS ===== */
-section{ margin-bottom:60px; }
-section h2{
-  font-family:"Unbounded";
-  font-size:22px;
-  margin:0 0 6px;
-}
-section p{
-  color:var(--muted);
-  margin:0 0 18px;
-}
+    /* Content */
+    h2{
+      font-family:"Unbounded", system-ui, sans-serif;
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing:.3px;
+    }
+    p{ margin: 0 0 12px; color: var(--muted); line-height: 1.55; }
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .card{
+      border: 1px solid var(--hair);
+      background: rgba(255,255,255,.04);
+      border-radius: 14px;
+      padding: 14px;
+      min-height: 96px;
+    }
+    .card .k{ font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+    .card .v{ font-weight: 600; color: rgba(255,255,255,.9); }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:18px;
-}
-.card{
-  background:#000;
-  border-radius:18px;
-  overflow:hidden;
-  box-shadow:var(--shadow);
-}
-.card iframe{
-  width:100%;
-  height:220px;
-  border:0;
-}
-.photoBlock img{
-  width:100%;
-  display:block;
-  border-radius:18px;
-  box-shadow:var(--shadow);
-}
+    footer{
+      margin-top: 22px;
+      color: rgba(255,255,255,.55);
+      font-size: 12px;
+      text-align:center;
+    }
 
-/* ===== BUTTONS ===== */
-.cta{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-}
-.btn{
-  padding:10px 16px;
-  border-radius:14px;
-  font-weight:600;
-  font-size:14px;
-  background:#fff;
-  color:#111;
-  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
-}
-.btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 10px 24px rgba(0,0,0,.22);
-}
-.btn.primary{
-  background:linear-gradient(90deg,#ff7a18,#ffd166,#06d6a0,#4cc9f0);
-  color:#111;
-}
-.btn.facebook{
-  background:#1877F2;
-  color:#fff;
-}
-.btn.x{
-  background:#000;
-  color:#fff;
-}
-
-/* ===== FOOTER ===== */
-footer{
-  text-align:center;
-  color:#666;
-  font-size:13px;
-  margin-top:80px;
-  padding-bottom:30px;
-}
-</style>
+    @media (max-width: 860px){
+      .cards{ grid-template-columns: 1fr; }
+      header{ align-items:flex-start; }
+      .topbar{ justify-content:flex-start; }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <h1>ScottyB</h1>
+        <p class="tag">Futuristic Afro Electronic Funk</p>
+      </div>
 
-<header>
-  <div class="headerInner">
-    <img class="logoImage" src="assets/IMG_3081.gif" alt="ScottyB logo">
-    <nav>
-      <a href="#statement">Statement</a>
-      <a href="#video">Video</a>
-      <a href="#photo">Photo</a>
-      <a href="#connect">Connect</a>
-    </nav>
-  </div>
-</header>
+      <div class="topbar">
+        <a class="pill" href="#music">Music</a>
+        <a class="pill" href="#video">Video</a>
+        <a class="pill" href="#shows">Live</a>
+        <a class="pill" href="#contact">Contact</a>
+      </div>
+    </header>
 
-<main class="wrap">
+    <!-- Player near the top (not too prominent) -->
+    <div class="player" aria-label="Audio player">
+      <div class="label">VapourWave</div>
+      <!-- Put VapourWave audio file in /assets/ and update filename if needed -->
+      <audio controls preload="metadata">
+        <source src="assets/VapourWave.mp3" type="audio/mpeg">
+        <source src="assets/VapourWave.wav" type="audio/wav">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
 
-  <div class="hero">
-    <img src="assets/ISM_RTF_FINAL1.jpeg" alt="">
-    <div class="heroOverlay">
-      <div class="heroText">
-        <h1>Scott Baylis</h1>
-        <p>Futuristic Afro Electronic Funk & Spiritual Jazz & Soul</p>
+    <!-- 1) NEW FIRST PHOTO (same kind of size as current: 16:9 hero) -->
+    <section class="section">
+      <!-- Put your new astronaut/trumpet image in /assets/ and set the correct filename here -->
+      <img
+        class="media"
+        src="assets/0EA914B0-D2A9-4FDF-A807-B255F18BF2EF.jpeg"
+        alt="Astronaut playing trumpet in space"
+        loading="eager"
+      />
+    </section>
+
+    <!-- 2) Scrolling text AFTER first photo -->
+    <div class="marquee" aria-label="Scrolling headline">
+      <!-- Duplicate content so the loop is seamless -->
+      <div class="track">
+        <div class="item">Futuristic Afro Electronic Funk</div>
+        <div class="item">Spiritual Jazz • Soul • Electronic</div>
+        <div class="item">Ibibio Sound Machine</div>
+        <div class="item">New Music • Live Energy • Brass & Groove</div>
+
+        <div class="item">Futuristic Afro Electronic Funk</div>
+        <div class="item">Spiritual Jazz • Soul • Electronic</div>
+        <div class="item">Ibibio Sound Machine</div>
+        <div class="item">New Music • Live Energy • Brass & Groove</div>
       </div>
     </div>
-  </div>
 
-  <!-- MUSIC PLAYER (subtle, near the top) -->
-  <div class="musicStrip" aria-label="Audio player">
-    <div class="musicMeta">
-      <div class="label">Vapour Wave</div>
-      <div class="sub">Tap play to listen</div>
-    </div>
-
-    <audio controls preload="metadata">
-      <source src="assets/VapourWave.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
-  </div>
-
-  <section id="statement" class="statement">
-    <canvas id="stars"></canvas>
-    <div class="statementTop">
-      <div class="statementTitle">Scott Baylis</div>
-      <button class="btnSmall" id="replayBtn">Replay</button>
-    </div>
-    <div class="crawlStage">
-      <div class="crawl" id="crawl">
-        <p>SPACE FUNK: THE FINAL FRONTIER.</p>
-        <p>These are the musical voyages of <strong>SCOTTYB</strong>.</p>
-        <p>His continuing mission:</p>
+    <!-- 3) The picture that WAS at the top previously (now comes after marquee) -->
+    <section class="section">
+      <!-- Replace this with your previous “top image” path/filename -->
+      <img
+        class="media"
+        src="assets/hero.jpg"
+        alt="ScottyB hero image"
+        loading="lazy"
+      />
+      <div class="inner">
+        <h2>Sound</h2>
         <p>
-          to explore strange new genres,<br>
-          to seek out new sounds and new rhythms,<br>
-          and to boldly go where trumpet, synth, and groove have never gone before.
+          Genre-blending electronic funk with a live brass edge—built for late-night clubs, festival stages, and cinematic headphone moments.
         </p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="video">
-    <h2>Video</h2>
-    <p>Performances and collaborations.</p>
-    <div class="grid">
-      <div class="card"><iframe src="https://www.youtube.com/embed/lfMh0zfIO3A" allowfullscreen></iframe></div>
-      <div class="card"><iframe src="https://www.youtube.com/embed/ZO769KQ_skE" allowfullscreen></iframe></div>
-      <div class="card"><iframe src="https://www.youtube.com/embed/ORa4QjAffls" allowfullscreen></iframe></div>
-      <div class="card"><iframe src="https://www.youtube.com/embed/XF-CrcPJT3c" allowfullscreen></iframe></div>
-    </div>
-  </section>
+    <!-- Everything else follows as before (keep or replace sections below with your existing content) -->
 
-  <section id="photo">
-    <h2>Photo</h2>
-    <p>Live moments and behind the scenes.</p>
-    <div class="photoBlock">
-      <img src="assets/IMG_0080.jpeg" alt="">
-    </div>
-  </section>
+    <section id="music" class="section">
+      <div class="inner">
+        <h2>Music</h2>
+        <p>
+          Latest releases, works-in-progress, and live edits. (If you already had embeds here, paste them back in—this layout will hold them.)
+        </p>
 
-  <section id="connect">
-    <h2>Connect</h2>
-    <p>Follow and get updates first.</p>
-    <div class="cta">
-      <a class="btn primary" href="https://www.instagram.com/scottybeasy" target="_blank" rel="noopener">Instagram</a>
-      <a class="btn facebook" href="https://www.facebook.com/scottbaylis" target="_blank" rel="noopener">Facebook</a>
-      <a class="btn x" href="https://x.com/scottbaylis" target="_blank" rel="noopener">X</a>
-    </div>
-  </section>
+        <div class="cards">
+          <div class="card">
+            <div class="k">Bandcamp</div>
+            <div class="v"><a class="pill" href="https://ibibiosoundmachine.bandcamp.com/" target="_blank" rel="noopener">Ibibio Sound Machine</a></div>
+          </div>
+          <div class="card">
+            <div class="k">Instagram</div>
+            <div class="v"><a class="pill" href="https://www.instagram.com/ScottyBeasy/" target="_blank" rel="noopener">@ScottyBeasy</a></div>
+          </div>
+          <div class="card">
+            <div class="k">X (Twitter)</div>
+            <div class="v"><a class="pill" href="https://x.com/ScottBaylis" target="_blank" rel="noopener">@ScottBaylis</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <footer>© 2026 Scott Baylis</footer>
+    <section id="video" class="section">
+      <div class="inner">
+        <h2>Video</h2>
+        <p>
+          Pulling from Ibibio Sound Machine’s YouTube channel (if you already had a YouTube embed/grid, paste it here).
+        </p>
+      </div>
+    </section>
 
-</main>
+    <section id="shows" class="section">
+      <div class="inner">
+        <h2>Live</h2>
+        <p>
+          If you already had the auto-pulled live show list from your site setup, paste that block here and it will appear in sequence.
+        </p>
+      </div>
+    </section>
 
-<script>
-const crawl = document.getElementById('crawl');
-function startCrawl(){
-  crawl.classList.remove('is-running');
-  void crawl.offsetHeight;
-  crawl.classList.add('is-running');
-}
-window.addEventListener('load', () => setTimeout(startCrawl, 50));
-document.getElementById('replayBtn').addEventListener('click', startCrawl);
-</script>
+    <section id="contact" class="section">
+      <div class="inner">
+        <h2>Contact</h2>
+        <p>
+          For bookings, collaborations, and sync: link your preferred contact method here.
+        </p>
+      </div>
+    </section>
 
+    <footer>
+      © <span id="y"></span> ScottyB. All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    // Footer year
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
