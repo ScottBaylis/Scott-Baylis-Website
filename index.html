@@ -93,6 +93,7 @@ nav a:hover{
   display:block;
   filter: brightness(1.12) contrast(1.06) saturate(1.08);
 }
+/* Desktop fix: more height + show more of top so helmet doesn't crop */
 @media (min-width: 900px){
   .hero img{
     height:420px;
@@ -128,6 +129,7 @@ nav a:hover{
   justify-content:space-between;
   gap:14px;
   flex-wrap:wrap;
+
   background:rgba(255,255,255,.75);
   backdrop-filter:saturate(1.1);
   border:1px solid rgba(0,0,0,.06);
@@ -153,23 +155,24 @@ nav a:hover{
   height:34px;
 }
 
-/* ===== STATEMENT VIDEO (freeze + stars) ===== */
+/* ===== STATEMENT (Scrolling video + freeze + stars) ===== */
 .statement{
   position:relative;
-  width:100%;
-  height:200px;                 /* mobile/tablet */
+  height:340px; /* mobile default from your original crawl box */
   background:var(--space);
   border-radius:22px;
   overflow:hidden;
   box-shadow:var(--shadow);
   margin:18px 0 22px;
 }
+
+/* video */
 .statementVideo{
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
-  object-fit:contain;           /* never crop text */
+  object-fit:contain;     /* never crop text */
   object-position:center;
   background:#000;
   display:block;
@@ -177,17 +180,16 @@ nav a:hover{
   transform-origin:center;
 }
 
-/* ✅ DESKTOP ONLY: make it bigger/wider-feeling */
+/* Desktop-only: bigger/wider-feeling */
 @media (min-width: 900px){
   .statement{
-    height:340px;               /* bigger on desktop */
+    height:420px;         /* bigger on desktop */
   }
   .statementVideo{
-    transform:scale(1.08);      /* subtle boost, still no crop */
+    transform:scale(1.10); /* slightly larger, still contain */
   }
 }
 
-/* black + stars phase */
 .pauseBlack{
   position:absolute;
   inset:0;
@@ -212,12 +214,16 @@ nav a:hover{
 }
 .pauseStars.is-on{ opacity:1; }
 
-/* Replay button only */
-.statementControls{
+/* Top bar (no title text; replay only) */
+.statementTop{
   position:absolute;
-  top:10px;
-  right:12px;
+  top:0; left:0; right:0;
+  padding:10px 12px;
   z-index:4;
+  display:flex;
+  justify-content:flex-end; /* push replay to the right */
+  align-items:center;
+  background:linear-gradient(to bottom, rgba(0,0,0,.85), rgba(0,0,0,0));
 }
 .btnSmall{
   padding:7px 10px;
@@ -290,8 +296,14 @@ section p{
   background:linear-gradient(90deg,#ff7a18,#ffd166,#06d6a0,#4cc9f0);
   color:#111;
 }
-.btn.facebook{ background:#1877F2; color:#fff; }
-.btn.x{ background:#000; color:#fff; }
+.btn.facebook{
+  background:#1877F2;
+  color:#fff;
+}
+.btn.x{
+  background:#000;
+  color:#fff;
+}
 
 /* ===== FOOTER ===== */
 footer{
@@ -338,13 +350,14 @@ footer{
       <div class="label">Vapour Wave</div>
       <div class="sub">Tap play to listen</div>
     </div>
+
     <audio controls preload="metadata">
       <source src="assets/VapourWave.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
   </div>
 
-  <!-- STATEMENT VIDEO: freeze 0.3s from end (hold 2s) -> stars 2s -> restart -->
+  <!-- STATEMENT (Video) -->
   <section id="statement" class="statement" aria-label="Scrolling text video">
     <video
       class="statementVideo"
@@ -361,7 +374,7 @@ footer{
     <div id="pauseBlack" class="pauseBlack" aria-hidden="true"></div>
     <canvas id="pauseStars" class="pauseStars" aria-hidden="true"></canvas>
 
-    <div class="statementControls">
+    <div class="statementTop">
       <button class="btnSmall" id="replayBtn" type="button">Replay</button>
     </div>
   </section>
@@ -426,33 +439,40 @@ const STARS_MS = 2000;
 let freezeAt = null;
 let sequenceRunning = false;
 
-/* subtle twinkle stars (only visible during stars phase) */
+/* Starfield */
 const ctx = starsCanvas.getContext('2d');
-let w=0, h=0, arr=[];
+let w = 0, h = 0;
+let stars = [];
+let dpr = 1;
 
 function resizeStars(){
   const r = statement.getBoundingClientRect();
-  w = starsCanvas.width = Math.max(1, Math.floor(r.width));
-  h = starsCanvas.height = Math.max(1, Math.floor(r.height));
+  dpr = Math.min(2, window.devicePixelRatio || 1);
+  w = Math.max(1, Math.floor(r.width));
+  h = Math.max(1, Math.floor(r.height));
+  starsCanvas.width  = Math.floor(w * dpr);
+  starsCanvas.height = Math.floor(h * dpr);
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+
   const count = Math.max(45, Math.floor((w*h)/9000));
-  arr = Array.from({length: count}, () => ({
+  stars = Array.from({length: count}, () => ({
     x: Math.random()*w,
     y: Math.random()*h,
     r: 0.6 + Math.random()*1.6,
     t: Math.random()*Math.PI*2,
-    s: 0.006 + Math.random()*0.02,
+    sp: 0.006 + Math.random()*0.02,
     a0: 0.12 + Math.random()*0.35
   }));
 }
 
 function drawStars(){
   ctx.clearRect(0,0,w,h);
-  for(const s of arr){
-    s.t += s.s;
+  for(const s of stars){
+    s.t += s.sp;
     const tw = (Math.sin(s.t) + 1)/2;
     const a = s.a0 + tw*0.55;
-    ctx.fillStyle = `rgba(255,255,255,${a})`;
     ctx.beginPath();
+    ctx.fillStyle = `rgba(255,255,255,${a})`;
     ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
     ctx.fill();
   }
@@ -468,12 +488,12 @@ async function safePlay(){
   try{ await vid.play(); } catch(e){}
 }
 
-/* compute freeze point */
+/* Compute freeze point after metadata loads */
 vid.addEventListener('loadedmetadata', () => {
   freezeAt = Math.max(0, vid.duration - FREEZE_FROM_END_SEC);
 });
 
-/* trigger freeze */
+/* Trigger freeze */
 vid.addEventListener('timeupdate', () => {
   if(sequenceRunning || freezeAt === null) return;
 
@@ -495,7 +515,7 @@ vid.addEventListener('timeupdate', () => {
   }
 });
 
-/* replay */
+/* Replay button */
 replayBtn.addEventListener('click', () => {
   sequenceRunning = false;
   showStars(false);
@@ -503,7 +523,7 @@ replayBtn.addEventListener('click', () => {
   safePlay();
 });
 
-/* init */
+/* Init */
 window.addEventListener('load', () => {
   resizeStars();
   drawStars();
@@ -511,4 +531,9 @@ window.addEventListener('load', () => {
 });
 window.addEventListener('resize', resizeStars, {passive:true});
 
-/* helpful if autoplay blocked */
+/* In case autoplay is blocked */
+statement.addEventListener('click', safePlay);
+</script>
+
+</body>
+</html>
