@@ -28,7 +28,6 @@ body{
   background:var(--bg);
   color:var(--text);
 }
-a{color:inherit;text-decoration:none}
 
 /* ===== HEADER ===== */
 header{
@@ -58,13 +57,8 @@ nav{
 nav a{
   color:#e6e6e6;
   font-size:13px;
-  letter-spacing:.35px;
   padding:5px 9px;
   border-radius:12px;
-}
-nav a:hover{
-  color:#fff;
-  background:rgba(255,255,255,.06);
 }
 
 /* ===== WRAP ===== */
@@ -74,7 +68,7 @@ nav a:hover{
   padding:16px 18px 70px;
 }
 
-/* ===== HERO (Astronaut) ===== */
+/* ===== HERO ===== */
 .hero{
   position:relative;
   border-radius:22px;
@@ -89,64 +83,27 @@ nav a:hover{
   object-fit:cover;
   object-position:center 40%;
   display:block;
-  filter: brightness(1.12) contrast(1.06) saturate(1.08);
 }
-@media (min-width: 900px){
-  .hero img{
-    height:420px;
-    object-position:center 20%;
-  }
+@media (min-width:900px){
+  .hero img{ height:420px; }
 }
 .heroOverlay{
   position:absolute;
   inset:0;
-  background:
-    linear-gradient(90deg, rgba(0,0,0,.52), rgba(0,0,0,.10) 60%, transparent),
-    linear-gradient(180deg, transparent 44%, rgba(0,0,0,.72));
+  background:linear-gradient(180deg, transparent 40%, rgba(0,0,0,.75));
   display:flex;
   align-items:flex-end;
   padding:16px;
+  color:#fff;
 }
-.heroText{color:#fff; max-width:760px;}
-.heroText h1{
+.heroOverlay h1{
   font-family:"Unbounded";
   font-size:18px;
-  margin:0 0 6px;
-}
-.heroText p{
   margin:0;
+}
+.heroOverlay p{
+  margin:4px 0 0;
   font-size:13px;
-  color:#f1f1f1;
-}
-
-/* ===== MUSIC (optional) ===== */
-.musicStrip{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:14px;
-  flex-wrap:wrap;
-  background:rgba(255,255,255,.75);
-  border:1px solid rgba(0,0,0,.06);
-  border-radius:18px;
-  box-shadow:var(--shadow);
-  padding:10px 12px;
-  margin:10px 0 18px;
-}
-.musicMeta{ min-width:180px; }
-.musicMeta .label{
-  font-family:"Unbounded";
-  font-weight:800;
-  font-size:12px;
-}
-.musicMeta .sub{
-  color:var(--muted);
-  font-size:12px;
-  margin-top:2px;
-}
-.musicStrip audio{
-  width:min(520px, 100%);
-  height:34px;
 }
 
 /* ===== STATEMENT VIDEO ===== */
@@ -158,13 +115,12 @@ nav a:hover{
   border-radius:22px;
   overflow:hidden;
   box-shadow:var(--shadow);
-  margin:18px 0 22px;
+  margin:18px 0 26px;
 }
 @media (min-width:900px){
   .statement{ height:260px; }
 }
 
-/* video shows full frame (no cropping) */
 .statementVideo{
   position:absolute;
   inset:0;
@@ -175,7 +131,7 @@ nav a:hover{
   z-index:1;
 }
 
-/* Black + stars layer (shown after freeze) */
+/* Pause layers */
 .pauseBlack{
   position:absolute;
   inset:0;
@@ -190,17 +146,13 @@ nav a:hover{
 .pauseStars{
   position:absolute;
   inset:0;
-  width:100%;
-  height:100%;
-  display:block;
   opacity:0;
   transition:opacity .22s ease;
   z-index:3;
   pointer-events:none;
 }
-.pauseStars.is-on{ opacity:1; }
 
-/* Replay button only (no text overlay) */
+/* Replay */
 .statementControls{
   position:absolute;
   top:10px;
@@ -218,65 +170,12 @@ nav a:hover{
   cursor:pointer;
 }
 
-/* ===== SECTIONS ===== */
-section{ margin-bottom:60px; }
-section h2{
-  font-family:"Unbounded";
-  font-size:22px;
-  margin:0 0 6px;
-}
-section p{
-  color:var(--muted);
-  margin:0 0 18px;
-}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:18px;
-}
-.card{
-  background:#000;
-  border-radius:18px;
-  overflow:hidden;
-  box-shadow:var(--shadow);
-}
-.card iframe{ width:100%; height:220px; border:0; }
-.photoBlock img{
-  width:100%;
-  display:block;
-  border-radius:18px;
-  box-shadow:var(--shadow);
-}
-
-/* ===== BUTTONS ===== */
-.cta{ display:flex; gap:12px; flex-wrap:wrap; }
-.btn{
-  padding:10px 16px;
-  border-radius:14px;
-  font-weight:600;
-  font-size:14px;
-  background:#fff;
-  color:#111;
-  transition: transform .18s ease, box-shadow .18s ease;
-}
-.btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 10px 24px rgba(0,0,0,.22);
-}
-.btn.primary{
-  background:linear-gradient(90deg,#ff7a18,#ffd166,#06d6a0,#4cc9f0);
-  color:#111;
-}
-.btn.facebook{ background:#1877F2; color:#fff; }
-.btn.x{ background:#000; color:#fff; }
-
 /* ===== FOOTER ===== */
 footer{
   text-align:center;
-  color:#666;
   font-size:13px;
+  color:#666;
   margin-top:80px;
-  padding-bottom:30px;
 }
 </style>
 </head>
@@ -285,142 +184,76 @@ footer{
 
 <header>
   <div class="headerInner">
-    <img class="logoImage" src="assets/IMG_3081.gif" alt="ScottyB logo">
+    <img class="logoImage" src="assets/IMG_3081.gif" alt="">
     <nav>
       <a href="#statement">Statement</a>
-      <a href="#band">Band</a>
-      <a href="#video">Video</a>
-      <a href="#photo">Photo</a>
-      <a href="#connect">Connect</a>
     </nav>
   </div>
 </header>
 
 <main class="wrap">
 
-  <div class="hero">
-    <img src="assets/0EA914B0-D2A9-4FDF-A807-B255F18BF2EF.jpeg" alt="Astronaut trumpet image">
-    <div class="heroOverlay">
-      <div class="heroText">
-        <h1>Scott Baylis</h1>
-        <p>Futuristic Afro Electronic Funk & Spiritual Jazz & Soul</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="musicStrip" aria-label="Audio player">
-    <div class="musicMeta">
-      <div class="label">Vapour Wave</div>
-      <div class="sub">Tap play to listen</div>
-    </div>
-    <audio controls preload="metadata">
-      <source src="assets/VapourWave.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
-  </div>
-
-  <!-- STATEMENT VIDEO: freeze 0.5s from end (for 2s) -> stars 2s -> restart -->
-  <section id="statement" class="statement" aria-label="Scrolling text video">
+  <!-- STATEMENT VIDEO -->
+  <section id="statement" class="statement">
     <video
-      class="statementVideo"
       id="statementVideo"
+      class="statementVideo"
       autoplay
       muted
       playsinline
       preload="metadata"
     >
       <source src="assets/Adobe%20Express%20-%20copy_4A5E2829-1BD0-4B2F-A97E-0CBF4E9140A0.mp4" type="video/mp4">
-      Your browser does not support the video tag.
     </video>
 
-    <div id="pauseBlack" class="pauseBlack" aria-hidden="true"></div>
-    <canvas id="pauseStars" class="pauseStars" aria-hidden="true"></canvas>
+    <div id="pauseBlack" class="pauseBlack"></div>
+    <canvas id="pauseStars" class="pauseStars"></canvas>
 
     <div class="statementControls">
-      <button class="btnSmall" id="replayBtn" type="button">Replay</button>
-    </div>
-  </section>
-
-  <section id="band">
-    <h2>Band</h2>
-    <p>Full crew energy.</p>
-    <div class="photoBlock">
-      <img src="assets/ISM_RTF_FINAL1.jpeg" alt="Band photo">
-    </div>
-  </section>
-
-  <section id="photo">
-    <h2>Photo</h2>
-    <p>Live moments and behind the scenes.</p>
-    <div class="photoBlock">
-      <img src="assets/IMG_0080.jpeg" alt="Live performance photo">
-    </div>
-  </section>
-
-  <section id="video">
-    <h2>Video</h2>
-    <p>Performances and collaborations.</p>
-    <div class="grid">
-      <div class="card"><iframe src="https://www.youtube.com/embed/lfMh0zfIO3A" allowfullscreen></iframe></div>
-      <div class="card"><iframe src="https://www.youtube.com/embed/ZO769KQ_skE" allowfullscreen></iframe></div>
-      <div class="card"><iframe src="https://www.youtube.com/embed/ORa4QjAffls" allowfullscreen></iframe></div>
-      <div class="card"><iframe src="https://www.youtube.com/embed/XF-CrcPJT3c" allowfullscreen></iframe></div>
-    </div>
-  </section>
-
-  <section id="connect">
-    <h2>Connect</h2>
-    <p>Follow and get updates first.</p>
-    <div class="cta">
-      <a class="btn primary" href="https://www.instagram.com/scottybeasy" target="_blank" rel="noopener">Instagram</a>
-      <a class="btn facebook" href="https://www.facebook.com/scottbaylis" target="_blank" rel="noopener">Facebook</a>
-      <a class="btn x" href="https://x.com/scottbaylis" target="_blank" rel="noopener">X</a>
+      <button id="replayBtn" class="btnSmall">Replay</button>
     </div>
   </section>
 
   <footer>© 2026 Scott Baylis</footer>
-
 </main>
 
 <script>
-/* ===== FREEZE (0.5s from end, hold 2s) -> STARS 2s -> RESTART ===== */
+/* ===== FREEZE 0.7s FROM END → HOLD 2s → STARS 2s → RESTART ===== */
 const vid = document.getElementById('statementVideo');
 const black = document.getElementById('pauseBlack');
 const starsCanvas = document.getElementById('pauseStars');
 const replayBtn = document.getElementById('replayBtn');
 const statement = document.getElementById('statement');
 
-// Timing you requested
-const FREEZE_FROM_END_SEC = 0.5; // freeze point = duration - 0.5s
-const FREEZE_HOLD_MS = 2000;     // hold frozen frame for 2s
-const STARS_MS = 2000;           // stars for 2s
+// Timing
+const FREEZE_FROM_END_SEC = 0.7; // ← UPDATED
+const FREEZE_HOLD_MS = 2000;
+const STARS_MS = 2000;
 
 let freezeAt = null;
 let sequenceRunning = false;
 
-/* --- subtle starfield (only visible during stars phase) --- */
+/* --- starfield --- */
 const ctx = starsCanvas.getContext('2d');
-let sw=0, sh=0, dpr=1;
-let stars = [];
-let rafId = null;
+let sw=0, sh=0, dpr=1, stars=[];
 
-function resizeStarsCanvas(){
-  const rect = statement.getBoundingClientRect();
+function resizeStars(){
+  const r = statement.getBoundingClientRect();
   dpr = Math.min(2, window.devicePixelRatio || 1);
-  sw = Math.max(1, Math.floor(rect.width));
-  sh = Math.max(1, Math.floor(rect.height));
+  sw = Math.max(1, Math.floor(r.width));
+  sh = Math.max(1, Math.floor(r.height));
   starsCanvas.width  = Math.floor(sw * dpr);
   starsCanvas.height = Math.floor(sh * dpr);
   ctx.setTransform(dpr,0,0,dpr,0,0);
 
-  const count = Math.max(45, Math.floor((sw*sh)/9000));
+  const count = Math.max(40, Math.floor((sw*sh)/9000));
   stars = Array.from({length: count}, () => ({
     x: Math.random()*sw,
     y: Math.random()*sh,
-    r: 0.5 + Math.random()*1.7,
+    r: 0.5 + Math.random()*1.6,
     t: Math.random()*Math.PI*2,
     sp: 0.006 + Math.random()*0.02,
-    a0: 0.12 + Math.random()*0.35
+    a0: 0.15 + Math.random()*0.35
   }));
 }
 
@@ -428,15 +261,13 @@ function drawStars(){
   ctx.clearRect(0,0,sw,sh);
   for(const s of stars){
     s.t += s.sp;
-    const tw = (Math.sin(s.t) + 1) / 2;
-    const a = s.a0 + tw * 0.55;
-
-    ctx.beginPath();
+    const a = s.a0 + ((Math.sin(s.t)+1)/2)*0.5;
     ctx.fillStyle = `rgba(255,255,255,${a})`;
-    ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+    ctx.beginPath();
+    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
     ctx.fill();
   }
-  rafId = requestAnimationFrame(drawStars);
+  requestAnimationFrame(drawStars);
 }
 
 function showStars(on){
@@ -445,7 +276,7 @@ function showStars(on){
 }
 
 async function safePlay(){
-  try { await vid.play(); } catch(e) { /* autoplay might be blocked */ }
+  try{ await vid.play(); } catch(e){}
 }
 
 function resetAndPlay(){
@@ -455,38 +286,28 @@ function resetAndPlay(){
   safePlay();
 }
 
-/* Compute freeze point when metadata is ready */
+/* Compute freeze point */
 vid.addEventListener('loadedmetadata', () => {
-  const dur = Number.isFinite(vid.duration) ? vid.duration : 0;
-  freezeAt = Math.max(0, dur - FREEZE_FROM_END_SEC);
+  freezeAt = Math.max(0, vid.duration - FREEZE_FROM_END_SEC);
 });
 
-/* Freeze trigger */
+/* Trigger freeze */
 vid.addEventListener('timeupdate', () => {
-  if(sequenceRunning) return;
-  if(freezeAt === null) return;
+  if(sequenceRunning || freezeAt === null) return;
 
   if(vid.currentTime >= freezeAt){
     sequenceRunning = true;
+    try{ vid.currentTime = freezeAt; }catch(e){}
+    vid.pause();
 
-    // Snap exactly to freeze point (optional but makes it consistent)
-    try { vid.currentTime = freezeAt; } catch(e) {}
-    vid.pause(); // freeze frame
-
-    // Hold frozen frame for 2 seconds
     setTimeout(() => {
-      // Now show black + stars for 2 seconds
       showStars(true);
-
-      setTimeout(() => {
-        resetAndPlay();
-      }, STARS_MS);
-
+      setTimeout(resetAndPlay, STARS_MS);
     }, FREEZE_HOLD_MS);
   }
 });
 
-/* Replay button: immediate restart, cancel any sequence */
+/* Replay */
 replayBtn.addEventListener('click', () => {
   sequenceRunning = false;
   showStars(false);
@@ -495,17 +316,13 @@ replayBtn.addEventListener('click', () => {
   safePlay();
 });
 
-/* Resize star canvas */
-window.addEventListener('resize', resizeStarsCanvas, {passive:true});
+/* Init */
 window.addEventListener('load', () => {
-  resizeStarsCanvas();
-  if(rafId) cancelAnimationFrame(rafId);
-  rafId = requestAnimationFrame(drawStars);
+  resizeStars();
+  drawStars();
   setTimeout(safePlay, 150);
 });
-
-/* Useful if autoplay blocked: tap statement area */
-statement.addEventListener('click', safePlay);
+window.addEventListener('resize', resizeStars, {passive:true});
 </script>
 
 </body>
