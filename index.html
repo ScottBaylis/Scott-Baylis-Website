@@ -153,7 +153,7 @@ nav a:hover{
   height:34px;
 }
 
-/* ===== STATEMENT VIDEO (freeze + stars) ===== */
+/* ===== STATEMENT VIDEO ===== */
 .statement{
   position:relative;
   height:340px;
@@ -168,14 +168,13 @@ nav a:hover{
   inset:0;
   width:100%;
   height:100%;
-  object-fit:contain;           /* never crop text */
+  object-fit:contain;
   object-position:center;
   background:#000;
   display:block;
   z-index:1;
   transform-origin:center;
 }
-/* Desktop-only: bigger/wider-feeling */
 @media (min-width: 900px){
   .statement{ height:420px; }
   .statementVideo{ transform:scale(1.10); }
@@ -205,7 +204,6 @@ nav a:hover{
 }
 .pauseStars.is-on{ opacity:1; }
 
-/* Replay only */
 .statementTop{
   position:absolute;
   top:0; left:0; right:0;
@@ -213,7 +211,6 @@ nav a:hover{
   z-index:4;
   display:flex;
   justify-content:flex-end;
-  align-items:center;
   background:linear-gradient(to bottom, rgba(0,0,0,.85), rgba(0,0,0,0));
 }
 .btnSmall{
@@ -276,15 +273,9 @@ section p{
   font-size:14px;
   background:#fff;
   color:#111;
-  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
-}
-.btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 10px 24px rgba(0,0,0,.22);
 }
 .btn.primary{
   background:linear-gradient(90deg,#ff7a18,#ffd166,#06d6a0,#4cc9f0);
-  color:#111;
 }
 .btn.facebook{ background:#1877F2; color:#fff; }
 .btn.x{ background:#000; color:#fff; }
@@ -389,7 +380,7 @@ footer{
 
 <main class="wrap">
 
-  <!-- HERO (Astronaut) -->
+  <!-- HERO -->
   <div class="hero">
     <img src="assets/0EA914B0-D2A9-4FDF-A807-B255F18BF2EF.jpeg" alt="Astronaut trumpet image">
     <div class="heroOverlay">
@@ -401,41 +392,29 @@ footer{
   </div>
 
   <!-- MUSIC PLAYER -->
-  <div class="musicStrip" aria-label="Audio player">
+  <div class="musicStrip">
     <div class="musicMeta">
       <div class="label">Vapour Wave</div>
       <div class="sub">Tap play to listen</div>
     </div>
-
     <audio controls preload="metadata">
       <source src="assets/VapourWave.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
     </audio>
   </div>
 
   <!-- STATEMENT VIDEO -->
-  <section id="statement" class="statement" aria-label="Scrolling text video">
-    <video
-      class="statementVideo"
-      id="statementVideo"
-      autoplay
-      muted
-      playsinline
-      preload="metadata"
-    >
+  <section id="statement" class="statement">
+    <video class="statementVideo" id="statementVideo" autoplay muted playsinline preload="metadata">
       <source src="assets/Adobe%20Express%20-%20copy_4A5E2829-1BD0-4B2F-A97E-0CBF4E9140A0.mp4" type="video/mp4">
-      Your browser does not support the video tag.
     </video>
-
-    <div id="pauseBlack" class="pauseBlack" aria-hidden="true"></div>
-    <canvas id="pauseStars" class="pauseStars" aria-hidden="true"></canvas>
-
+    <div id="pauseBlack" class="pauseBlack"></div>
+    <canvas id="pauseStars" class="pauseStars"></canvas>
     <div class="statementTop">
       <button class="btnSmall" id="replayBtn" type="button">Replay</button>
     </div>
   </section>
 
-  <!-- BAND PHOTO -->
+  <!-- BAND -->
   <section id="band">
     <h2>Band</h2>
     <p>Full crew energy.</p>
@@ -473,7 +452,7 @@ footer{
       <a class="btn bandcamp" href="https://ibibiosoundmachine.bandcamp.com/" target="_blank" rel="noopener">
         Ibibio Sound Machine — Bandcamp
       </a>
-      <a class="btn bandcamp" href="https://thebakerbrothers.bandcamp.com/" target="_blank" rel="noopener">
+      <a class="btn bandcamp" href="https://bakerbrothers.bandcamp.com/" target="_blank" rel="noopener">
         The Baker Brothers — Bandcamp
       </a>
     </div>
@@ -490,54 +469,49 @@ footer{
     </div>
   </section>
 
-  <!-- CONTACT FORM -->
+  <!-- CONTACT -->
   <section id="contact">
     <h2>Contact</h2>
     <p>Bookings, collaborations, and enquiries. Leave either your email or phone number.</p>
 
-    <form class="contactForm"
-          id="contactForm"
-          action="https://formsubmit.co/scottbaylis@hotmail.com"
-          method="POST">
+    <form class="contactForm" id="contactForm"
+          action="https://formsubmit.co/scottbaylis@hotmail.com" method="POST">
 
-      <!-- FormSubmit settings -->
       <input type="hidden" name="_subject" value="New message from ScottyB site">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_next" value="index.html#contact">
-
-      <!-- Honeypot anti-spam -->
       <input type="text" name="_honey" style="display:none">
 
       <div class="contactGrid">
         <label class="field">
           <span>Name</span>
-          <input name="name" type="text" autocomplete="name" placeholder="Your name" required>
+          <input name="name" type="text" required>
         </label>
 
         <label class="field">
           <span>Email (optional)</span>
-          <input id="contactEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com">
+          <input id="contactEmail" name="email" type="email">
         </label>
 
         <label class="field">
           <span>Phone (optional)</span>
-          <input id="contactPhone" name="phone" type="tel" autocomplete="tel" placeholder="+44 …">
+          <input id="contactPhone" name="phone" type="tel">
         </label>
 
         <label class="field fieldFull">
           <span>Message</span>
-          <textarea name="message" rows="6" placeholder="Tell me what you’re looking for…" required></textarea>
+          <textarea name="message" rows="6" required></textarea>
         </label>
       </div>
 
-      <div id="contactError" class="formError" role="alert" aria-live="polite">
+      <div id="contactError" class="formError">
         Please add at least one contact detail: an email address or a phone number.
       </div>
 
       <div class="formActions">
         <button class="btn primary" type="submit">Send message</button>
-        <div class="formNote">By sending, you agree to be contacted back using the details you provided.</div>
+        <div class="formNote">By sending, you agree to be contacted back.</div>
       </div>
     </form>
   </section>
@@ -561,7 +535,6 @@ const STARS_MS = 2000;
 let freezeAt = null;
 let sequenceRunning = false;
 
-/* Starfield (twinkle) */
 const ctx = starsCanvas.getContext('2d');
 let w = 0, h = 0;
 let stars = [];
@@ -607,7 +580,7 @@ function showStars(on){
 }
 
 async function safePlay(){
-  try{ await vid.play(); } catch(e){}
+  try{ await vid.play(); }catch(e){}
 }
 
 vid.addEventListener('loadedmetadata', () => {
@@ -616,13 +589,9 @@ vid.addEventListener('loadedmetadata', () => {
 
 vid.addEventListener('timeupdate', () => {
   if(sequenceRunning || freezeAt === null) return;
-
   if(vid.currentTime >= freezeAt){
     sequenceRunning = true;
-
-    try{ vid.currentTime = freezeAt; }catch(e){}
     vid.pause();
-
     setTimeout(() => {
       showStars(true);
       setTimeout(() => {
@@ -649,10 +618,9 @@ window.addEventListener('load', () => {
 });
 window.addEventListener('resize', resizeStars, {passive:true});
 
-/* Autoplay fallback */
 statement.addEventListener('click', safePlay);
 
-/* ===== CONTACT FORM VALIDATION: require Email OR Phone ===== */
+/* ===== CONTACT VALIDATION ===== */
 const contactForm = document.getElementById('contactForm');
 const emailEl = document.getElementById('contactEmail');
 const phoneEl = document.getElementById('contactPhone');
@@ -661,24 +629,10 @@ const errorEl = document.getElementById('contactError');
 function trimVal(el){ return (el.value || '').trim(); }
 
 function validateContactDetails(){
-  const email = trimVal(emailEl);
-  const phone = trimVal(phoneEl);
-  const ok = (email.length > 0) || (phone.length > 0);
-
+  const ok = trimVal(emailEl) || trimVal(phoneEl);
   errorEl.classList.toggle('is-on', !ok);
-  if(!ok){
-    // Add a subtle visual hint
-    emailEl.style.borderColor = 'rgba(0,0,0,.25)';
-    phoneEl.style.borderColor = 'rgba(0,0,0,.25)';
-  }else{
-    emailEl.style.borderColor = '';
-    phoneEl.style.borderColor = '';
-  }
-  return ok;
+  return !!ok;
 }
-
-emailEl.addEventListener('input', validateContactDetails);
-phoneEl.addEventListener('input', validateContactDetails);
 
 contactForm.addEventListener('submit', (e) => {
   if(!validateContactDetails()){
