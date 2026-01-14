@@ -18,6 +18,7 @@
   --muted:#555;
   --shadow:0 14px 40px rgba(0,0,0,.18);
   --header:#050509;
+  --space:#000;
 }
 
 *{box-sizing:border-box}
@@ -28,6 +29,7 @@ body{
   background:var(--bg);
   color:var(--text);
 }
+a{color:inherit;text-decoration:none}
 
 /* ===== HEADER ===== */
 header{
@@ -57,8 +59,13 @@ nav{
 nav a{
   color:#e6e6e6;
   font-size:13px;
+  letter-spacing:.35px;
   padding:5px 9px;
   border-radius:12px;
+}
+nav a:hover{
+  color:#fff;
+  background:rgba(255,255,255,.06);
 }
 
 /* ===== WRAP ===== */
@@ -68,115 +75,138 @@ nav a{
   padding:16px 18px 70px;
 }
 
-/* ===== HERO ===== */
+/* ===== HERO (Astronaut) ===== */
 .hero{
   position:relative;
   border-radius:22px;
   overflow:hidden;
   background:#000;
   box-shadow:var(--shadow);
+  margin-bottom:14px;
 }
 .hero img{
   width:100%;
-  height:min(240px,30vh);
+  height:min(240px, 30vh);
   object-fit:cover;
+  object-position:center 40%;
+  opacity:1;
+  display:block;
+  filter: brightness(1.12) contrast(1.06) saturate(1.08);
 }
-@media (min-width:900px){
-  .hero img{ height:420px; }
+/* Desktop fix: more height + show more of top so helmet doesn't crop */
+@media (min-width: 900px){
+  .hero img{
+    height:420px;
+    object-position:center 20%;
+  }
 }
+
 .heroOverlay{
   position:absolute;
   inset:0;
   background:
-    linear-gradient(180deg, transparent 40%, rgba(0,0,0,.75));
+    linear-gradient(90deg, rgba(0,0,0,.52), rgba(0,0,0,.10) 60%, transparent),
+    linear-gradient(180deg, transparent 44%, rgba(0,0,0,.72));
   display:flex;
   align-items:flex-end;
   padding:16px;
-  color:#fff;
 }
-.heroOverlay h1{
+.heroText{color:#fff; max-width:760px;}
+.heroText h1{
   font-family:"Unbounded";
   font-size:18px;
-  margin:0;
+  margin:0 0 6px;
 }
-.heroOverlay p{
-  margin:4px 0 0;
+.heroText p{
+  margin:0;
   font-size:13px;
+  color:#f1f1f1;
 }
 
-/* ===== MUSIC ===== */
+/* ===== MUSIC (subtle) ===== */
 .musicStrip{
   display:flex;
-  gap:14px;
   align-items:center;
   justify-content:space-between;
+  gap:14px;
+  flex-wrap:wrap;
+
   background:rgba(255,255,255,.75);
+  backdrop-filter:saturate(1.1);
+  border:1px solid rgba(0,0,0,.06);
   border-radius:18px;
   box-shadow:var(--shadow);
   padding:10px 12px;
-  margin:14px 0;
+  margin:10px 0 18px;
 }
+.musicMeta{ min-width:180px; }
 .musicMeta .label{
   font-family:"Unbounded";
-  font-size:12px;
   font-weight:800;
+  font-size:12px;
+  letter-spacing:.2px;
 }
 .musicMeta .sub{
-  font-size:12px;
   color:var(--muted);
+  font-size:12px;
+  margin-top:2px;
 }
-audio{ width:520px; max-width:100%; }
+.musicStrip audio{
+  width:min(520px, 100%);
+  height:34px;
+}
 
-/* ===== STATEMENT VIDEO (CRITICAL FIX) ===== */
+/* ===== STATEMENT (Scrolling video) =====
+   Goal: show ALL text (no side cropping) + flatter/wider box.
+*/
 .statement{
   position:relative;
-  width:100%;
-  height:160px;           /* 🔑 MUCH FLATTER */
-  background:#000;
+  height:clamp(180px, 32vh, 300px); /* shorter + wider */
+  background:var(--space);
   border-radius:22px;
   overflow:hidden;
   box-shadow:var(--shadow);
-  margin:18px 0 26px;
+  margin:18px 0 22px;
 }
 
-/* Desktop gets slightly more height */
-@media (min-width:900px){
-  .statement{
-    height:200px;
-  }
-}
-
-/* Video scaling: NEVER crop text */
+/* Use contain so the entire frame is visible (no cut-off text). */
 .statementVideo{
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
-  object-fit:contain;     /* 🔑 shows entire frame */
-  background:#000;
+  object-fit:contain;      /* key: no cropping */
+  object-position:center;
+  background:#000;         /* letterbox bars if needed */
+  display:block;
+  z-index:1;
 }
 
-/* Title overlay */
 .statementTop{
   position:absolute;
   top:0; left:0; right:0;
-  padding:8px 12px;
+  padding:10px 12px;
+  z-index:3;
   display:flex;
   justify-content:space-between;
-  background:linear-gradient(to bottom, rgba(0,0,0,.85), transparent);
+  align-items:center;
+  gap:10px;
+  background:linear-gradient(to bottom, rgba(0,0,0,.85), rgba(0,0,0,0));
 }
-.statementTop span{
+.statementTitle{
   font-family:"Unbounded";
+  font-weight:800;
   font-size:13px;
   color:#fff;
 }
-.statementTop button{
+.btnSmall{
+  padding:7px 10px;
+  border-radius:12px;
   font-size:12px;
-  padding:6px 10px;
-  border-radius:10px;
-  background:rgba(255,255,255,.15);
-  border:1px solid rgba(255,255,255,.25);
+  font-weight:700;
   color:#fff;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.18);
   cursor:pointer;
 }
 
@@ -185,13 +215,11 @@ section{ margin-bottom:60px; }
 section h2{
   font-family:"Unbounded";
   font-size:22px;
+  margin:0 0 6px;
 }
-section p{ color:var(--muted); }
-
-.photoBlock img{
-  width:100%;
-  border-radius:18px;
-  box-shadow:var(--shadow);
+section p{
+  color:var(--muted);
+  margin:0 0 18px;
 }
 
 .grid{
@@ -211,12 +239,53 @@ section p{ color:var(--muted); }
   border:0;
 }
 
+/* photo blocks */
+.photoBlock img{
+  width:100%;
+  display:block;
+  border-radius:18px;
+  box-shadow:var(--shadow);
+}
+
+/* ===== BUTTONS ===== */
+.cta{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.btn{
+  padding:10px 16px;
+  border-radius:14px;
+  font-weight:600;
+  font-size:14px;
+  background:#fff;
+  color:#111;
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 24px rgba(0,0,0,.22);
+}
+.btn.primary{
+  background:linear-gradient(90deg,#ff7a18,#ffd166,#06d6a0,#4cc9f0);
+  color:#111;
+}
+.btn.facebook{
+  background:#1877F2;
+  color:#fff;
+}
+.btn.x{
+  background:#000;
+  color:#fff;
+}
+
 /* ===== FOOTER ===== */
 footer{
   text-align:center;
-  font-size:13px;
   color:#666;
+  font-size:13px;
   margin-top:80px;
+  padding-bottom:30px;
 }
 </style>
 </head>
@@ -238,67 +307,78 @@ footer{
 
 <main class="wrap">
 
+  <!-- HERO (Astronaut) -->
   <div class="hero">
-    <img src="assets/0EA914B0-D2A9-4FDF-A807-B255F18BF2EF.jpeg" alt="">
+    <img src="assets/0EA914B0-D2A9-4FDF-A807-B255F18BF2EF.jpeg" alt="Astronaut trumpet image">
     <div class="heroOverlay">
-      <div>
+      <div class="heroText">
         <h1>Scott Baylis</h1>
         <p>Futuristic Afro Electronic Funk & Spiritual Jazz & Soul</p>
       </div>
     </div>
   </div>
 
-  <div class="musicStrip">
+  <!-- MUSIC PLAYER -->
+  <div class="musicStrip" aria-label="Audio player">
     <div class="musicMeta">
       <div class="label">Vapour Wave</div>
       <div class="sub">Tap play to listen</div>
     </div>
-    <audio controls>
+
+    <audio controls preload="metadata">
       <source src="assets/VapourWave.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
     </audio>
   </div>
 
-  <!-- SCROLLING TEXT VIDEO -->
-  <section id="statement" class="statement">
+  <!-- STATEMENT VIDEO (MP4 in assets) -->
+  <section id="statement" class="statement" aria-label="Scrolling text video">
     <video
-      id="statementVideo"
       class="statementVideo"
+      id="statementVideo"
       autoplay
       muted
       loop
       playsinline
       preload="metadata"
     >
+      <!-- Your MP4 file (in /assets) -->
       <source src="assets/Adobe%20Express%20-%20copy_4A5E2829-1BD0-4B2F-A97E-0CBF4E9140A0.mp4" type="video/mp4">
+
+      <!-- Optional fallback if you ever keep a .mov somewhere -->
+      <!-- <source src="copy_4A5E2829-1BD0-4B2F-A97E-0CBF4E9140A0.mov" type="video/quicktime"> -->
+
+      Your browser does not support the video tag.
     </video>
 
     <div class="statementTop">
-      <span>Scott Baylis</span>
-      <button onclick="
-        const v=document.getElementById('statementVideo');
-        v.currentTime=0; v.play();
-      ">Replay</button>
+      <div class="statementTitle">Scott Baylis</div>
+      <button class="btnSmall" id="replayBtn" type="button">Replay</button>
     </div>
   </section>
 
+  <!-- BAND PHOTO -->
   <section id="band">
     <h2>Band</h2>
     <p>Full crew energy.</p>
     <div class="photoBlock">
-      <img src="assets/ISM_RTF_FINAL1.jpeg">
+      <img src="assets/ISM_RTF_FINAL1.jpeg" alt="Band photo">
     </div>
   </section>
 
+  <!-- PHOTO -->
   <section id="photo">
     <h2>Photo</h2>
     <p>Live moments and behind the scenes.</p>
     <div class="photoBlock">
-      <img src="assets/IMG_0080.jpeg">
+      <img src="assets/IMG_0080.jpeg" alt="Live performance photo">
     </div>
   </section>
 
+  <!-- VIDEO -->
   <section id="video">
     <h2>Video</h2>
+    <p>Performances and collaborations.</p>
     <div class="grid">
       <div class="card"><iframe src="https://www.youtube.com/embed/lfMh0zfIO3A" allowfullscreen></iframe></div>
       <div class="card"><iframe src="https://www.youtube.com/embed/ZO769KQ_skE" allowfullscreen></iframe></div>
@@ -307,9 +387,53 @@ footer{
     </div>
   </section>
 
+  <!-- CONNECT -->
+  <section id="connect">
+    <h2>Connect</h2>
+    <p>Follow and get updates first.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://www.instagram.com/scottybeasy" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn facebook" href="https://www.facebook.com/scottbaylis" target="_blank" rel="noopener">Facebook</a>
+      <a class="btn x" href="https://x.com/scottbaylis" target="_blank" rel="noopener">X</a>
+    </div>
+  </section>
+
   <footer>© 2026 Scott Baylis</footer>
 
 </main>
+
+<script>
+/* ===== VIDEO REPLAY + AUTOPLAY ASSIST ===== */
+const vid = document.getElementById('statementVideo');
+const replayBtn = document.getElementById('replayBtn');
+const statementSection = document.getElementById('statement');
+
+async function tryPlay(){
+  try{
+    // Some browsers behave better if we call play after load
+    await vid.play();
+  }catch(e){
+    // If autoplay is blocked, user tapping the box will start it.
+    console.log('Autoplay blocked:', e);
+  }
+}
+
+window.addEventListener('load', () => setTimeout(tryPlay, 120));
+
+// Replay button
+replayBtn.addEventListener('click', async () => {
+  try{
+    vid.pause();
+    vid.currentTime = 0;
+    await vid.play();
+  }catch(e){
+    console.log(e);
+  }
+});
+
+// User gesture fallback: tap/click the statement to start play
+statementSection.addEventListener('click', tryPlay);
+</script>
 
 </body>
 </html>
