@@ -157,29 +157,39 @@ nav a:hover{
   height:34px;
 }
 
-/* ===== CRAWL BOX ===== */
+/* ===== STATEMENT (Video box) ===== */
 .statement{
   position:relative;
-  height:340px;
+  height:clamp(260px, 48vh, 520px); /* responsive sizing */
   background:var(--space);
   border-radius:22px;
   overflow:hidden;
   box-shadow:var(--shadow);
   margin:18px 0 22px;
 }
-#stars{
+
+/* Video fills the box nicely */
+.statementVideo{
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
+  object-fit:cover;       /* fills box, crops edges slightly if needed */
+  object-position:center; /* keep centred */
   display:block;
   z-index:1;
+  filter:saturate(1.05) contrast(1.03) brightness(1.02);
 }
+
+/* If you prefer ZERO cropping, swap object-fit:cover -> contain
+.statementVideo{ object-fit:contain; background:#000; }
+*/
+
 .statementTop{
   position:absolute;
   top:0; left:0; right:0;
   padding:10px 12px;
-  z-index:4;
+  z-index:3;
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -202,45 +212,6 @@ nav a:hover{
   border:1px solid rgba(255,255,255,.18);
   cursor:pointer;
 }
-
-/* crawl */
-.crawlStage{
-  position:absolute;
-  inset:0;
-  z-index:3;
-  display:flex;
-  justify-content:center;
-  align-items:flex-end;
-  perspective:800px;
-  pointer-events:none;
-}
-.crawl{
-  width:min(900px,92vw);
-  text-align:center;
-  font-family:"Unbounded";
-  font-weight:900;
-  font-size:18px;
-  line-height:1.6;
-  letter-spacing:.6px;
-  color:var(--crawlYellow);
-  transform-origin:50% 100%;
-  transform: rotateX(34deg);
-  position:absolute;
-  bottom:-10%;
-  opacity:1;
-  filter: saturate(1.35) brightness(1.08);
-  -webkit-text-stroke:0.35px rgba(0,0,0,.35);
-  text-shadow:0 1px 0 rgba(0,0,0,.35);
-}
-.crawl.is-running{
-  animation:crawlUp 36s linear forwards;
-}
-@keyframes crawlUp{
-  0%{ bottom:-10%; opacity:1; }
-  88%{ opacity:1; }
-  100%{ bottom:190%; opacity:0; }
-}
-.crawl p{ margin:0 0 16px; }
 
 /* ===== SECTIONS ===== */
 section{ margin-bottom:60px; }
@@ -363,24 +334,29 @@ footer{
     </audio>
   </div>
 
-  <!-- CRAWL -->
-  <section id="statement" class="statement" aria-label="Cinematic crawl">
-    <canvas id="stars"></canvas>
+  <!-- STATEMENT (Video replaces crawl) -->
+  <section id="statement" class="statement" aria-label="Scrolling text video">
+    <video
+      class="statementVideo"
+      id="statementVideo"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+    >
+      <!-- MOV source (best for iPhone/Safari if encoded appropriately) -->
+      <source src="assets/copy_4A5E2829-1BD0-4B2F-A97E-0CBF4E9140A0.mov" type="video/quicktime">
+
+      <!-- Optional: add an MP4 export for maximum desktop compatibility -->
+      <!-- <source src="assets/scrolling-text.mp4" type="video/mp4"> -->
+
+      Your browser does not support the video tag.
+    </video>
+
     <div class="statementTop">
       <div class="statementTitle">Scott Baylis</div>
       <button class="btnSmall" id="replayBtn" type="button">Replay</button>
-    </div>
-    <div class="crawlStage">
-      <div class="crawl" id="crawl">
-        <p>SPACE FUNK: THE FINAL FRONTIER.</p>
-        <p>These are the musical voyages of <strong>SCOTTYB</strong>.</p>
-        <p>His continuing mission:</p>
-        <p>
-          to explore strange new genres,<br>
-          to seek out new sounds and new rhythms,<br>
-          and to boldly go where trumpet, synth, and groove have never gone before.
-        </p>
-      </div>
     </div>
   </section>
 
@@ -430,70 +406,17 @@ footer{
 </main>
 
 <script>
-/* ===== CRAWL ===== */
-const crawl = document.getElementById('crawl');
-
-function startCrawl(){
-  crawl.classList.remove('is-running');
-  void crawl.offsetHeight; // force reflow so animation reliably restarts
-  crawl.classList.add('is-running');
-}
-
-window.addEventListener('load', () => setTimeout(startCrawl, 50));
-document.getElementById('replayBtn').addEventListener('click', startCrawl);
-
-/* ===== STARFIELD (reliable, iPhone-safe sizing) ===== */
-const canvas = document.getElementById('stars');
-const ctx = canvas.getContext('2d');
-let stars = [];
-let w = 0, h = 0;
-let dpr = Math.min(2, window.devicePixelRatio || 1);
-
-function resizeCanvas(){
-  const rect = canvas.getBoundingClientRect();
-  w = Math.max(1, Math.floor(rect.width));
-  h = Math.max(1, Math.floor(rect.height));
-  canvas.width  = Math.floor(w * dpr);
-  canvas.height = Math.floor(h * dpr);
-  ctx.setTransform(dpr,0,0,dpr,0,0);
-
-  const count = Math.floor((w*h) / 11000);
-  stars = Array.from({length: count}, () => ({
-    x: Math.random()*w,
-    y: Math.random()*h,
-    z: 0.2 + Math.random()*0.8,
-    t: Math.random()*Math.PI*2,
-    sp: 0.008 + Math.random()*0.018
-  }));
-}
-
-function drawStars(){
-  ctx.clearRect(0,0,w,h);
-  for(const s of stars){
-    s.t += s.sp;
-    const tw = (Math.sin(s.t) + 1) / 2;
-    const a = 0.18 + tw * 0.82;
-    const r = 0.7 + s.z * 2.0;
-
-    ctx.beginPath();
-    ctx.fillStyle = `rgba(255,255,255,${a})`;
-    ctx.arc(s.x, s.y, r, 0, Math.PI*2);
-    ctx.fill();
-
-    s.y += 0.14 + s.z * 0.32;
-    if(s.y > h + 5){ s.y = -5; s.x = Math.random()*w; }
+/* ===== STATEMENT VIDEO REPLAY ===== */
+const vid = document.getElementById('statementVideo');
+document.getElementById('replayBtn').addEventListener('click', async () => {
+  try{
+    vid.pause();
+    vid.currentTime = 0;
+    await vid.play();
+  }catch(e){
+    // Autoplay policies differ; user interaction should allow play anyway.
+    console.log(e);
   }
-  requestAnimationFrame(drawStars);
-}
-
-window.addEventListener('resize', () => {
-  dpr = Math.min(2, window.devicePixelRatio || 1);
-  resizeCanvas();
-}, {passive:true});
-
-window.addEventListener('load', () => {
-  resizeCanvas();
-  requestAnimationFrame(drawStars);
 });
 </script>
 
