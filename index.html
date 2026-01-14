@@ -19,7 +19,6 @@
   --shadow:0 14px 40px rgba(0,0,0,.18);
   --header:#050509;
   --space:#000;
-  --crawlYellow:#FFE81F;
 }
 
 *{box-sizing:border-box}
@@ -157,10 +156,12 @@ nav a:hover{
   height:34px;
 }
 
-/* ===== STATEMENT (Video box) ===== */
+/* ===== STATEMENT (Scrolling video) =====
+   Goal: show ALL text (no side cropping) + flatter/wider box.
+*/
 .statement{
   position:relative;
-  height:clamp(260px, 48vh, 520px); /* responsive sizing */
+  height:clamp(180px, 32vh, 300px); /* shorter + wider */
   background:var(--space);
   border-radius:22px;
   overflow:hidden;
@@ -168,22 +169,18 @@ nav a:hover{
   margin:18px 0 22px;
 }
 
-/* Video fills the box nicely */
+/* Use contain so the entire frame is visible (no cut-off text). */
 .statementVideo{
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
-  object-fit:cover;       /* fills box, crops edges slightly if needed */
-  object-position:center; /* keep centred */
+  object-fit:contain;      /* key: no cropping */
+  object-position:center;
+  background:#000;         /* letterbox bars if needed */
   display:block;
   z-index:1;
-  filter:saturate(1.05) contrast(1.03) brightness(1.02);
 }
-
-/* If you prefer ZERO cropping, swap object-fit:cover -> contain
-.statementVideo{ object-fit:contain; background:#000; }
-*/
 
 .statementTop{
   position:absolute;
@@ -334,7 +331,7 @@ footer{
     </audio>
   </div>
 
-  <!-- STATEMENT (Video replaces crawl) -->
+  <!-- STATEMENT VIDEO (MP4 in assets) -->
   <section id="statement" class="statement" aria-label="Scrolling text video">
     <video
       class="statementVideo"
@@ -345,11 +342,11 @@ footer{
       playsinline
       preload="metadata"
     >
-      <!-- MOV source (best for iPhone/Safari if encoded appropriately) -->
-      <source src="assets/copy_4A5E2829-1BD0-4B2F-A97E-0CBF4E9140A0.mov" type="video/quicktime">
+      <!-- Your MP4 file (in /assets) -->
+      <source src="assets/Adobe%20Express%20-%20copy_4A5E2829-1BD0-4B2F-A97E-0CBF4E9140A0.mp4" type="video/mp4">
 
-      <!-- Optional: add an MP4 export for maximum desktop compatibility -->
-      <!-- <source src="assets/scrolling-text.mp4" type="video/mp4"> -->
+      <!-- Optional fallback if you ever keep a .mov somewhere -->
+      <!-- <source src="copy_4A5E2829-1BD0-4B2F-A97E-0CBF4E9140A0.mov" type="video/quicktime"> -->
 
       Your browser does not support the video tag.
     </video>
@@ -406,18 +403,36 @@ footer{
 </main>
 
 <script>
-/* ===== STATEMENT VIDEO REPLAY ===== */
+/* ===== VIDEO REPLAY + AUTOPLAY ASSIST ===== */
 const vid = document.getElementById('statementVideo');
-document.getElementById('replayBtn').addEventListener('click', async () => {
+const replayBtn = document.getElementById('replayBtn');
+const statementSection = document.getElementById('statement');
+
+async function tryPlay(){
+  try{
+    // Some browsers behave better if we call play after load
+    await vid.play();
+  }catch(e){
+    // If autoplay is blocked, user tapping the box will start it.
+    console.log('Autoplay blocked:', e);
+  }
+}
+
+window.addEventListener('load', () => setTimeout(tryPlay, 120));
+
+// Replay button
+replayBtn.addEventListener('click', async () => {
   try{
     vid.pause();
     vid.currentTime = 0;
     await vid.play();
   }catch(e){
-    // Autoplay policies differ; user interaction should allow play anyway.
     console.log(e);
   }
 });
+
+// User gesture fallback: tap/click the statement to start play
+statementSection.addEventListener('click', tryPlay);
 </script>
 
 </body>
