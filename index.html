@@ -28,6 +28,7 @@ body{
   background:var(--bg);
   color:var(--text);
 }
+a{color:inherit;text-decoration:none}
 
 /* ===== HEADER ===== */
 header{
@@ -60,6 +61,10 @@ nav a{
   padding:5px 9px;
   border-radius:12px;
 }
+nav a:hover{
+  color:#fff;
+  background:rgba(255,255,255,.06);
+}
 
 /* ===== WRAP ===== */
 .wrap{
@@ -68,83 +73,97 @@ nav a{
   padding:16px 18px 70px;
 }
 
-/* ===== HERO ===== */
+/* ===== HERO (Astronaut) ===== */
 .hero{
   position:relative;
   border-radius:22px;
   overflow:hidden;
   background:#000;
   box-shadow:var(--shadow);
+  margin-bottom:14px;
 }
 .hero img{
   width:100%;
-  height:min(240px,30vh);
+  height:min(240px, 30vh);
   object-fit:cover;
+  object-position:center 40%;
+  display:block;
+  filter: brightness(1.12) contrast(1.06) saturate(1.08);
 }
-@media (min-width:900px){
-  .hero img{ height:420px; }
+@media (min-width: 900px){
+  .hero img{
+    height:420px;
+    object-position:center 20%;
+  }
 }
 .heroOverlay{
   position:absolute;
   inset:0;
-  background:linear-gradient(180deg, transparent 40%, rgba(0,0,0,.75));
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.52), rgba(0,0,0,.10) 60%, transparent),
+    linear-gradient(180deg, transparent 44%, rgba(0,0,0,.72));
   display:flex;
   align-items:flex-end;
   padding:16px;
-  color:#fff;
 }
-.heroOverlay h1{
+.heroText{color:#fff; max-width:760px;}
+.heroText h1{
   font-family:"Unbounded";
   font-size:18px;
-  margin:0;
+  margin:0 0 6px;
 }
-.heroOverlay p{
-  margin:4px 0 0;
+.heroText p{
+  margin:0;
   font-size:13px;
+  color:#f1f1f1;
 }
 
 /* ===== MUSIC ===== */
 .musicStrip{
   display:flex;
-  gap:14px;
   align-items:center;
   justify-content:space-between;
+  gap:14px;
+  flex-wrap:wrap;
   background:rgba(255,255,255,.75);
+  border:1px solid rgba(0,0,0,.06);
   border-radius:18px;
   box-shadow:var(--shadow);
   padding:10px 12px;
-  margin:14px 0;
+  margin:10px 0 18px;
 }
+.musicMeta{ min-width:180px; }
 .musicMeta .label{
   font-family:"Unbounded";
-  font-size:12px;
   font-weight:800;
+  font-size:12px;
 }
 .musicMeta .sub{
-  font-size:12px;
   color:var(--muted);
+  font-size:12px;
+  margin-top:2px;
 }
-audio{ width:520px; max-width:100%; }
+.musicStrip audio{
+  width:min(520px, 100%);
+  height:34px;
+}
 
-/* ===== STATEMENT VIDEO (MID SIZE) ===== */
+/* ===== STATEMENT (video + black pause + subtle stars) ===== */
 .statement{
   position:relative;
   width:100%;
-  height:200px;           /* ← halfway size (mobile) */
+  height:200px;
   background:#000;
   border-radius:22px;
   overflow:hidden;
   box-shadow:var(--shadow);
-  margin:18px 0 26px;
+  margin:18px 0 22px;
 }
-
 @media (min-width:900px){
-  .statement{
-    height:260px;         /* ← halfway size (desktop) */
-  }
+  .statement{ height:260px; }
 }
 
-/* Never crop the scrolling text */
+/* video shows full frame (no cropping) */
 .statementVideo{
   position:absolute;
   inset:0;
@@ -152,29 +171,61 @@ audio{ width:520px; max-width:100%; }
   height:100%;
   object-fit:contain;
   background:#000;
+  display:block;
+  z-index:1;
 }
+
+/* black overlay for pause */
+.pauseBlack{
+  position:absolute;
+  inset:0;
+  background:#000;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .16s ease;
+  z-index:2;
+}
+.pauseBlack.is-on{ opacity:1; }
+
+/* subtle stars shown only during pause */
+.pauseStars{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:block;
+  opacity:0;
+  transition:opacity .22s ease;
+  z-index:3;
+  pointer-events:none;
+}
+.pauseStars.is-on{ opacity:1; }
 
 /* Overlay */
 .statementTop{
   position:absolute;
   top:0; left:0; right:0;
-  padding:8px 12px;
+  padding:10px 12px;
+  z-index:4;
   display:flex;
   justify-content:space-between;
-  background:linear-gradient(to bottom, rgba(0,0,0,.85), transparent);
+  align-items:center;
+  background:linear-gradient(to bottom, rgba(0,0,0,.85), rgba(0,0,0,0));
 }
-.statementTop span{
+.statementTitle{
   font-family:"Unbounded";
+  font-weight:800;
   font-size:13px;
   color:#fff;
 }
-.statementTop button{
+.btnSmall{
+  padding:7px 10px;
+  border-radius:12px;
   font-size:12px;
-  padding:6px 10px;
-  border-radius:10px;
-  background:rgba(255,255,255,.15);
-  border:1px solid rgba(255,255,255,.25);
+  font-weight:700;
   color:#fff;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.18);
   cursor:pointer;
 }
 
@@ -183,13 +234,11 @@ section{ margin-bottom:60px; }
 section h2{
   font-family:"Unbounded";
   font-size:22px;
+  margin:0 0 6px;
 }
-section p{ color:var(--muted); }
-
-.photoBlock img{
-  width:100%;
-  border-radius:18px;
-  box-shadow:var(--shadow);
+section p{
+  color:var(--muted);
+  margin:0 0 18px;
 }
 
 .grid{
@@ -209,12 +258,52 @@ section p{ color:var(--muted); }
   border:0;
 }
 
+.photoBlock img{
+  width:100%;
+  display:block;
+  border-radius:18px;
+  box-shadow:var(--shadow);
+}
+
+/* ===== BUTTONS ===== */
+.cta{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.btn{
+  padding:10px 16px;
+  border-radius:14px;
+  font-weight:600;
+  font-size:14px;
+  background:#fff;
+  color:#111;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 24px rgba(0,0,0,.22);
+}
+.btn.primary{
+  background:linear-gradient(90deg,#ff7a18,#ffd166,#06d6a0,#4cc9f0);
+  color:#111;
+}
+.btn.facebook{
+  background:#1877F2;
+  color:#fff;
+}
+.btn.x{
+  background:#000;
+  color:#fff;
+}
+
 /* ===== FOOTER ===== */
 footer{
   text-align:center;
-  font-size:13px;
   color:#666;
+  font-size:13px;
   margin-top:80px;
+  padding-bottom:30px;
 }
 </style>
 </head>
@@ -237,45 +326,46 @@ footer{
 <main class="wrap">
 
   <div class="hero">
-    <img src="assets/0EA914B0-D2A9-4FDF-A807-B255F18BF2EF.jpeg" alt="">
+    <img src="assets/0EA914B0-D2A9-4FDF-A807-B255F18BF2EF.jpeg" alt="Astronaut trumpet image">
     <div class="heroOverlay">
-      <div>
+      <div class="heroText">
         <h1>Scott Baylis</h1>
         <p>Futuristic Afro Electronic Funk & Spiritual Jazz & Soul</p>
       </div>
     </div>
   </div>
 
-  <div class="musicStrip">
+  <div class="musicStrip" aria-label="Audio player">
     <div class="musicMeta">
       <div class="label">Vapour Wave</div>
       <div class="sub">Tap play to listen</div>
     </div>
-    <audio controls>
+    <audio controls preload="metadata">
       <source src="assets/VapourWave.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
     </audio>
   </div>
 
-  <!-- SCROLLING TEXT VIDEO -->
-  <section id="statement" class="statement">
+  <!-- STATEMENT VIDEO (plays once, black + stars pause, restarts) -->
+  <section id="statement" class="statement" aria-label="Scrolling text video">
     <video
-      id="statementVideo"
       class="statementVideo"
+      id="statementVideo"
       autoplay
       muted
-      loop
       playsinline
       preload="metadata"
     >
       <source src="assets/Adobe%20Express%20-%20copy_4A5E2829-1BD0-4B2F-A97E-0CBF4E9140A0.mp4" type="video/mp4">
+      Your browser does not support the video tag.
     </video>
 
+    <div id="pauseBlack" class="pauseBlack" aria-hidden="true"></div>
+    <canvas id="pauseStars" class="pauseStars" aria-hidden="true"></canvas>
+
     <div class="statementTop">
-      <span>Scott Baylis</span>
-      <button onclick="
-        const v=document.getElementById('statementVideo');
-        v.currentTime=0; v.play();
-      ">Replay</button>
+      <div class="statementTitle">Scott Baylis</div>
+      <button class="btnSmall" id="replayBtn" type="button">Replay</button>
     </div>
   </section>
 
@@ -283,7 +373,7 @@ footer{
     <h2>Band</h2>
     <p>Full crew energy.</p>
     <div class="photoBlock">
-      <img src="assets/ISM_RTF_FINAL1.jpeg">
+      <img src="assets/ISM_RTF_FINAL1.jpeg" alt="Band photo">
     </div>
   </section>
 
@@ -291,12 +381,13 @@ footer{
     <h2>Photo</h2>
     <p>Live moments and behind the scenes.</p>
     <div class="photoBlock">
-      <img src="assets/IMG_0080.jpeg">
+      <img src="assets/IMG_0080.jpeg" alt="Live performance photo">
     </div>
   </section>
 
   <section id="video">
     <h2>Video</h2>
+    <p>Performances and collaborations.</p>
     <div class="grid">
       <div class="card"><iframe src="https://www.youtube.com/embed/lfMh0zfIO3A" allowfullscreen></iframe></div>
       <div class="card"><iframe src="https://www.youtube.com/embed/ZO769KQ_skE" allowfullscreen></iframe></div>
@@ -305,9 +396,121 @@ footer{
     </div>
   </section>
 
+  <section id="connect">
+    <h2>Connect</h2>
+    <p>Follow and get updates first.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://www.instagram.com/scottybeasy" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn facebook" href="https://www.facebook.com/scottbaylis" target="_blank" rel="noopener">Facebook</a>
+      <a class="btn x" href="https://x.com/scottbaylis" target="_blank" rel="noopener">X</a>
+    </div>
+  </section>
+
   <footer>© 2026 Scott Baylis</footer>
 
 </main>
+
+<script>
+/* ===== BLACK + STAR PAUSE LOOP ===== */
+const vid = document.getElementById('statementVideo');
+const black = document.getElementById('pauseBlack');
+const starsCanvas = document.getElementById('pauseStars');
+const replayBtn = document.getElementById('replayBtn');
+const statement = document.getElementById('statement');
+
+const PAUSE_MS = 2000; // change to 3000 etc.
+let isPausing = false;
+
+/* --- starfield (runs continuously, but only visible during pause) --- */
+const sctx = starsCanvas.getContext('2d');
+let sw=0, sh=0, sdpr=1;
+let stars = [];
+let rafId = null;
+
+function resizeStarsCanvas(){
+  const rect = statement.getBoundingClientRect();
+  sdpr = Math.min(2, window.devicePixelRatio || 1);
+  sw = Math.max(1, Math.floor(rect.width));
+  sh = Math.max(1, Math.floor(rect.height));
+  starsCanvas.width  = Math.floor(sw * sdpr);
+  starsCanvas.height = Math.floor(sh * sdpr);
+  sctx.setTransform(sdpr,0,0,sdpr,0,0);
+
+  const count = Math.max(40, Math.floor((sw*sh)/9000));
+  stars = Array.from({length: count}, () => ({
+    x: Math.random()*sw,
+    y: Math.random()*sh,
+    r: 0.5 + Math.random()*1.8,
+    t: Math.random()*Math.PI*2,
+    sp: 0.006 + Math.random()*0.02,
+    a0: 0.15 + Math.random()*0.35
+  }));
+}
+
+function drawStars(){
+  sctx.clearRect(0,0,sw,sh);
+  for(const s of stars){
+    s.t += s.sp;
+    const tw = (Math.sin(s.t) + 1) / 2;
+    const a = s.a0 + tw * 0.6;
+
+    sctx.beginPath();
+    sctx.fillStyle = `rgba(255,255,255,${a})`;
+    sctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+    sctx.fill();
+  }
+  rafId = requestAnimationFrame(drawStars);
+}
+
+/* --- playback helpers --- */
+async function safePlay(){
+  try{ await vid.play(); } catch(e){ /* autoplay may be blocked */ }
+}
+
+function showPause(on){
+  black.classList.toggle('is-on', on);
+  starsCanvas.classList.toggle('is-on', on);
+}
+
+function restart(){
+  isPausing = false;
+  showPause(false);
+  vid.currentTime = 0;
+  safePlay();
+}
+
+/* Video ends -> show black+stars -> wait -> restart */
+vid.addEventListener('ended', () => {
+  if(isPausing) return;
+  isPausing = true;
+  showPause(true);
+  setTimeout(restart, PAUSE_MS);
+});
+
+/* Replay button = immediate restart */
+replayBtn.addEventListener('click', () => {
+  isPausing = false;
+  showPause(false);
+  vid.pause();
+  vid.currentTime = 0;
+  safePlay();
+});
+
+/* Attempt autoplay on load */
+window.addEventListener('load', () => {
+  resizeStarsCanvas();
+  if(rafId) cancelAnimationFrame(rafId);
+  rafId = requestAnimationFrame(drawStars);
+  setTimeout(safePlay, 150);
+});
+
+window.addEventListener('resize', () => {
+  resizeStarsCanvas();
+}, {passive:true});
+
+/* Helpful: tap/click the statement area to start video if autoplay blocked */
+statement.addEventListener('click', safePlay);
+</script>
 
 </body>
 </html>
