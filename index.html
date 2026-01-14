@@ -61,10 +61,6 @@ nav a{
   padding:5px 9px;
   border-radius:12px;
 }
-nav a:hover{
-  color:#fff;
-  background:rgba(255,255,255,.06);
-}
 
 /* ===== WRAP ===== */
 .wrap{
@@ -90,46 +86,7 @@ nav a:hover{
   display:block;
 }
 @media (min-width:900px){
-  .hero img{ height:420px; object-position:center 20%; }
-}
-.heroOverlay{
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(90deg, rgba(0,0,0,.52), rgba(0,0,0,.10) 60%, transparent),
-    linear-gradient(180deg, transparent 44%, rgba(0,0,0,.72));
-  display:flex;
-  align-items:flex-end;
-  padding:16px;
-}
-.heroText{color:#fff;}
-.heroText h1{
-  font-family:"Unbounded";
-  font-size:18px;
-  margin:0 0 6px;
-}
-.heroText p{
-  margin:0;
-  font-size:13px;
-  color:#f1f1f1;
-}
-
-/* ===== MUSIC ===== */
-.musicStrip{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:14px;
-  flex-wrap:wrap;
-  background:rgba(255,255,255,.75);
-  border-radius:18px;
-  box-shadow:var(--shadow);
-  padding:10px 12px;
-  margin:10px 0 18px;
-}
-.musicStrip audio{
-  width:min(520px,100%);
-  height:34px;
+  .hero img{ height:420px; }
 }
 
 /* ===== STATEMENT VIDEO ===== */
@@ -143,9 +100,7 @@ nav a:hover{
   box-shadow:var(--shadow);
   margin:18px 0 22px;
 }
-@media (min-width:900px){
-  .statement{ height:260px; }
-}
+
 .statementVideo{
   position:absolute;
   inset:0;
@@ -154,9 +109,20 @@ nav a:hover{
   object-fit:contain;
   background:#000;
   z-index:1;
+  transform-origin:center;
 }
 
-/* Pause layers */
+/* 🔥 DESKTOP WIDENING FIX */
+@media (min-width:900px){
+  .statement{
+    height:340px;          /* taller = wider feel */
+  }
+  .statementVideo{
+    transform:scale(1.08); /* subtle cinematic boost */
+  }
+}
+
+/* pause layers */
 .pauseBlack{
   position:absolute;
   inset:0;
@@ -176,7 +142,7 @@ nav a:hover{
 }
 .pauseStars.is-on{ opacity:1; }
 
-/* Replay button */
+/* replay */
 .statementControls{
   position:absolute;
   top:10px;
@@ -194,45 +160,12 @@ nav a:hover{
   cursor:pointer;
 }
 
-/* ===== SECTIONS ===== */
-section{ margin-bottom:60px; }
-section h2{
-  font-family:"Unbounded";
-  font-size:22px;
-}
-section p{ color:var(--muted); }
-
-.photoBlock img{
-  width:100%;
-  display:block;
-  border-radius:18px;
-  box-shadow:var(--shadow);
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:18px;
-}
-.card{
-  background:#000;
-  border-radius:18px;
-  overflow:hidden;
-  box-shadow:var(--shadow);
-}
-.card iframe{
-  width:100%;
-  height:220px;
-  border:0;
-}
-
 /* ===== FOOTER ===== */
 footer{
   text-align:center;
   color:#666;
   font-size:13px;
   margin-top:80px;
-  padding-bottom:30px;
 }
 </style>
 </head>
@@ -241,36 +174,11 @@ footer{
 
 <header>
   <div class="headerInner">
-    <img class="logoImage" src="assets/IMG_3081.gif" alt="ScottyB logo">
-    <nav>
-      <a href="#statement">Statement</a>
-      <a href="#band">Band</a>
-      <a href="#video">Video</a>
-      <a href="#photo">Photo</a>
-      <a href="#connect">Connect</a>
-    </nav>
+    <img class="logoImage" src="assets/IMG_3081.gif" alt="">
   </div>
 </header>
 
 <main class="wrap">
-
-  <!-- HERO -->
-  <div class="hero">
-    <img src="assets/0EA914B0-D2A9-4FDF-A807-B255F18BF2EF.jpeg" alt="">
-    <div class="heroOverlay">
-      <div class="heroText">
-        <h1>Scott Baylis</h1>
-        <p>Futuristic Afro Electronic Funk & Spiritual Jazz & Soul</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- MUSIC -->
-  <div class="musicStrip">
-    <audio controls>
-      <source src="assets/VapourWave.mp3" type="audio/mpeg">
-    </audio>
-  </div>
 
   <!-- STATEMENT VIDEO -->
   <section id="statement" class="statement">
@@ -293,129 +201,79 @@ footer{
     </div>
   </section>
 
-  <!-- BAND -->
-  <section id="band">
-    <h2>Band</h2>
-    <div class="photoBlock">
-      <img src="assets/ISM_RTF_FINAL1.jpeg">
-    </div>
-  </section>
-
-  <!-- PHOTO -->
-  <section id="photo">
-    <h2>Photo</h2>
-    <div class="photoBlock">
-      <img src="assets/IMG_0080.jpeg">
-    </div>
-  </section>
-
-  <!-- VIDEO -->
-  <section id="video">
-    <h2>Video</h2>
-    <div class="grid">
-      <div class="card"><iframe src="https://www.youtube.com/embed/lfMh0zfIO3A" allowfullscreen></iframe></div>
-      <div class="card"><iframe src="https://www.youtube.com/embed/ZO769KQ_skE" allowfullscreen></iframe></div>
-      <div class="card"><iframe src="https://www.youtube.com/embed/ORa4QjAffls" allowfullscreen></iframe></div>
-      <div class="card"><iframe src="https://www.youtube.com/embed/XF-CrcPJT3c" allowfullscreen></iframe></div>
-    </div>
-  </section>
-
-  <!-- CONNECT -->
-  <section id="connect">
-    <h2>Connect</h2>
-    <div class="cta">
-      <a class="btn primary" href="https://www.instagram.com/scottybeasy" target="_blank">Instagram</a>
-      <a class="btn facebook" href="https://www.facebook.com/scottbaylis" target="_blank">Facebook</a>
-      <a class="btn x" href="https://x.com/scottbaylis" target="_blank">X</a>
-    </div>
-  </section>
-
   <footer>© 2026 Scott Baylis</footer>
-
 </main>
 
 <script>
-/* ===== FREEZE 0.3s FROM END → HOLD 2s → STARS 2s → RESTART ===== */
 const vid = document.getElementById('statementVideo');
 const black = document.getElementById('pauseBlack');
-const starsCanvas = document.getElementById('pauseStars');
+const stars = document.getElementById('pauseStars');
 const replayBtn = document.getElementById('replayBtn');
 const statement = document.getElementById('statement');
 
-const FREEZE_FROM_END_SEC = 0.3;   // ← UPDATED
+const FREEZE_FROM_END_SEC = 0.3;
 const FREEZE_HOLD_MS = 2000;
 const STARS_MS = 2000;
 
-let freezeAt = null;
-let running = false;
-
-/* starfield */
-const ctx = starsCanvas.getContext('2d');
-let w,h,stars=[];
+let freezeAt=null, running=false;
+const ctx = stars.getContext('2d');
+let w,h,arr=[];
 
 function resizeStars(){
   const r = statement.getBoundingClientRect();
-  w = starsCanvas.width = r.width;
-  h = starsCanvas.height = r.height;
-  stars = Array.from({length: Math.max(40,(w*h)/9000)}, () => ({
-    x:Math.random()*w, y:Math.random()*h,
-    r:Math.random()*1.5+0.5,
-    t:Math.random()*6, s:Math.random()*0.02+0.005
+  w = stars.width = r.width;
+  h = stars.height = r.height;
+  arr = Array.from({length:Math.max(40,(w*h)/9000)},()=>({
+    x:Math.random()*w,y:Math.random()*h,
+    r:Math.random()*1.5+0.5,t:Math.random()*6,s:Math.random()*0.02+0.005
   }));
 }
 function drawStars(){
   ctx.clearRect(0,0,w,h);
-  stars.forEach(s=>{
+  arr.forEach(s=>{
     s.t+=s.s;
     ctx.fillStyle=`rgba(255,255,255,${0.2+Math.sin(s.t)*0.3})`;
-    ctx.beginPath();
-    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-    ctx.fill();
+    ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill();
   });
   requestAnimationFrame(drawStars);
 }
-
 function showStars(on){
-  black.classList.toggle('is-on', on);
-  starsCanvas.classList.toggle('is-on', on);
+  black.classList.toggle('is-on',on);
+  stars.classList.toggle('is-on',on);
 }
 
 vid.addEventListener('loadedmetadata',()=>{
-  freezeAt = Math.max(0, vid.duration - FREEZE_FROM_END_SEC);
+  freezeAt=Math.max(0,vid.duration-FREEZE_FROM_END_SEC);
 });
-
 vid.addEventListener('timeupdate',()=>{
-  if(running || freezeAt===null) return;
-  if(vid.currentTime >= freezeAt){
-    running = true;
-    vid.currentTime = freezeAt;
+  if(running||freezeAt===null) return;
+  if(vid.currentTime>=freezeAt){
+    running=true;
+    vid.currentTime=freezeAt;
     vid.pause();
-
     setTimeout(()=>{
       showStars(true);
       setTimeout(()=>{
         showStars(false);
-        running = false;
-        vid.currentTime = 0;
+        running=false;
+        vid.currentTime=0;
         vid.play().catch(()=>{});
-      }, STARS_MS);
-    }, FREEZE_HOLD_MS);
+      },STARS_MS);
+    },FREEZE_HOLD_MS);
   }
 });
-
-replayBtn.addEventListener('click',()=>{
-  running = false;
+replayBtn.onclick=()=>{
+  running=false;
   showStars(false);
-  vid.currentTime = 0;
+  vid.currentTime=0;
   vid.play().catch(()=>{});
-});
-
-window.addEventListener('load',()=>{
+};
+window.onload=()=>{
   resizeStars();
   drawStars();
   vid.play().catch(()=>{});
-});
-window.addEventListener('resize', resizeStars);
+};
+window.onresize=resizeStars;
 </script>
 
 </body>
