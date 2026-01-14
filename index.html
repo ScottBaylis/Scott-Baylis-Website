@@ -4,7 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>ScottyB</title>
-
   <meta name="description" content="ScottyB — Futuristic Afro Electronic Funk & Spiritual Jazz & Soul." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +17,6 @@
       --text: rgba(255,255,255,.92);
       --muted: rgba(255,255,255,.70);
       --hair: rgba(255,255,255,.14);
-      --glow: rgba(255,255,255,.18);
       --radius: 18px;
       --max: 1040px;
     }
@@ -38,77 +36,16 @@
     }
 
     a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 18px 16px 56px; }
 
-    .wrap{ max-width: var(--max); margin: 0 auto; padding: 22px 18px 56px; }
-
-    /* Header/logo block */
-    header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      padding: 6px 0 14px;
-    }
-
-    .logoRow{
-      display:flex;
-      align-items:center;
-      gap:14px;
-      min-width: 0;
-    }
-
-    .logoBox{
-      width: 72px;
-      height: 72px;
-      border-radius: 16px;
-      border: 1px solid var(--hair);
-      background: rgba(255,255,255,.04);
-      display:grid;
-      place-items:center;
-      overflow:hidden;
-      flex: 0 0 auto;
-    }
-
-    .logoBox img{
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display:block;
-      padding: 10px;
-      opacity: .98;
-    }
-
-    .brand{
-      display:flex;
-      flex-direction:column;
-      gap:4px;
-      line-height:1.05;
-      min-width: 0;
-    }
-    .brand h1{
-      font-family:"Unbounded", system-ui, sans-serif;
-      font-size: 22px;
-      letter-spacing:.3px;
-      margin:0;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-    .brand .tag{
-      color: var(--muted);
-      font-size: 13px;
-      margin:0;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-
+    /* TOP NAV (kept minimal so the header art stays the hero) */
     .topbar{
       display:flex;
       align-items:center;
+      justify-content:flex-end;
       gap:10px;
       flex-wrap:wrap;
-      justify-content:flex-end;
+      padding: 8px 0 10px;
     }
     .pill{
       border:1px solid var(--hair);
@@ -127,9 +64,61 @@
       color: rgba(255,255,255,.86);
     }
 
-    /* Player: near top, not too prominent */
+    /* BIG MOVING HEADER IMAGE (like your original) */
+    .logoHero{
+      margin-top: 6px;
+      border: 1px solid var(--hair);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius);
+      padding: 16px 14px;
+      overflow:hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,.35);
+      position: relative;
+    }
+
+    .logoHeroInner{
+      display:grid;
+      place-items:center;
+      min-height: 210px;
+    }
+
+    .logoHero img{
+      width: min(980px, 96%);
+      height: auto;
+      display:block;
+      filter: drop-shadow(0 18px 40px rgba(0,0,0,.55));
+      transform-origin: 50% 50%;
+      animation: floaty 4.6s ease-in-out infinite;
+      will-change: transform;
+    }
+
+    /* gentle movement so it "floats" */
+    @keyframes floaty{
+      0%   { transform: translateY(0px) translateX(0px) rotate(-0.35deg) scale(1); }
+      50%  { transform: translateY(-10px) translateX(6px) rotate(0.35deg) scale(1.01); }
+      100% { transform: translateY(0px) translateX(0px) rotate(-0.35deg) scale(1); }
+    }
+
+    /* optional subtle shimmer overlay */
+    .logoHero::after{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background: radial-gradient(circle at 20% 10%, rgba(255,255,255,.14), transparent 55%);
+      opacity:.35;
+      pointer-events:none;
+      transform: rotate(12deg);
+      animation: shimmer 7.5s ease-in-out infinite;
+    }
+    @keyframes shimmer{
+      0%{ transform: translateX(-6%) rotate(12deg); opacity:.22; }
+      50%{ transform: translateX(6%) rotate(12deg); opacity:.40; }
+      100%{ transform: translateX(-6%) rotate(12deg); opacity:.22; }
+    }
+
+    /* Player (subtle, near the top but not dominant) */
     .player{
-      margin: 10px 0 16px;
+      margin: 12px 0 14px;
       width: 340px;
       max-width: 100%;
       border: 1px solid var(--hair);
@@ -145,45 +134,39 @@
       color: var(--muted);
       white-space:nowrap;
     }
-    audio{
-      width: 100%;
-      height: 28px;
-      opacity:.92;
-    }
+    audio{ width: 100%; height: 28px; opacity:.92; }
 
-    /* Section container */
+    /* Sections */
     .section{
       margin-top: 14px;
       border: 1px solid var(--hair);
       background: var(--panel);
       border-radius: var(--radius);
       overflow:hidden;
-      box-shadow: 0 10px 40px rgba(0,0,0,.35);
+      box-shadow: 0 10px 40px rgba(0,0,0,.25);
     }
     .section .inner{ padding: 18px; }
 
-    /* NEW image: show whole subject (no cropping) and reduce size */
-    .heroWrap{
-      width: 100%;
+    /* Astronaut image block: REDUCED + NOT CROPPED */
+    .astroWrap{
       display:grid;
       place-items:center;
       padding: 14px;
       background: rgba(0,0,0,.14);
       border-bottom: 1px solid var(--hair);
     }
-
-    .heroImg{
-      width: min(100%, 980px);
+    .astroImg{
+      width: min(980px, 100%);
       height: auto;
-      max-height: 460px;          /* reduces size so legs stay in frame */
-      object-fit: contain;         /* prevents cropping */
+      max-height: 520px;     /* reduce size so legs stay in */
+      object-fit: contain;   /* prevents cropping */
       display:block;
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
     }
 
-    /* Marquee scrolling text */
+    /* Marquee */
     .marquee{
       margin-top: 14px;
       border: 1px solid var(--hair);
@@ -191,7 +174,6 @@
       border-radius: var(--radius);
       overflow:hidden;
       white-space: nowrap;
-      box-shadow: 0 10px 40px rgba(0,0,0,.25);
     }
     .marquee .track{
       display:inline-flex;
@@ -207,7 +189,6 @@
       letter-spacing: .6px;
       color: rgba(255,255,255,.90);
       text-transform: uppercase;
-      text-shadow: 0 0 20px var(--glow);
     }
     @keyframes scroll{
       from{ transform: translateX(0); }
@@ -247,10 +228,8 @@
 
     @media (max-width: 860px){
       .cards{ grid-template-columns: 1fr; }
-      header{ align-items:flex-start; flex-direction:column; }
-      .topbar{ justify-content:flex-start; }
-      .logoBox{ width: 64px; height:64px; }
-      .heroImg{ max-height: 380px; }
+      .logoHeroInner{ min-height: 170px; }
+      .astroImg{ max-height: 420px; }
     }
   </style>
 </head>
@@ -258,28 +237,21 @@
 <body>
   <div class="wrap">
 
-    <!-- LOGO AT TOP (auto-detected from /assets/ so you don't have to change filenames) -->
-    <header>
-      <div class="logoRow">
-        <div class="logoBox" aria-label="Logo">
-          <img id="logoImg" alt="ScottyB logo" />
-        </div>
+    <div class="topbar">
+      <a class="pill" href="#music">Music</a>
+      <a class="pill" href="#video">Video</a>
+      <a class="pill" href="#shows">Live</a>
+      <a class="pill" href="#contact">Contact</a>
+    </div>
 
-        <div class="brand">
-          <h1>ScottyB</h1>
-          <p class="tag">Futuristic Afro Electronic Funk</p>
-        </div>
+    <!-- BIG MOVING HEADER (logo image) -->
+    <section class="logoHero" aria-label="Header logo">
+      <div class="logoHeroInner">
+        <img id="logoHeroImg" alt="Scott Baylis logo" />
       </div>
+    </section>
 
-      <div class="topbar">
-        <a class="pill" href="#music">Music</a>
-        <a class="pill" href="#video">Video</a>
-        <a class="pill" href="#shows">Live</a>
-        <a class="pill" href="#contact">Contact</a>
-      </div>
-    </header>
-
-    <!-- Player near top -->
+    <!-- Player (kept subtle) -->
     <div class="player" aria-label="Audio player">
       <div class="label">VapourWave</div>
       <audio controls preload="metadata">
@@ -289,11 +261,11 @@
       </audio>
     </div>
 
-    <!-- NEW IMAGE UNDER LOGO (reduced + not cropped) -->
+    <!-- Astronaut image directly UNDER the header -->
     <section class="section">
-      <div class="heroWrap">
+      <div class="astroWrap">
         <img
-          class="heroImg"
+          class="astroImg"
           src="assets/0EA914B0-D2A9-4FDF-A807-B255F18BF2EF.jpeg"
           alt="Astronaut playing trumpet in space"
           loading="eager"
@@ -301,14 +273,14 @@
       </div>
 
       <div class="inner">
-        <h2>Sound</h2>
+        <h2>Futuristic Afro Electronic Funk</h2>
         <p>
-          Genre-blending electronic funk with a live brass edge—built for late-night clubs, festival stages, and cinematic headphone moments.
+          Spiritual jazz, soul, and electronic energy with a live brass edge.
         </p>
       </div>
     </section>
 
-    <!-- SCROLLING TEXT AFTER NEW IMAGE -->
+    <!-- Scrolling text (as you had it) -->
     <div class="marquee" aria-label="Scrolling headline">
       <div class="track">
         <div class="item">Futuristic Afro Electronic Funk</div>
@@ -323,7 +295,7 @@
       </div>
     </div>
 
-    <!-- EVERYTHING ELSE FOLLOWS -->
+    <!-- Everything else continues -->
     <section id="music" class="section">
       <div class="inner">
         <h2>Music</h2>
@@ -368,7 +340,7 @@
     <section id="shows" class="section">
       <div class="inner">
         <h2>Live</h2>
-        <p>Live show section placeholder (paste your existing auto-pull block here if you had it).</p>
+        <p>Live show section placeholder (paste your existing live list block here if you had it).</p>
       </div>
     </section>
 
@@ -385,39 +357,56 @@
   </div>
 
   <script>
-    // Footer year
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // Auto-detect logo file in /assets/ so you don't have to edit references.
-    // It will use the first one that successfully loads.
-    (function pickLogo(){
-      const logoCandidates = [
-        "assets/logo.svg",
+    // Pick the header logo automatically from /assets/
+    // This avoids you needing to edit filenames.
+    (function pickHeaderLogo(){
+      const candidates = [
+        // most likely explicit names
+        "assets/scott-baylis.png",
+        "assets/scott-baylis.jpg",
+        "assets/scott-baylis.jpeg",
+        "assets/Scott-Baylis.png",
+        "assets/Scott-Baylis.jpg",
+        "assets/Scott-Baylis.jpeg",
+        "assets/scottbaylis.png",
+        "assets/scottbaylis.jpg",
+        "assets/scottbaylis.jpeg",
+        "assets/ScottBaylis.png",
+        "assets/ScottBaylis.jpg",
+        "assets/ScottBaylis.jpeg",
+        // generic names
         "assets/logo.png",
         "assets/logo.jpg",
         "assets/logo.jpeg",
-        "assets/Logo.svg",
+        "assets/logo.svg",
         "assets/Logo.png",
         "assets/Logo.jpg",
         "assets/Logo.jpeg",
-        "assets/scottyb-logo.svg",
-        "assets/scottyb-logo.png",
-        "assets/scottyb-logo.jpg",
-        "assets/scottyb-logo.jpeg"
+        "assets/Logo.svg",
       ];
 
-      const el = document.getElementById("logoImg");
+      const img = document.getElementById("logoHeroImg");
 
       function tryNext(i){
-        if (i >= logoCandidates.length) {
-          // If nothing matched, hide the logo box cleanly.
-          el.style.display = "none";
+        if (i >= candidates.length) {
+          // Fallback: show text if no logo found
+          img.style.display = "none";
+          const holder = document.querySelector(".logoHeroInner");
+          const h = document.createElement("div");
+          h.style.fontFamily = '"Unbounded", system-ui, sans-serif';
+          h.style.fontWeight = "900";
+          h.style.fontSize = "30px";
+          h.style.letterSpacing = ".6px";
+          h.textContent = "SCOTT BAYLIS";
+          holder.appendChild(h);
           return;
         }
         const test = new Image();
-        test.onload = function(){ el.src = logoCandidates[i]; };
-        test.onerror = function(){ tryNext(i + 1); };
-        test.src = logoCandidates[i];
+        test.onload = () => { img.src = candidates[i]; };
+        test.onerror = () => { tryNext(i + 1); };
+        test.src = candidates[i];
       }
 
       tryNext(0);
