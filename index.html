@@ -29,6 +29,7 @@ body{
   background:var(--bg);
   color:var(--text);
 }
+a{color:inherit;text-decoration:none}
 
 /* ===== HEADER ===== */
 header{
@@ -58,8 +59,13 @@ nav{
 nav a{
   color:#e6e6e6;
   font-size:13px;
+  letter-spacing:.35px;
   padding:5px 9px;
   border-radius:12px;
+}
+nav a:hover{
+  color:#fff;
+  background:rgba(255,255,255,.06);
 }
 
 /* ===== WRAP ===== */
@@ -69,7 +75,7 @@ nav a{
   padding:16px 18px 70px;
 }
 
-/* ===== HERO ===== */
+/* ===== HERO (Astronaut) ===== */
 .hero{
   position:relative;
   border-radius:22px;
@@ -80,54 +86,114 @@ nav a{
 }
 .hero img{
   width:100%;
-  height:min(240px,30vh);
+  height:min(240px, 30vh);
   object-fit:cover;
   object-position:center 40%;
+  opacity:1;
   display:block;
+  filter: brightness(1.12) contrast(1.06) saturate(1.08);
 }
-@media (min-width:900px){
-  .hero img{ height:420px; }
+@media (min-width: 900px){
+  .hero img{
+    height:420px;
+    object-position:center 20%;
+  }
+}
+.heroOverlay{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.52), rgba(0,0,0,.10) 60%, transparent),
+    linear-gradient(180deg, transparent 44%, rgba(0,0,0,.72));
+  display:flex;
+  align-items:flex-end;
+  padding:16px;
+}
+.heroText{color:#fff; max-width:760px;}
+.heroText h1{
+  font-family:"Unbounded";
+  font-size:18px;
+  margin:0 0 6px;
+}
+.heroText p{
+  margin:0;
+  font-size:13px;
+  color:#f1f1f1;
 }
 
-/* ===== STATEMENT VIDEO ===== */
+/* ===== MUSIC (subtle) ===== */
+.musicStrip{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  flex-wrap:wrap;
+  background:rgba(255,255,255,.75);
+  backdrop-filter:saturate(1.1);
+  border:1px solid rgba(0,0,0,.06);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  padding:10px 12px;
+  margin:10px 0 18px;
+}
+.musicMeta{ min-width:180px; }
+.musicMeta .label{
+  font-family:"Unbounded";
+  font-weight:800;
+  font-size:12px;
+  letter-spacing:.2px;
+}
+.musicMeta .sub{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:2px;
+}
+.musicStrip audio{
+  width:min(520px, 100%);
+  height:34px;
+}
+
+/* ===== STATEMENT VIDEO (freeze + stars) ===== */
 .statement{
   position:relative;
   width:100%;
-  height:200px;
+  height:200px;                 /* mobile/tablet */
   background:var(--space);
   border-radius:22px;
   overflow:hidden;
   box-shadow:var(--shadow);
   margin:18px 0 22px;
 }
-
 .statementVideo{
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
-  object-fit:contain;
+  object-fit:contain;           /* never crop text */
+  object-position:center;
   background:#000;
+  display:block;
   z-index:1;
   transform-origin:center;
 }
 
-/* 🔥 DESKTOP WIDENING FIX */
-@media (min-width:900px){
+/* ✅ DESKTOP ONLY: make it bigger/wider-feeling */
+@media (min-width: 900px){
   .statement{
-    height:340px;          /* taller = wider feel */
+    height:340px;               /* bigger on desktop */
   }
   .statementVideo{
-    transform:scale(1.08); /* subtle cinematic boost */
+    transform:scale(1.08);      /* subtle boost, still no crop */
   }
 }
 
-/* pause layers */
+/* black + stars phase */
 .pauseBlack{
   position:absolute;
   inset:0;
   background:#000;
   opacity:0;
+  pointer-events:none;
   transition:opacity .18s ease;
   z-index:2;
 }
@@ -136,13 +202,17 @@ nav a{
 .pauseStars{
   position:absolute;
   inset:0;
+  width:100%;
+  height:100%;
+  display:block;
   opacity:0;
+  pointer-events:none;
   transition:opacity .22s ease;
   z-index:3;
 }
 .pauseStars.is-on{ opacity:1; }
 
-/* replay */
+/* Replay button only */
 .statementControls{
   position:absolute;
   top:10px;
@@ -160,12 +230,76 @@ nav a{
   cursor:pointer;
 }
 
+/* ===== SECTIONS ===== */
+section{ margin-bottom:60px; }
+section h2{
+  font-family:"Unbounded";
+  font-size:22px;
+  margin:0 0 6px;
+}
+section p{
+  color:var(--muted);
+  margin:0 0 18px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:18px;
+}
+.card{
+  background:#000;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.card iframe{
+  width:100%;
+  height:220px;
+  border:0;
+}
+
+/* photo blocks */
+.photoBlock img{
+  width:100%;
+  display:block;
+  border-radius:18px;
+  box-shadow:var(--shadow);
+}
+
+/* ===== BUTTONS ===== */
+.cta{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.btn{
+  padding:10px 16px;
+  border-radius:14px;
+  font-weight:600;
+  font-size:14px;
+  background:#fff;
+  color:#111;
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 24px rgba(0,0,0,.22);
+}
+.btn.primary{
+  background:linear-gradient(90deg,#ff7a18,#ffd166,#06d6a0,#4cc9f0);
+  color:#111;
+}
+.btn.facebook{ background:#1877F2; color:#fff; }
+.btn.x{ background:#000; color:#fff; }
+
 /* ===== FOOTER ===== */
 footer{
   text-align:center;
   color:#666;
   font-size:13px;
   margin-top:80px;
+  padding-bottom:30px;
 }
 </style>
 </head>
@@ -174,40 +308,114 @@ footer{
 
 <header>
   <div class="headerInner">
-    <img class="logoImage" src="assets/IMG_3081.gif" alt="">
+    <img class="logoImage" src="assets/IMG_3081.gif" alt="ScottyB logo">
+    <nav>
+      <a href="#statement">Statement</a>
+      <a href="#band">Band</a>
+      <a href="#video">Video</a>
+      <a href="#photo">Photo</a>
+      <a href="#connect">Connect</a>
+    </nav>
   </div>
 </header>
 
 <main class="wrap">
 
-  <!-- STATEMENT VIDEO -->
-  <section id="statement" class="statement">
+  <!-- HERO (Astronaut) -->
+  <div class="hero">
+    <img src="assets/0EA914B0-D2A9-4FDF-A807-B255F18BF2EF.jpeg" alt="Astronaut trumpet image">
+    <div class="heroOverlay">
+      <div class="heroText">
+        <h1>Scott Baylis</h1>
+        <p>Futuristic Afro Electronic Funk & Spiritual Jazz & Soul</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MUSIC PLAYER -->
+  <div class="musicStrip" aria-label="Audio player">
+    <div class="musicMeta">
+      <div class="label">Vapour Wave</div>
+      <div class="sub">Tap play to listen</div>
+    </div>
+    <audio controls preload="metadata">
+      <source src="assets/VapourWave.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <!-- STATEMENT VIDEO: freeze 0.3s from end (hold 2s) -> stars 2s -> restart -->
+  <section id="statement" class="statement" aria-label="Scrolling text video">
     <video
-      id="statementVideo"
       class="statementVideo"
+      id="statementVideo"
       autoplay
       muted
       playsinline
       preload="metadata"
     >
       <source src="assets/Adobe%20Express%20-%20copy_4A5E2829-1BD0-4B2F-A97E-0CBF4E9140A0.mp4" type="video/mp4">
+      Your browser does not support the video tag.
     </video>
 
-    <div id="pauseBlack" class="pauseBlack"></div>
-    <canvas id="pauseStars" class="pauseStars"></canvas>
+    <div id="pauseBlack" class="pauseBlack" aria-hidden="true"></div>
+    <canvas id="pauseStars" class="pauseStars" aria-hidden="true"></canvas>
 
     <div class="statementControls">
-      <button id="replayBtn" class="btnSmall">Replay</button>
+      <button class="btnSmall" id="replayBtn" type="button">Replay</button>
+    </div>
+  </section>
+
+  <!-- BAND PHOTO -->
+  <section id="band">
+    <h2>Band</h2>
+    <p>Full crew energy.</p>
+    <div class="photoBlock">
+      <img src="assets/ISM_RTF_FINAL1.jpeg" alt="Band photo">
+    </div>
+  </section>
+
+  <!-- PHOTO -->
+  <section id="photo">
+    <h2>Photo</h2>
+    <p>Live moments and behind the scenes.</p>
+    <div class="photoBlock">
+      <img src="assets/IMG_0080.jpeg" alt="Live performance photo">
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section id="video">
+    <h2>Video</h2>
+    <p>Performances and collaborations.</p>
+    <div class="grid">
+      <div class="card"><iframe src="https://www.youtube.com/embed/lfMh0zfIO3A" allowfullscreen></iframe></div>
+      <div class="card"><iframe src="https://www.youtube.com/embed/ZO769KQ_skE" allowfullscreen></iframe></div>
+      <div class="card"><iframe src="https://www.youtube.com/embed/ORa4QjAffls" allowfullscreen></iframe></div>
+      <div class="card"><iframe src="https://www.youtube.com/embed/XF-CrcPJT3c" allowfullscreen></iframe></div>
+    </div>
+  </section>
+
+  <!-- CONNECT -->
+  <section id="connect">
+    <h2>Connect</h2>
+    <p>Follow and get updates first.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://www.instagram.com/scottybeasy" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn facebook" href="https://www.facebook.com/scottbaylis" target="_blank" rel="noopener">Facebook</a>
+      <a class="btn x" href="https://x.com/scottbaylis" target="_blank" rel="noopener">X</a>
     </div>
   </section>
 
   <footer>© 2026 Scott Baylis</footer>
+
 </main>
 
 <script>
+/* ===== FREEZE 0.3s FROM END → HOLD 2s → STARS 2s → RESTART ===== */
 const vid = document.getElementById('statementVideo');
 const black = document.getElementById('pauseBlack');
-const stars = document.getElementById('pauseStars');
+const starsCanvas = document.getElementById('pauseStars');
 const replayBtn = document.getElementById('replayBtn');
 const statement = document.getElementById('statement');
 
@@ -215,66 +423,92 @@ const FREEZE_FROM_END_SEC = 0.3;
 const FREEZE_HOLD_MS = 2000;
 const STARS_MS = 2000;
 
-let freezeAt=null, running=false;
-const ctx = stars.getContext('2d');
-let w,h,arr=[];
+let freezeAt = null;
+let sequenceRunning = false;
+
+/* subtle twinkle stars (only visible during stars phase) */
+const ctx = starsCanvas.getContext('2d');
+let w=0, h=0, arr=[];
 
 function resizeStars(){
   const r = statement.getBoundingClientRect();
-  w = stars.width = r.width;
-  h = stars.height = r.height;
-  arr = Array.from({length:Math.max(40,(w*h)/9000)},()=>({
-    x:Math.random()*w,y:Math.random()*h,
-    r:Math.random()*1.5+0.5,t:Math.random()*6,s:Math.random()*0.02+0.005
+  w = starsCanvas.width = Math.max(1, Math.floor(r.width));
+  h = starsCanvas.height = Math.max(1, Math.floor(r.height));
+  const count = Math.max(45, Math.floor((w*h)/9000));
+  arr = Array.from({length: count}, () => ({
+    x: Math.random()*w,
+    y: Math.random()*h,
+    r: 0.6 + Math.random()*1.6,
+    t: Math.random()*Math.PI*2,
+    s: 0.006 + Math.random()*0.02,
+    a0: 0.12 + Math.random()*0.35
   }));
 }
+
 function drawStars(){
   ctx.clearRect(0,0,w,h);
-  arr.forEach(s=>{
-    s.t+=s.s;
-    ctx.fillStyle=`rgba(255,255,255,${0.2+Math.sin(s.t)*0.3})`;
-    ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill();
-  });
+  for(const s of arr){
+    s.t += s.s;
+    const tw = (Math.sin(s.t) + 1)/2;
+    const a = s.a0 + tw*0.55;
+    ctx.fillStyle = `rgba(255,255,255,${a})`;
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+    ctx.fill();
+  }
   requestAnimationFrame(drawStars);
 }
+
 function showStars(on){
-  black.classList.toggle('is-on',on);
-  stars.classList.toggle('is-on',on);
+  black.classList.toggle('is-on', on);
+  starsCanvas.classList.toggle('is-on', on);
 }
 
-vid.addEventListener('loadedmetadata',()=>{
-  freezeAt=Math.max(0,vid.duration-FREEZE_FROM_END_SEC);
+async function safePlay(){
+  try{ await vid.play(); } catch(e){}
+}
+
+/* compute freeze point */
+vid.addEventListener('loadedmetadata', () => {
+  freezeAt = Math.max(0, vid.duration - FREEZE_FROM_END_SEC);
 });
-vid.addEventListener('timeupdate',()=>{
-  if(running||freezeAt===null) return;
-  if(vid.currentTime>=freezeAt){
-    running=true;
-    vid.currentTime=freezeAt;
-    vid.pause();
-    setTimeout(()=>{
+
+/* trigger freeze */
+vid.addEventListener('timeupdate', () => {
+  if(sequenceRunning || freezeAt === null) return;
+
+  if(vid.currentTime >= freezeAt){
+    sequenceRunning = true;
+
+    try{ vid.currentTime = freezeAt; }catch(e){}
+    vid.pause(); /* freeze frame */
+
+    setTimeout(() => {
       showStars(true);
-      setTimeout(()=>{
+      setTimeout(() => {
         showStars(false);
-        running=false;
-        vid.currentTime=0;
-        vid.play().catch(()=>{});
-      },STARS_MS);
-    },FREEZE_HOLD_MS);
+        sequenceRunning = false;
+        vid.currentTime = 0;
+        safePlay();
+      }, STARS_MS);
+    }, FREEZE_HOLD_MS);
   }
 });
-replayBtn.onclick=()=>{
-  running=false;
+
+/* replay */
+replayBtn.addEventListener('click', () => {
+  sequenceRunning = false;
   showStars(false);
-  vid.currentTime=0;
-  vid.play().catch(()=>{});
-};
-window.onload=()=>{
+  vid.currentTime = 0;
+  safePlay();
+});
+
+/* init */
+window.addEventListener('load', () => {
   resizeStars();
   drawStars();
-  vid.play().catch(()=>{});
-};
-window.onresize=resizeStars;
-</script>
+  setTimeout(safePlay, 150);
+});
+window.addEventListener('resize', resizeStars, {passive:true});
 
-</body>
-</html>
+/* helpful if autoplay blocked */
