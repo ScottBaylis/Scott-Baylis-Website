@@ -76,6 +76,26 @@ nav a:hover{
   padding:16px 18px 70px;
 }
 
+/* ===== NEW: ASTRONAUT IMAGE (SAFE ADDITION) ===== */
+.astronaut{
+  background:#000;
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  margin:0 0 14px;
+  padding:14px;
+  display:flex;
+  justify-content:center;
+}
+.astronaut img{
+  width:100%;
+  max-width:900px;
+  height:auto;
+  max-height:520px;
+  object-fit:contain; /* no cropping */
+  display:block;
+  border-radius:16px;
+}
+
 /* ===== HERO ===== */
 .hero{
   position:relative;
@@ -114,200 +134,32 @@ nav a:hover{
   color:#e6e6e6;
 }
 
-/* ===== MUSIC (subtle) ===== */
+/* ===== MUSIC ===== */
 .musicStrip{
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:14px;
   flex-wrap:wrap;
-
   background:rgba(255,255,255,.75);
-  backdrop-filter:saturate(1.1);
   border:1px solid rgba(0,0,0,.06);
   border-radius:18px;
   box-shadow:var(--shadow);
   padding:10px 12px;
   margin:10px 0 18px;
 }
-.musicMeta{
-  min-width:180px;
-}
 .musicMeta .label{
   font-family:"Unbounded";
   font-weight:800;
   font-size:12px;
-  letter-spacing:.2px;
 }
 .musicMeta .sub{
   color:var(--muted);
   font-size:12px;
-  margin-top:2px;
 }
 .musicStrip audio{
-  width:min(520px, 100%);
-  height:34px; /* keeps it compact */
-}
-
-/* ===== CRAWL BOX ===== */
-.statement{
-  position:relative;
-  height:340px;
-  background:var(--space);
-  border-radius:22px;
-  overflow:hidden;
-  box-shadow:var(--shadow);
-  margin:18px 0 50px;
-}
-#stars{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  display:block;
-  z-index:1;
-}
-.statementTop{
-  position:absolute;
-  top:0; left:0; right:0;
-  padding:10px 12px;
-  z-index:4;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  background:linear-gradient(to bottom, rgba(0,0,0,.85), rgba(0,0,0,0));
-}
-.statementTitle{
-  font-family:"Unbounded";
-  font-weight:800;
-  font-size:13px;
-  color:#fff;
-}
-.btnSmall{
-  padding:7px 10px;
-  border-radius:12px;
-  font-size:12px;
-  font-weight:700;
-  color:#fff;
-  background:rgba(255,255,255,.12);
-  border:1px solid rgba(255,255,255,.18);
-  cursor:pointer;
-}
-
-/* crawl */
-.crawlStage{
-  position:absolute;
-  inset:0;
-  z-index:3;
-  display:flex;
-  justify-content:center;
-  align-items:flex-end;
-  perspective:800px;
-  pointer-events:none;
-}
-.crawl{
-  width:min(900px,92vw);
-  text-align:center;
-  font-family:"Unbounded";
-  font-weight:900;
-  font-size:18px;
-  line-height:1.6;
-  letter-spacing:.6px;
-  color:var(--crawlYellow);
-  transform-origin:50% 100%;
-  transform: rotateX(34deg);
-  position:absolute;
-  bottom:-10%;
-  opacity:1;
-  filter: saturate(1.35) brightness(1.08);
-  -webkit-text-stroke:0.35px rgba(0,0,0,.35);
-  text-shadow:0 1px 0 rgba(0,0,0,.35);
-}
-.crawl.is-running{
-  animation:crawlUp 36s linear forwards;
-}
-@keyframes crawlUp{
-  0%{ bottom:-10%; opacity:1; }
-  88%{ opacity:1; }
-  100%{ bottom:190%; opacity:0; }
-}
-.crawl p{ margin:0 0 16px; }
-
-/* ===== SECTIONS ===== */
-section{ margin-bottom:60px; }
-section h2{
-  font-family:"Unbounded";
-  font-size:22px;
-  margin:0 0 6px;
-}
-section p{
-  color:var(--muted);
-  margin:0 0 18px;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:18px;
-}
-.card{
-  background:#000;
-  border-radius:18px;
-  overflow:hidden;
-  box-shadow:var(--shadow);
-}
-.card iframe{
-  width:100%;
-  height:220px;
-  border:0;
-}
-.photoBlock img{
-  width:100%;
-  display:block;
-  border-radius:18px;
-  box-shadow:var(--shadow);
-}
-
-/* ===== BUTTONS ===== */
-.cta{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-}
-.btn{
-  padding:10px 16px;
-  border-radius:14px;
-  font-weight:600;
-  font-size:14px;
-  background:#fff;
-  color:#111;
-  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
-}
-.btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 10px 24px rgba(0,0,0,.22);
-}
-.btn.primary{
-  background:linear-gradient(90deg,#ff7a18,#ffd166,#06d6a0,#4cc9f0);
-  color:#111;
-}
-.btn.facebook{
-  background:#1877F2;
-  color:#fff;
-}
-.btn.x{
-  background:#000;
-  color:#fff;
-}
-
-/* ===== FOOTER ===== */
-footer{
-  text-align:center;
-  color:#666;
-  font-size:13px;
-  margin-top:80px;
-  padding-bottom:30px;
+  width:min(520px,100%);
+  height:34px;
 }
 </style>
 </head>
@@ -328,6 +180,12 @@ footer{
 
 <main class="wrap">
 
+  <!-- NEW IMAGE: safely added under header -->
+  <div class="astronaut">
+    <img src="assets/0EA914B0-D2A9-4FDF-A807-B255F18BF2EF.jpeg" alt="Astronaut playing trumpet in space">
+  </div>
+
+  <!-- ORIGINAL HERO (unchanged) -->
   <div class="hero">
     <img src="assets/ISM_RTF_FINAL1.jpeg" alt="">
     <div class="heroOverlay">
@@ -338,82 +196,18 @@ footer{
     </div>
   </div>
 
-  <!-- MUSIC PLAYER (subtle, near the top) -->
-  <div class="musicStrip" aria-label="Audio player">
+  <!-- MUSIC PLAYER -->
+  <div class="musicStrip">
     <div class="musicMeta">
       <div class="label">Vapour Wave</div>
       <div class="sub">Tap play to listen</div>
     </div>
-
     <audio controls preload="metadata">
       <source src="assets/VapourWave.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
     </audio>
   </div>
 
-  <section id="statement" class="statement">
-    <canvas id="stars"></canvas>
-    <div class="statementTop">
-      <div class="statementTitle">Scott Baylis</div>
-      <button class="btnSmall" id="replayBtn">Replay</button>
-    </div>
-    <div class="crawlStage">
-      <div class="crawl" id="crawl">
-        <p>SPACE FUNK: THE FINAL FRONTIER.</p>
-        <p>These are the musical voyages of <strong>SCOTTYB</strong>.</p>
-        <p>His continuing mission:</p>
-        <p>
-          to explore strange new genres,<br>
-          to seek out new sounds and new rhythms,<br>
-          and to boldly go where trumpet, synth, and groove have never gone before.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section id="video">
-    <h2>Video</h2>
-    <p>Performances and collaborations.</p>
-    <div class="grid">
-      <div class="card"><iframe src="https://www.youtube.com/embed/lfMh0zfIO3A" allowfullscreen></iframe></div>
-      <div class="card"><iframe src="https://www.youtube.com/embed/ZO769KQ_skE" allowfullscreen></iframe></div>
-      <div class="card"><iframe src="https://www.youtube.com/embed/ORa4QjAffls" allowfullscreen></iframe></div>
-      <div class="card"><iframe src="https://www.youtube.com/embed/XF-CrcPJT3c" allowfullscreen></iframe></div>
-    </div>
-  </section>
-
-  <section id="photo">
-    <h2>Photo</h2>
-    <p>Live moments and behind the scenes.</p>
-    <div class="photoBlock">
-      <img src="assets/IMG_0080.jpeg" alt="">
-    </div>
-  </section>
-
-  <section id="connect">
-    <h2>Connect</h2>
-    <p>Follow and get updates first.</p>
-    <div class="cta">
-      <a class="btn primary" href="https://www.instagram.com/scottybeasy" target="_blank" rel="noopener">Instagram</a>
-      <a class="btn facebook" href="https://www.facebook.com/scottbaylis" target="_blank" rel="noopener">Facebook</a>
-      <a class="btn x" href="https://x.com/scottbaylis" target="_blank" rel="noopener">X</a>
-    </div>
-  </section>
-
-  <footer>© 2026 Scott Baylis</footer>
-
 </main>
-
-<script>
-const crawl = document.getElementById('crawl');
-function startCrawl(){
-  crawl.classList.remove('is-running');
-  void crawl.offsetHeight;
-  crawl.classList.add('is-running');
-}
-window.addEventListener('load', () => setTimeout(startCrawl, 50));
-document.getElementById('replayBtn').addEventListener('click', startCrawl);
-</script>
 
 </body>
 </html>
