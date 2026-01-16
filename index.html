@@ -1,646 +1,820 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>ScottyB</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>ScottyB</title>
 
-<meta name="description" content="ScottyB — Futuristic Afro Electronic Funk & Spiritual Jazz & Soul." />
+    <meta
+      name="description"
+      content="ScottyB — Futuristic Afro Electronic Funk & Spiritual Jazz & Soul."
+    />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
 
-<style>
-:root{
-  --bg:#fbf6ef;
-  --text:#111;
-  --muted:#555;
-  --shadow:0 14px 40px rgba(0,0,0,.18);
-  --header:#050509;
-  --space:#000;
-}
+    <style>
+      :root {
+        --bg: #fbf6ef;
+        --text: #111;
+        --muted: #555;
+        --shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
+        --header: #050509;
+        --space: #000;
+      }
 
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  font-family:"Plus Jakarta Sans",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-  background:var(--bg);
-  color:var(--text);
-}
-a{color:inherit;text-decoration:none}
+      * {
+        box-sizing: border-box;
+      }
 
-/* ===== HEADER ===== */
-header{
-  background:
-    radial-gradient(1200px 240px at 50% 0%, rgba(255,255,255,.08), transparent 60%),
-    var(--header);
-  border-bottom:1px solid rgba(255,255,255,.12);
-}
-.headerInner{
-  max-width:1200px;
-  margin:0 auto;
-  padding:26px 18px 18px;
-  text-align:center;
-}
-.logoImage{
-  width:min(900px,94vw);
-  display:block;
-  margin:0 auto 12px;
-  filter:drop-shadow(0 18px 50px rgba(0,0,0,.85));
-}
-nav{
-  display:flex;
-  justify-content:center;
-  gap:14px;
-  flex-wrap:wrap;
-}
-nav a{
-  color:#e6e6e6;
-  font-size:13px;
-  letter-spacing:.35px;
-  padding:5px 9px;
-  border-radius:12px;
-}
-nav a:hover{
-  color:#fff;
-  background:rgba(255,255,255,.06);
-}
+      html {
+        scroll-behavior: smooth;
+      }
 
-/* ===== WRAP ===== */
-.wrap{
-  max-width:1100px;
-  margin:0 auto;
-  padding:16px 18px 70px;
-}
+      body {
+        margin: 0;
+        font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica, Arial;
+        background: var(--bg);
+        color: var(--text);
+      }
 
-/* ===== HERO (Astronaut) ===== */
-.hero{
-  position:relative;
-  border-radius:22px;
-  overflow:hidden;
-  background:#000;
-  box-shadow:var(--shadow);
-  margin-bottom:14px;
-}
-.hero img{
-  width:100%;
-  height:min(240px, 30vh);
-  object-fit:cover;
-  object-position:center 40%;
-  opacity:1;
-  display:block;
-  filter: brightness(1.12) contrast(1.06) saturate(1.08);
-}
-@media (min-width: 900px){
-  .hero img{
-    height:420px;
-    object-position:center 20%;
-  }
-}
-.heroOverlay{
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(90deg, rgba(0,0,0,.52), rgba(0,0,0,.10) 60%, transparent),
-    linear-gradient(180deg, transparent 44%, rgba(0,0,0,.72));
-  display:flex;
-  align-items:flex-end;
-  padding:16px;
-}
-.heroText{color:#fff; max-width:760px;}
-.heroText h1{
-  font-family:"Unbounded";
-  font-size:18px;
-  margin:0 0 6px;
-}
-.heroText p{
-  margin:0;
-  font-size:13px;
-  color:#f1f1f1;
-}
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
 
-/* ===== MUSIC ===== */
-.musicStrip{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:14px;
-  flex-wrap:wrap;
-  background:rgba(255,255,255,.75);
-  backdrop-filter:saturate(1.1);
-  border:1px solid rgba(0,0,0,.06);
-  border-radius:18px;
-  box-shadow:var(--shadow);
-  padding:10px 12px;
-  margin:10px 0 18px;
-}
-.musicMeta{ min-width:180px; }
-.musicMeta .label{
-  font-family:"Unbounded";
-  font-weight:800;
-  font-size:12px;
-  letter-spacing:.2px;
-}
-.musicMeta .sub{
-  color:var(--muted);
-  font-size:12px;
-  margin-top:2px;
-}
-.musicStrip audio{
-  width:min(520px, 100%);
-  height:34px;
-}
+      /* ===== HEADER ===== */
+      header {
+        background: radial-gradient(
+            1200px 240px at 50% 0%,
+            rgba(255, 255, 255, 0.08),
+            transparent 60%
+          ),
+          var(--header);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      }
 
-/* ===== STATEMENT VIDEO ===== */
-.statement{
-  position:relative;
-  height:340px;
-  background:var(--space);
-  border-radius:22px;
-  overflow:hidden;
-  box-shadow:var(--shadow);
-  margin:18px 0 22px;
-}
-.statementVideo{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  object-position:center;
-  background:#000;
-  display:block;
-  z-index:1;
-  transform-origin:center;
-}
-@media (min-width: 900px){
-  .statement{ height:420px; }
-  .statementVideo{ transform:scale(1.10); }
-}
+      .headerInner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 26px 18px 18px;
+        text-align: center;
+      }
 
-.pauseBlack{
-  position:absolute;
-  inset:0;
-  background:#000;
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .18s ease;
-  z-index:2;
-}
-.pauseBlack.is-on{ opacity:1; }
+      .logoImage {
+        width: min(900px, 94vw);
+        display: block;
+        margin: 0 auto 12px;
+        filter: drop-shadow(0 18px 50px rgba(0, 0, 0, 0.85));
+      }
 
-.pauseStars{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  display:block;
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .22s ease;
-  z-index:3;
-}
-.pauseStars.is-on{ opacity:1; }
+      nav {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
 
-.statementTop{
-  position:absolute;
-  top:0; left:0; right:0;
-  padding:10px 12px;
-  z-index:4;
-  display:flex;
-  justify-content:flex-end;
-  background:linear-gradient(to bottom, rgba(0,0,0,.85), rgba(0,0,0,0));
-}
-.btnSmall{
-  padding:7px 10px;
-  border-radius:12px;
-  font-size:12px;
-  font-weight:700;
-  color:#fff;
-  background:rgba(255,255,255,.12);
-  border:1px solid rgba(255,255,255,.18);
-  cursor:pointer;
-}
+      nav a {
+        color: #e6e6e6;
+        font-size: 13px;
+        letter-spacing: 0.35px;
+        padding: 5px 9px;
+        border-radius: 12px;
+      }
 
-/* ===== SECTIONS ===== */
-section{ margin-bottom:60px; }
-section h2{
-  font-family:"Unbounded";
-  font-size:22px;
-  margin:0 0 6px;
-}
-section p{
-  color:var(--muted);
-  margin:0 0 18px;
-}
+      nav a:hover {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.06);
+      }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:18px;
-}
-.card{
-  background:#000;
-  border-radius:18px;
-  overflow:hidden;
-  box-shadow:var(--shadow);
-}
-.card iframe{
-  width:100%;
-  height:220px;
-  border:0;
-}
+      /* ===== WRAP ===== */
+      .wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 16px 18px 70px;
+      }
 
-.photoBlock img{
-  width:100%;
-  display:block;
-  border-radius:18px;
-  box-shadow:var(--shadow);
-}
+      /* ===== HERO (Astronaut) ===== */
+      .hero {
+        position: relative;
+        border-radius: 22px;
+        overflow: hidden;
+        background: #000;
+        box-shadow: var(--shadow);
+        margin-bottom: 14px;
+      }
 
-/* ===== BUTTONS ===== */
-.cta{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-}
-.btn{
-  padding:10px 16px;
-  border-radius:14px;
-  font-weight:600;
-  font-size:14px;
-  background:#fff;
-  color:#111;
-}
-.btn.primary{
-  background:linear-gradient(90deg,#ff7a18,#ffd166,#06d6a0,#4cc9f0);
-}
-.btn.facebook{ background:#1877F2; color:#fff; }
-.btn.x{ background:#000; color:#fff; }
-.btn.bandcamp{ background:#1DA0C3; color:#fff; }
+      .hero img {
+        width: 100%;
+        height: min(240px, 30vh);
+        object-fit: cover;
+        object-position: center 40%;
+        opacity: 1;
+        display: block;
+        filter: brightness(1.12) contrast(1.06) saturate(1.08);
+      }
 
-/* ===== CONTACT FORM ===== */
-.contactForm{
-  background:rgba(255,255,255,.75);
-  border:1px solid rgba(0,0,0,.06);
-  border-radius:18px;
-  box-shadow:var(--shadow);
-  padding:14px;
-}
-.contactGrid{
-  display:grid;
-  grid-template-columns:repeat(2, minmax(0,1fr));
-  gap:12px;
-}
-.field{
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-}
-.field span{
-  font-size:12px;
-  color:var(--muted);
-  font-weight:600;
-}
-.field input,
-.field textarea{
-  width:100%;
-  border-radius:14px;
-  border:1px solid rgba(0,0,0,.10);
-  padding:10px 12px;
-  font-size:14px;
-  font-family:inherit;
-  outline:none;
-  background:#fff;
-}
-.field input:focus,
-.field textarea:focus{
-  border-color:rgba(0,0,0,.25);
-  box-shadow:0 0 0 4px rgba(0,0,0,.06);
-}
-.fieldFull{ grid-column:1 / -1; }
+      @media (min-width: 900px) {
+        .hero img {
+          height: 420px;
+          object-position: center 20%;
+        }
+      }
 
-.formActions{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-top:12px;
-}
-.formNote{
-  font-size:12px;
-  color:var(--muted);
-}
-.formError{
-  display:none;
-  margin-top:10px;
-  padding:10px 12px;
-  border-radius:14px;
-  background:rgba(255,255,255,.85);
-  border:1px solid rgba(0,0,0,.10);
-  color:#111;
-  font-size:13px;
-}
-.formError.is-on{ display:block; }
+      .heroOverlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.52),
+            rgba(0, 0, 0, 0.1) 60%,
+            transparent
+          ),
+          linear-gradient(180deg, transparent 44%, rgba(0, 0, 0, 0.72));
+        display: flex;
+        align-items: flex-end;
+        padding: 16px;
+      }
 
-@media (max-width:700px){
-  .contactGrid{ grid-template-columns:1fr; }
-}
+      .heroText {
+        color: #fff;
+        max-width: 760px;
+      }
 
-/* ===== FOOTER ===== */
-footer{
-  text-align:center;
-  color:#666;
-  font-size:13px;
-  margin-top:80px;
-  padding-bottom:30px;
-}
-</style>
-</head>
+      .heroText h1 {
+        font-family: "Unbounded";
+        font-size: 18px;
+        margin: 0 0 6px;
+      }
 
-<body>
+      .heroText p {
+        margin: 0;
+        font-size: 13px;
+        color: #f1f1f1;
+      }
 
-<header>
-  <div class="headerInner">
-    <img class="logoImage" src="assets/IMG_3081.gif" alt="ScottyB logo">
-    <nav>
-      <a href="#statement">Statement</a>
-      <a href="#band">Band</a>
-      <a href="#video">Video</a>
-      <a href="#photo">Photo</a>
-      <a href="#shop">Shop</a>
-      <a href="#connect">Connect</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </div>
-</header>
+      /* ===== MUSIC ===== */
+      .musicStrip {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        flex-wrap: wrap;
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: saturate(1.1);
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+        padding: 10px 12px;
+        margin: 10px 0 18px;
+      }
 
-<main class="wrap">
+      .musicMeta {
+        min-width: 180px;
+      }
 
-  <!-- HERO -->
-  <div class="hero">
-    <img src="assets/B7BCEF14-68E8-41EA-BC13-4B24B5EAE474.png" alt="Astronaut trumpet image">
-    <div class="heroOverlay">
-      <div class="heroText">
-        <h1>Scott Baylis</h1>
-        <p>Futuristic Afro Electronic Funk & Spiritual Jazz & Soul</p>
+      .musicMeta .label {
+        font-family: "Unbounded";
+        font-weight: 800;
+        font-size: 12px;
+        letter-spacing: 0.2px;
+      }
+
+      .musicMeta .sub {
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 2px;
+      }
+
+      .musicStrip audio {
+        width: min(520px, 100%);
+        height: 34px;
+      }
+
+      /* ===== STATEMENT VIDEO ===== */
+      .statement {
+        position: relative;
+        height: 340px;
+        background: var(--space);
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        margin: 18px 0 22px;
+      }
+
+      .statementVideo {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+        background: #000;
+        display: block;
+        z-index: 1;
+        transform-origin: center;
+      }
+
+      @media (min-width: 900px) {
+        .statement {
+          height: 420px;
+        }
+
+        .statementVideo {
+          transform: scale(1.1);
+        }
+      }
+
+      .pauseBlack {
+        position: absolute;
+        inset: 0;
+        background: #000;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.18s ease;
+        z-index: 2;
+      }
+
+      .pauseBlack.is-on {
+        opacity: 1;
+      }
+
+      .pauseStars {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.22s ease;
+        z-index: 3;
+      }
+
+      .pauseStars.is-on {
+        opacity: 1;
+      }
+
+      .statementTop {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 10px 12px;
+        z-index: 4;
+        display: flex;
+        justify-content: flex-end;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.85),
+          rgba(0, 0, 0, 0)
+        );
+      }
+
+      .btnSmall {
+        padding: 7px 10px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #fff;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        cursor: pointer;
+      }
+
+      /* ===== SECTIONS ===== */
+      section {
+        margin-bottom: 60px;
+      }
+
+      section h2 {
+        font-family: "Unbounded";
+        font-size: 22px;
+        margin: 0 0 6px;
+      }
+
+      section p {
+        color: var(--muted);
+        margin: 0 0 18px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 18px;
+      }
+
+      .card {
+        background: #000;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+
+      .card iframe {
+        width: 100%;
+        height: 220px;
+        border: 0;
+      }
+
+      .photoBlock img {
+        width: 100%;
+        display: block;
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+      }
+
+      /* ===== BUTTONS ===== */
+      .cta {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 10px 16px;
+        border-radius: 14px;
+        font-weight: 600;
+        font-size: 14px;
+        background: #fff;
+        color: #111;
+      }
+
+      .btn.primary {
+        background: linear-gradient(90deg, #ff7a18, #ffd166, #06d6a0, #4cc9f0);
+      }
+
+      .btn.facebook {
+        background: #1877f2;
+        color: #fff;
+      }
+
+      .btn.x {
+        background: #000;
+        color: #fff;
+      }
+
+      .btn.bandcamp {
+        background: #1da0c3;
+        color: #fff;
+      }
+
+      /* ===== CONTACT FORM ===== */
+      .contactForm {
+        background: rgba(255, 255, 255, 0.75);
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+        padding: 14px;
+      }
+
+      .contactGrid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .field span {
+        font-size: 12px;
+        color: var(--muted);
+        font-weight: 600;
+      }
+
+      .field input,
+      .field textarea {
+        width: 100%;
+        border-radius: 14px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        padding: 10px 12px;
+        font-size: 14px;
+        font-family: inherit;
+        outline: none;
+        background: #fff;
+      }
+
+      .field input:focus,
+      .field textarea:focus {
+        border-color: rgba(0, 0, 0, 0.25);
+        box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.06);
+      }
+
+      .fieldFull {
+        grid-column: 1 / -1;
+      }
+
+      .formActions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 12px;
+      }
+
+      .formNote {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .formError {
+        display: none;
+        margin-top: 10px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.85);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        color: #111;
+        font-size: 13px;
+      }
+
+      .formError.is-on {
+        display: block;
+      }
+
+      @media (max-width: 700px) {
+        .contactGrid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ===== FOOTER ===== */
+      footer {
+        text-align: center;
+        color: #666;
+        font-size: 13px;
+        margin-top: 80px;
+        padding-bottom: 30px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="headerInner">
+        <img class="logoImage" src="assets/IMG_3081.gif" alt="ScottyB logo" />
+        <nav>
+          <a href="#statement">Statement</a>
+          <a href="#band">Band</a>
+          <a href="#video">Video</a>
+          <a href="#photo">Photo</a>
+          <a href="#shop">Shop</a>
+          <a href="#connect">Connect</a>
+          <a href="#contact">Contact</a>
+        </nav>
       </div>
-    </div>
-  </div>
+    </header>
 
-  <!-- MUSIC PLAYER -->
-  <div class="musicStrip">
-    <div class="musicMeta">
-      <div class="label">Vapour Wave</div>
-      <div class="sub">Tap play to listen</div>
-    </div>
-    <audio controls preload="metadata">
-      <source src="assets/VapourWave.mp3" type="audio/mpeg">
-    </audio>
-  </div>
-
-  <!-- STATEMENT VIDEO -->
-  <section id="statement" class="statement">
-    <video class="statementVideo" id="statementVideo" autoplay muted playsinline preload="metadata">
-      <source src="assets/Adobe%20Express%20-%20copy_4A5E2829-1BD0-4B2F-A97E-0CBF4E9140A0.mp4" type="video/mp4">
-    </video>
-    <div id="pauseBlack" class="pauseBlack"></div>
-    <canvas id="pauseStars" class="pauseStars"></canvas>
-    <div class="statementTop">
-      <button class="btnSmall" id="replayBtn" type="button">Replay</button>
-    </div>
-  </section>
-
-  <!-- BAND -->
-  <section id="band">
-    <h2>Band</h2>
-    <p>Full crew energy.</p>
-    <div class="photoBlock">
-      <img src="assets/ISM_RTF_FINAL1.jpeg" alt="Band photo">
-    </div>
-  </section>
-
-  <!-- PHOTO -->
-  <section id="photo">
-    <h2>Photo</h2>
-    <p>Live moments and behind the scenes.</p>
-    <div class="photoBlock">
-      <img src="assets/IMG_0080.jpeg" alt="Live performance photo">
-    </div>
-  </section>
-
-  <!-- VIDEO -->
-  <section id="video">
-    <h2>Video</h2>
-    <p>Performances and collaborations.</p>
-    <div class="grid">
-      <div class="card"><iframe src="https://www.youtube.com/embed/lfMh0zfIO3A" allowfullscreen></iframe></div>
-      <div class="card"><iframe src="https://www.youtube.com/embed/ZO769KQ_skE" allowfullscreen></iframe></div>
-      <div class="card"><iframe src="https://www.youtube.com/embed/ORa4QjAffls" allowfullscreen></iframe></div>
-      <div class="card"><iframe src="https://www.youtube.com/embed/XF-CrcPJT3c" allowfullscreen></iframe></div>
-    </div>
-  </section>
-
-  <!-- SHOP -->
-  <section id="shop">
-    <h2>Shop</h2>
-    <p>Music + merch via Bandcamp.</p>
-    <div class="cta">
-      <a class="btn bandcamp" href="https://ibibiosoundmachine.bandcamp.com/" target="_blank" rel="noopener">
-        Ibibio Sound Machine — Bandcamp
-      </a>
-      <a class="btn bandcamp" href="https://bakerbrothers.bandcamp.com/" target="_blank" rel="noopener">
-        The Baker Brothers — Bandcamp
-      </a>
-    </div>
-  </section>
-
-  <!-- CONNECT -->
-  <section id="connect">
-    <h2>Connect</h2>
-    <p>Follow and get updates first.</p>
-    <div class="cta">
-      <a class="btn primary" href="https://www.instagram.com/scottybeasy" target="_blank" rel="noopener">Instagram</a>
-      <a class="btn facebook" href="https://www.facebook.com/scottbaylis" target="_blank" rel="noopener">Facebook</a>
-      <a class="btn x" href="https://x.com/scottbaylis" target="_blank" rel="noopener">X</a>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Bookings, collaborations, and enquiries. Leave either your email or phone number.</p>
-
-    <form class="contactForm" id="contactForm"
-          action="https://formsubmit.co/scottbaylis@hotmail.com" method="POST">
-
-      <input type="hidden" name="_subject" value="New message from ScottyB site">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="index.html#contact">
-      <input type="text" name="_honey" style="display:none">
-
-      <div class="contactGrid">
-        <label class="field">
-          <span>Name</span>
-          <input name="name" type="text" required>
-        </label>
-
-        <label class="field">
-          <span>Email (optional)</span>
-          <input id="contactEmail" name="email" type="email">
-        </label>
-
-        <label class="field">
-          <span>Phone (optional)</span>
-          <input id="contactPhone" name="phone" type="tel">
-        </label>
-
-        <label class="field fieldFull">
-          <span>Message</span>
-          <textarea name="message" rows="6" required></textarea>
-        </label>
+    <main class="wrap">
+      <!-- HERO -->
+      <div class="hero">
+        <img
+          src="assets/B7BCEF14-68E8-41EA-BC13-4B24B5EAE474.png"
+          alt="Astronaut trumpet image"
+        />
+        <div class="heroOverlay">
+          <div class="heroText">
+            <h1>Scott Baylis</h1>
+            <p>Futuristic Afro Electronic Funk & Spiritual Jazz & Soul</p>
+          </div>
+        </div>
       </div>
 
-      <div id="contactError" class="formError">
-        Please add at least one contact detail: an email address or a phone number.
+      <!-- MUSIC PLAYER -->
+      <div class="musicStrip">
+        <div class="musicMeta">
+          <div class="label">Vapour Wave</div>
+          <div class="sub">Tap play to listen</div>
+        </div>
+        <audio controls preload="metadata">
+          <source src="assets/VapourWave.mp3" type="audio/mpeg" />
+        </audio>
       </div>
 
-      <div class="formActions">
-        <button class="btn primary" type="submit">Send message</button>
-        <div class="formNote">By sending, you agree to be contacted back.</div>
-      </div>
-    </form>
-  </section>
+      <!-- STATEMENT VIDEO -->
+      <section id="statement" class="statement">
+        <video
+          class="statementVideo"
+          id="statementVideo"
+          autoplay
+          muted
+          playsinline
+          preload="metadata"
+        >
+          <source
+            src="assets/Adobe%20Express%20-%20copy_4A5E2829-1BD0-4B2F-A97E-0CBF4E9140A0.mp4"
+            type="video/mp4"
+          />
+        </video>
+        <div id="pauseBlack" class="pauseBlack"></div>
+        <canvas id="pauseStars" class="pauseStars"></canvas>
+        <div class="statementTop">
+          <button class="btnSmall" id="replayBtn" type="button">Replay</button>
+        </div>
+      </section>
 
-  <footer>© 2026 Scott Baylis</footer>
+      <!-- BAND -->
+      <section id="band">
+        <h2>Band</h2>
+        <p>Full crew energy.</p>
+        <div class="photoBlock">
+          <img src="assets/ISM_RTF_FINAL1.jpeg" alt="Band photo" />
+        </div>
+      </section>
 
-</main>
+      <!-- PHOTO -->
+      <section id="photo">
+        <h2>Photo</h2>
+        <p>Live moments and behind the scenes.</p>
+        <div class="photoBlock">
+          <img src="assets/IMG_0080.jpeg" alt="Live performance photo" />
+        </div>
+      </section>
 
-<script>
-/* ===== FREEZE 0.3s FROM END → HOLD 2s → STARS 2s → RESTART ===== */
-const vid = document.getElementById('statementVideo');
-const black = document.getElementById('pauseBlack');
-const starsCanvas = document.getElementById('pauseStars');
-const replayBtn = document.getElementById('replayBtn');
-const statement = document.getElementById('statement');
+      <!-- VIDEO -->
+      <section id="video">
+        <h2>Video</h2>
+        <p>Performances and collaborations.</p>
+        <div class="grid">
+          <div class="card">
+            <iframe
+              src="https://www.youtube.com/embed/lfMh0zfIO3A"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="card">
+            <iframe
+              src="https://www.youtube.com/embed/ZO769KQ_skE"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="card">
+            <iframe
+              src="https://www.youtube.com/embed/ORa4QjAffls"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="card">
+            <iframe
+              src="https://www.youtube.com/embed/XF-CrcPJT3c"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </section>
 
-const FREEZE_FROM_END_SEC = 0.3;
-const FREEZE_HOLD_MS = 2000;
-const STARS_MS = 2000;
+      <!-- SHOP -->
+      <section id="shop">
+        <h2>Shop</h2>
+        <p>Music + merch via Bandcamp.</p>
+        <div class="cta">
+          <a
+            class="btn bandcamp"
+            href="https://ibibiosoundmachine.bandcamp.com/"
+            target="_blank"
+            rel="noopener"
+          >
+            Ibibio Sound Machine — Bandcamp
+          </a>
+          <a
+            class="btn bandcamp"
+            href="https://bakerbrothers.bandcamp.com/"
+            target="_blank"
+            rel="noopener"
+          >
+            The Baker Brothers — Bandcamp
+          </a>
+        </div>
+      </section>
 
-let freezeAt = null;
-let sequenceRunning = false;
+      <!-- CONNECT -->
+      <section id="connect">
+        <h2>Connect</h2>
+        <p>Follow and get updates first.</p>
+        <div class="cta">
+          <a
+            class="btn primary"
+            href="https://www.instagram.com/scottybeasy"
+            target="_blank"
+            rel="noopener"
+            >Instagram</a
+          >
+          <a
+            class="btn facebook"
+            href="https://www.facebook.com/scottbaylis"
+            target="_blank"
+            rel="noopener"
+            >Facebook</a
+          >
+          <a
+            class="btn x"
+            href="https://x.com/scottbaylis"
+            target="_blank"
+            rel="noopener"
+            >X</a
+          >
+        </div>
+      </section>
 
-const ctx = starsCanvas.getContext('2d');
-let w = 0, h = 0;
-let stars = [];
-let dpr = 1;
+      <!-- CONTACT -->
+      <section id="contact">
+        <h2>Contact</h2>
+        <p>Bookings, collaborations, and enquiries. Leave either your email or phone number.</p>
 
-function resizeStars(){
-  const r = statement.getBoundingClientRect();
-  dpr = Math.min(2, window.devicePixelRatio || 1);
-  w = Math.max(1, Math.floor(r.width));
-  h = Math.max(1, Math.floor(r.height));
-  starsCanvas.width  = Math.floor(w * dpr);
-  starsCanvas.height = Math.floor(h * dpr);
-  ctx.setTransform(dpr,0,0,dpr,0,0);
+        <form
+          class="contactForm"
+          id="contactForm"
+          action="https://formsubmit.co/scottbaylis@hotmail.com"
+          method="POST"
+        >
+          <input type="hidden" name="_subject" value="New message from ScottyB site" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_next" value="index.html#contact" />
+          <input type="text" name="_honey" style="display: none" />
 
-  const count = Math.max(45, Math.floor((w*h)/9000));
-  stars = Array.from({length: count}, () => ({
-    x: Math.random()*w,
-    y: Math.random()*h,
-    r: 0.6 + Math.random()*1.6,
-    t: Math.random()*Math.PI*2,
-    sp: 0.006 + Math.random()*0.02,
-    a0: 0.12 + Math.random()*0.35
-  }));
-}
+          <div class="contactGrid">
+            <label class="field">
+              <span>Name</span>
+              <input name="name" type="text" required />
+            </label>
 
-function drawStars(){
-  ctx.clearRect(0,0,w,h);
-  for(const s of stars){
-    s.t += s.sp;
-    const tw = (Math.sin(s.t) + 1)/2;
-    const a = s.a0 + tw*0.55;
-    ctx.beginPath();
-    ctx.fillStyle = `rgba(255,255,255,${a})`;
-    ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
-    ctx.fill();
-  }
-  requestAnimationFrame(drawStars);
-}
+            <label class="field">
+              <span>Email (optional)</span>
+              <input id="contactEmail" name="email" type="email" />
+            </label>
 
-function showStars(on){
-  black.classList.toggle('is-on', on);
-  starsCanvas.classList.toggle('is-on', on);
-}
+            <label class="field">
+              <span>Phone (optional)</span>
+              <input id="contactPhone" name="phone" type="tel" />
+            </label>
 
-async function safePlay(){
-  try{ await vid.play(); }catch(e){}
-}
+            <label class="field fieldFull">
+              <span>Message</span>
+              <textarea name="message" rows="6" required></textarea>
+            </label>
+          </div>
 
-vid.addEventListener('loadedmetadata', () => {
-  freezeAt = Math.max(0, vid.duration - FREEZE_FROM_END_SEC);
-});
+          <div id="contactError" class="formError">
+            Please add at least one contact detail: an email address or a phone number.
+          </div>
 
-vid.addEventListener('timeupdate', () => {
-  if(sequenceRunning || freezeAt === null) return;
-  if(vid.currentTime >= freezeAt){
-    sequenceRunning = true;
-    vid.pause();
-    setTimeout(() => {
-      showStars(true);
-      setTimeout(() => {
-        showStars(false);
+          <div class="formActions">
+            <button class="btn primary" type="submit">Send message</button>
+            <div class="formNote">By sending, you agree to be contacted back.</div>
+          </div>
+        </form>
+      </section>
+
+      <footer>© 2026 Scott Baylis</footer>
+    </main>
+
+    <script>
+      /* ===== FREEZE 0.3s FROM END → HOLD 2s → STARS 2s → RESTART ===== */
+      const vid = document.getElementById("statementVideo");
+      const black = document.getElementById("pauseBlack");
+      const starsCanvas = document.getElementById("pauseStars");
+      const replayBtn = document.getElementById("replayBtn");
+      const statement = document.getElementById("statement");
+
+      const FREEZE_FROM_END_SEC = 0.3;
+      const FREEZE_HOLD_MS = 2000;
+      const STARS_MS = 2000;
+
+      let freezeAt = null;
+      let sequenceRunning = false;
+
+      const ctx = starsCanvas.getContext("2d");
+      let w = 0;
+      let h = 0;
+      let stars = [];
+      let dpr = 1;
+
+      function resizeStars() {
+        const r = statement.getBoundingClientRect();
+        dpr = Math.min(2, window.devicePixelRatio || 1);
+
+        w = Math.max(1, Math.floor(r.width));
+        h = Math.max(1, Math.floor(r.height));
+
+        starsCanvas.width = Math.floor(w * dpr);
+        starsCanvas.height = Math.floor(h * dpr);
+
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        const count = Math.max(45, Math.floor((w * h) / 9000));
+        stars = Array.from({ length: count }, () => ({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: 0.6 + Math.random() * 1.6,
+          t: Math.random() * Math.PI * 2,
+          sp: 0.006 + Math.random() * 0.02,
+          a0: 0.12 + Math.random() * 0.35,
+        }));
+      }
+
+      function drawStars() {
+        ctx.clearRect(0, 0, w, h);
+
+        for (const s of stars) {
+          s.t += s.sp;
+          const tw = (Math.sin(s.t) + 1) / 2;
+          const a = s.a0 + tw * 0.55;
+
+          ctx.beginPath();
+          ctx.fillStyle = `rgba(255,255,255,${a})`;
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        requestAnimationFrame(drawStars);
+      }
+
+      function showStars(on) {
+        black.classList.toggle("is-on", on);
+        starsCanvas.classList.toggle("is-on", on);
+      }
+
+      async function safePlay() {
+        try {
+          await vid.play();
+        } catch (e) {}
+      }
+
+      vid.addEventListener("loadedmetadata", () => {
+        freezeAt = Math.max(0, vid.duration - FREEZE_FROM_END_SEC);
+      });
+
+      vid.addEventListener("timeupdate", () => {
+        if (sequenceRunning || freezeAt === null) return;
+
+        if (vid.currentTime >= freezeAt) {
+          sequenceRunning = true;
+          vid.pause();
+
+          setTimeout(() => {
+            showStars(true);
+
+            setTimeout(() => {
+              showStars(false);
+              sequenceRunning = false;
+              vid.currentTime = 0;
+              safePlay();
+            }, STARS_MS);
+          }, FREEZE_HOLD_MS);
+        }
+      });
+
+      replayBtn.addEventListener("click", () => {
         sequenceRunning = false;
+        showStars(false);
         vid.currentTime = 0;
         safePlay();
-      }, STARS_MS);
-    }, FREEZE_HOLD_MS);
-  }
-});
+      });
 
-replayBtn.addEventListener('click', () => {
-  sequenceRunning = false;
-  showStars(false);
-  vid.currentTime = 0;
-  safePlay();
-});
+      window.addEventListener("load", () => {
+        resizeStars();
+        drawStars();
+        setTimeout(safePlay, 150);
+      });
 
-window.addEventListener('load', () => {
-  resizeStars();
-  drawStars();
-  setTimeout(safePlay, 150);
-});
-window.addEventListener('resize', resizeStars, {passive:true});
+      window.addEventListener("resize", resizeStars, { passive: true });
 
-statement.addEventListener('click', safePlay);
+      statement.addEventListener("click", safePlay);
 
-/* ===== CONTACT VALIDATION ===== */
-const contactForm = document.getElementById('contactForm');
-const emailEl = document.getElementById('contactEmail');
-const phoneEl = document.getElementById('contactPhone');
-const errorEl = document.getElementById('contactError');
+      /* ===== CONTACT VALIDATION ===== */
+      const contactForm = document.getElementById("contactForm");
+      const emailEl = document.getElementById("contactEmail");
+      const phoneEl = document.getElementById("contactPhone");
+      const errorEl = document.getElementById("contactError");
 
-function trimVal(el){ return (el.value || '').trim(); }
+      function trimVal(el) {
+        return (el.value || "").trim();
+      }
 
-function validateContactDetails(){
-  const ok = trimVal(emailEl) || trimVal(phoneEl);
-  errorEl.classList.toggle('is-on', !ok);
-  return !!ok;
-}
+      function validateContactDetails() {
+        const ok = trimVal(emailEl) || trimVal(phoneEl);
+        errorEl.classList.toggle("is-on", !ok);
+        return !!ok;
+      }
 
-contactForm.addEventListener('submit', (e) => {
-  if(!validateContactDetails()){
-    e.preventDefault();
-    errorEl.scrollIntoView({behavior:'smooth', block:'nearest'});
-  }
-});
-</script>
-
-</body>
+      contactForm.addEventListener("submit", (e) => {
+        if (!validateContactDetails()) {
+          e.preventDefault();
+          errorEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+      });
+    </script>
+  </body>
 </html>
